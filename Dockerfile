@@ -46,7 +46,7 @@ ENV PYTHONIOENCODING UTF-8
 RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     # Status rate is limited so that just enough info is shown to keep Docker from timing out, but not too much
     # such that the Docker log gets too long (another form of timeout)
-    catkin build --jobs 1 --limit-status-rate 0.001 --no-notify
+    catkin build --jobs 16 --limit-status-rate 0.001 --no-notify
 
 #
 # For debugging
@@ -60,8 +60,8 @@ RUN apt-get update && apt-get -y install vim-tiny ros-kinetic-catkin
 
 WORKDIR $CATKIN_WS
 
-RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/default/mobility_base.rosinstall -O /tmp/mobility_base.rosinstall
-RUN wget https://bitbucket.org/DataspeedInc/mobility_base_simulator/raw/default/mobility_base_simulator.rosinstall -O /tmp/mobility_base_simulator.rosinstall
+RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/master/mobility_base.rosinstall -O /tmp/mobility_base.rosinstall
+RUN wget https://bitbucket.org/DataspeedInc/mobility_base_simulator/raw/master/mobility_base_simulator.rosinstall -O /tmp/mobility_base_simulator.rosinstall
 
 RUN wstool merge -t src /tmp/mobility_base.rosinstall
 RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall

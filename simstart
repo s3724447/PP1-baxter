@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp vxlab.world ~/ws_baxter/src/gazebo_ros_pkgs/gazebo_plugins/test2/worlds/empty.world
+cp vxlab.world /usr/share/gazebo-7/worlds/empty.world
 
 cd ~/ws_baxter
 #HOSTNAME=`hostname`
