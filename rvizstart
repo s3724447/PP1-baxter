@@ -1,0 +1,12 @@
+#!/bin/bash
+cd ~/ws_baxter
+IP=`ip addr show | grep 10.32|sed 's/.*inet //'|sed 's/\/.*//' |sed 's/ .*//'`
+HOSTNAME=$IP
+#export ROS_IP=${HOSTNAME}.vx.rmit.edu.au
+export ROS_IP=${HOSTNAME}
+#export ROS_MASTER_URI=http://${HOSTNAME}.vx.rmit.edu.au:11311
+export ROS_MASTER_URI=http://mb.vx.rmit.edu.au:11311
+source devel/setup.bash
+#roslaunch mobility_base_gazebo mobility_base_empty_world.launch baxter:=true
+#roslaunch baxter_gazebo baxter_world.launch
+roslaunch mobility_base_tools rviz.launch
