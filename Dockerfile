@@ -122,6 +122,8 @@ WORKDIR /root
 ADD simstart simstart
 ADD vxlab.world vxlab.world
 ADD lift-arms lift-arms
-RUN chmod +x simstart lift-arms
+ADD move-rosie move-rosie
+ADD RMIT.png RMIT.png
+RUN chmod +x simstart lift-arms move-rosie
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
