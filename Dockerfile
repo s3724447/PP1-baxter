@@ -23,7 +23,7 @@ RUN apt-get -qq update && \
     # Install some base dependencies
     apt-get -qq install -y \
         # Some source builds require a package.xml be downloaded via wget from an external location
-        wget \
+        wget less \
         # Required for rosdep command
         sudo \
         # Required for installing dependencies
