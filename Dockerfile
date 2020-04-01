@@ -25,7 +25,15 @@ RUN apt-get -qq update && \
         # Some source builds require a package.xml be downloaded via wget from an external location
         wget less \
         # Required for rosdep command
-        sudo \
+        sudo
+
+# Fix ROS keys
+RUN sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
+RUN sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+RUN apt-get -qq update && \
+    # Install some base dependencies
+    apt-get -qq install -y \
         # Required for installing dependencies
         python-rosdep \
         # Preferred build tool
@@ -106,6 +114,9 @@ ENV DISPLAY :0
 
 WORKDIR /root
 
+RUN apt-get -qq update && \
+    apt install -y ros-kinetic-nav2d
+
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   vim \
   iputils-ping
@@ -125,5 +136,7 @@ ADD lift-arms lift-arms
 ADD move-rosie move-rosie
 ADD RMIT.png RMIT.png
 RUN chmod +x simstart lift-arms move-rosie
+
+#ADD mb-navigation
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
