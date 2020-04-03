@@ -3,7 +3,26 @@
 # Run simulated Baxter in Gazebo
 
 FROM osrf/ros:kinetic-desktop-full
+
+# Update apt-get because previous images clear this cache
+# Commands are combined in single RUN statement with "apt/lists" folder removal to reduce image size
+RUN apt-get update && \
+    # Install some base dependencies
+    apt-get install -y \
+        # Some source builds require a package.xml be downloaded via wget from an external location
+        wget less \
+        # Required for rosdep command
+        sudo
+
+# Fix ROS keys
+RUN sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
+RUN sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+RUN apt-get update && apt -y dist-upgrade
+  
 MAINTAINER Dave Coleman dave@dav.ee
+
+RUN echo force rebuild
 
 ENV TERM xterm
 
@@ -16,20 +35,6 @@ WORKDIR $CATKIN_WS/src
 RUN wstool init . && \
     wstool merge https://raw.githubusercontent.com/vicariousinc/baxter_simulator/${ROS_DISTRO}-gazebo7/baxter_simulator.rosinstall && \
     wstool update
-
-# Update apt-get because previous images clear this cache
-# Commands are combined in single RUN statement with "apt/lists" folder removal to reduce image size
-RUN apt-get -qq update && \
-    # Install some base dependencies
-    apt-get -qq install -y \
-        # Some source builds require a package.xml be downloaded via wget from an external location
-        wget less \
-        # Required for rosdep command
-        sudo
-
-# Fix ROS keys
-RUN sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
-RUN sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 RUN apt-get -qq update && \
     # Install some base dependencies
@@ -130,13 +135,26 @@ ADD baxter.sh baxter.sh
 #ADD vncstart vncstart
 
 WORKDIR /root
-ADD simstart simstart
+RUN echo 'source ~/rosenv.bash' >> .bashrc
+
+# Navigation tree/build
+ADD mb-navigation mb-navigation
+WORKDIR /root/mb-navigation
+RUN rosdep install -y --from-paths .
+RUN rm -rf build devel
+RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild
+
+WORKDIR /root
+ADD RMIT.png RMIT.png
 ADD vxlab.world vxlab.world
 ADD lift-arms lift-arms
 ADD move-rosie move-rosie
-ADD RMIT.png RMIT.png
+COPY rosenv.bash rosenv.bash
+ADD simstart simstart
 RUN chmod +x simstart lift-arms move-rosie
 
-#ADD mb-navigation
+COPY vxlab_nav mb-navigation/navigation/vxlab_nav
+WORKDIR /root/mb-navigation
+RUN rosdep install -y --from-paths .
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
