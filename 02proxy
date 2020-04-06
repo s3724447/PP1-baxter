@@ -1,0 +1,15 @@
+////Acquire::http::proxy "http://aptproxy.vxlab.rmit.edu.au:3142";
+////Acquire::http::proxy "http://131.170.250.207:3142";
+//Acquire::http::proxy "http://131.170.250.250:3142";
+//Acquire::http::proxy "http://10.42.10.114:3142";
+Acquire::http::proxy "http://henry:3142";
+//Acquire::http::proxy "DIRECT";
+
+Acquire::https::Proxy "DIRECT";
+Acquire::http::Proxy { download.docker.com DIRECT; };
+Acquire::http::Proxy { developer.download.nvidia.com DIRECT; };
+Acquire::http::Proxy { nvidia.github.io DIRECT; };
+Acquire::http::Proxy { qgis.org DIRECT; };
+Acquire::http::Proxy { packages.ros.org DIRECT; };
+
+//Acquire::http::Proxy-Auto-Detect "/usr/local/bin/apt-proxy-detect.sh";
