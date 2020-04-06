@@ -135,8 +135,8 @@ ADD baxter.sh baxter.sh
 #ADD vncstart vncstart
 
 WORKDIR /root
-# rosie_ws mounted at runtime
-RUN echo 'source ~/rosie_ws/rosenv.bash' >> .bashrc
+# rosie mounted at runtime
+RUN echo 'source ~/rosie/rosenv.bash' >> .bashrc
 
 # Navigation tree --- install prerequisite packages
 RUN mkdir /root/navigation_ws
@@ -149,7 +149,7 @@ RUN rosdep install -y --from-paths .
 #RUN rm -rf build devel
 #RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild
 
-# Added in runtime volume: /root/rosie_ws
+# Added in runtime volume: /root/rosie
 #WORKDIR /root
 #ADD RMIT.png RMIT.png
 #ADD vxlab.world vxlab.world
