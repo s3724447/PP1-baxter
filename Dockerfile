@@ -3,6 +3,11 @@
 # Run simulated Baxter in Gazebo
 
 FROM osrf/ros:kinetic-desktop-full
+COPY 02proxy /etc/apt/apt.conf.d/02proxy
+
+# Fix ROS keys
+RUN apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
+RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 # Update apt-get because previous images clear this cache
 # Commands are combined in single RUN statement with "apt/lists" folder removal to reduce image size
@@ -14,15 +19,10 @@ RUN apt-get update && \
         # Required for rosdep command
         sudo
 
-# Fix ROS keys
-RUN sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
-RUN sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-
 RUN apt-get update && apt -y dist-upgrade
-  
+
 MAINTAINER Dave Coleman dave@dav.ee
 
-RUN echo force rebuild
 
 ENV TERM xterm
 
@@ -135,26 +135,37 @@ ADD baxter.sh baxter.sh
 #ADD vncstart vncstart
 
 WORKDIR /root
-RUN echo 'source ~/rosenv.bash' >> .bashrc
+# rosie_ws mounted at runtime
+RUN echo 'source ~/rosie_ws/rosenv.bash' >> .bashrc
 
-# Navigation tree/build
-ADD mb-navigation mb-navigation
-WORKDIR /root/mb-navigation
+# Navigation tree --- install prerequisite packages
+RUN mkdir /root/navigation_ws
+WORKDIR /root/navigation_ws
+RUN git clone https://github.com/ros-planning/navigation.git
+WORKDIR /root/navigation_ws/navigation
+# Last known working
+#RUN git checkout 73d46b69e20a039f8a35a3f78145ac84a643720b
 RUN rosdep install -y --from-paths .
-RUN rm -rf build devel
-RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild
+#RUN rm -rf build devel
+#RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild
+
+# Added in runtime volume: /root/rosie_ws
+#WORKDIR /root
+#ADD RMIT.png RMIT.png
+#ADD vxlab.world vxlab.world
+#ADD lift-arms lift-arms
+#ADD move-rosie move-rosie
+#COPY rosenv.bash rosenv.bash
+#ADD simstart simstart
+#RUN chmod +x simstart lift-arms move-rosie
+#COPY vxlab_nav mb-navigation/navigation/vxlab_nav
+#WORKDIR /root/mb-navigation
+#RUN rosdep install -y --from-paths .
 
 WORKDIR /root
-ADD RMIT.png RMIT.png
-ADD vxlab.world vxlab.world
-ADD lift-arms lift-arms
-ADD move-rosie move-rosie
-COPY rosenv.bash rosenv.bash
-ADD simstart simstart
-RUN chmod +x simstart lift-arms move-rosie
 
-COPY vxlab_nav mb-navigation/navigation/vxlab_nav
-WORKDIR /root/mb-navigation
-RUN rosdep install -y --from-paths .
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  telnet
+#RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

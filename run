@@ -1,11 +1,36 @@
-#docker network create x11
-docker network create vxlab #--subnet 10.42.170.0/24
-
-docker rm -f novnc
-docker run --network vxlab --name novnc --rm -p 8081:8080 theasp/novnc 2>&1 > x11.log &
-echo Waiting for X11 desktop
+#!/bin/bash
+get_script_dir () {
+     SOURCE="${BASH_SOURCE[0]}"
+     # While $SOURCE is a symlink, resolve it
+     while [ -h "$SOURCE" ]; do
+          DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+          SOURCE="$( readlink "$SOURCE" )"
+          # If $SOURCE was a relative symlink (so no "/" as prefix, need to resolve it relative to the symlink base directory
+          [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+     done
+     SCRIPTDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+     echo "script directory is $SCRIPTDIR"
+}
+set -xv
+# SCRIPTDIR=...
+get_script_dir
 
 NAME=vxlab-rosie
-sleep 2
+
+docker rm -f novnc
+docker rm -f rviz
 docker rm -f $NAME
-docker run --network vxlab --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
+
+docker network rm vxlab
+#docker network create x11
+docker network create --subnet 10.42.170.0/24 --gateway 10.42.170.254 vxlab
+#docker network create vxlab
+
+docker run --network vxlab --name novnc --rm -p 8081:8080 theasp/novnc 2>&1 > x11.log &
+
+docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11.log &
+
+sleep 10
+docker rm -f $NAME
+docker run --network vxlab -v $SCRIPTDIR/navigation_ws:/root/navigation_ws -v $SCRIPTDIR/rosie_ws:/root/rosie_ws --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
+#docker run --network vxlab --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
