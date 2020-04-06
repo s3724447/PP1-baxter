@@ -32,5 +32,5 @@ docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11
 
 sleep 10
 docker rm -f $NAME
-docker run --network vxlab -v $SCRIPTDIR/navigation_ws:/root/navigation_ws -v $SCRIPTDIR/rosie_ws:/root/rosie_ws --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
+docker run --network vxlab -v $SCRIPTDIR/navigation_ws:/root/navigation_ws -v $SCRIPTDIR/rosie:/root/rosie --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
 #docker run --network vxlab --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
