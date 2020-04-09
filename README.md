@@ -57,11 +57,11 @@ Mapping:
 
 Use
 
-./startmapping
+./mapping-start
 
 To start the mapping process. (In gazebo, add a map with topic "/map" to see what has been mapped.) In a separate docker bash shell, start a keyboard-based controller for the mobilty base using
 
-./startcontrol
+./controlstart
 
 Instructions are shown on standard output. To generate a coherent map, use strafe commands only, no rotation. With the current configuration for the mapping component (hector_slam), rotation breaks the SLAM tracking so maps are incoherent.  Finally use
 
