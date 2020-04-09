@@ -1,4 +1,4 @@
-image: vxlab_sim_map.pgm
+image: /root/rosie/vxlab_sim_map.pgm
 resolution: 0.100000
 origin: [-12.549999, -12.549999, 0.000000]
 negate: 0
