@@ -26,7 +26,7 @@ docker network rm vxlab
 docker network create --subnet 10.42.170.0/24 --gateway 10.42.170.254 vxlab
 #docker network create vxlab
 
-docker run --network vxlab --name novnc --rm -p 8081:8080 theasp/novnc 2>&1 > x11.log &
+docker run --network vxlab --name novnc --rm -p 8080:8080 theasp/novnc 2>&1 > x11.log &
 
 # Not accessible on CSRack blades without VPN
 docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11.log &
