@@ -139,13 +139,13 @@ WORKDIR /root
 RUN echo 'source ~/rosie/rosenv.bash' >> .bashrc
 
 # Navigation tree --- install prerequisite packages
-RUN mkdir /root/navigation_ws
-WORKDIR /root/navigation_ws
-RUN git clone https://github.com/ros-planning/navigation.git
+#RUN mkdir /root/navigation_ws
+#WORKDIR /root/navigation_ws
+#RUN git clone https://github.com/ros-planning/navigation.git
 WORKDIR /root/navigation_ws/navigation
 # Last known working version for ros-planning/navigation.git
 ###RUN git checkout 73d46b69e20a039f8a35a3f78145ac84a643720b
-ADD mobility_base_2dnav /root/navigation_ws/navigation/mobility_base_2dnav
+#ADD mobility_base_2dnav /root/navigation_ws/navigation/mobility_base_2dnav
 RUN rosdep install -y --from-paths .
 #RUN rm -rf build devel
 #RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild

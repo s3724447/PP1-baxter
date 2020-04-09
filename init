@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p navigation_ws
+cd navigation_ws
+git clone https://github.com/ros-planning/navigation.git
+# cd navigation
+#RUN git checkout 73d46b69e20a039f8a35a3f78145ac84a643720b
+cd navigation_ws/navigation
+
+# Last known working version for ros-planning/navigation.git
+#ADD mobility_base_2dnav /root/navigation_ws/navigation/mobility_base_2dnav
+
