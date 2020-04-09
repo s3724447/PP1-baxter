@@ -2,6 +2,5 @@
 *.swp
 02proxy.vxlab
 *.log
-mobility_base_2dnav
 navigation_ws/.catkin_workspace
 navigation_ws/navigation_msgs.disable/

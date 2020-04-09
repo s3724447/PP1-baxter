@@ -1,0 +1,17 @@
+<launch>
+
+   <node pkg="pepperl_fuchs_r2000" type="r2000_node" name="r2000_node" output="screen">
+      <param name="frame_id" value="laser_birdcage_r2000"/>
+      <param name="scanner_ip" value="$(optenv MB_LASER_BIRDCAGE_R2000_IP 192.168.20.251)"/>
+      <param name="scan_frequency" value="$(optenv MB_LASER_BIRDCAGE_R2000_FREQ 35)"/>
+      <param name="samples_per_scan" value="$(optenv MB_LASER_BIRDCAGE_R2000_SAMPLES 3600)"/>
+      <remap from="~/scan" to="scan" />
+    </node> 
+ <node pkg="safebase-vxlab" type="odometry.py" name="odom_node" output="screen">
+    <param name="odom_param" value="param_value" />
+ </node>
+ <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+    <param name="transform_configuration_param" value="param_value" />
+ </node>
+
+</launch>
