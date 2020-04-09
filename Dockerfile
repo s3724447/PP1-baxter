@@ -166,6 +166,11 @@ WORKDIR /root
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   telnet
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  ros-kinetic-hector-slam ros-kinetic-hector-slam-launch ros-kinetic-teleop-twist-keyboard
+
+WORKDIR /root/rosie
 #RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
