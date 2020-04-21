@@ -35,8 +35,8 @@ class RosOdomPublisher:
   P = np.mat(np.diag([0.0]*3))
 
   def __init__(self):
-      self.x = 60
-      self.y = 60
+      self.x = 0
+      self.y = 0
       self.yaw = 0
       # Attempt to read from file
 #      try:
@@ -132,7 +132,8 @@ def mypub_cmdvel(msg):
   # Calculate new position in terms of delta-Twist
   pub.dx = twist.linear.x
   pub.dy = twist.linear.y
-  pub.dyaw = twist.angular.z
+  # MAGIC NUMBER
+  pub.dyaw = twist.angular.z / 1.5
   c1 = (pub.dx * micros / 1000000)
   c2 = (pub.dy * micros / 1000000)
   pub.x = pub.x + c1 * math.cos(pub.yaw) + c2 * math.sin(pub.yaw)
@@ -140,6 +141,7 @@ def mypub_cmdvel(msg):
   # ROS: yaw increases in an anti-clockwise direction
   # (http://www.ros.org/reps/rep-0103.html)
   pub.yaw = pub.yaw + pub.dyaw * micros / 1000000
+  print 'yaw',pub.yaw
   #print 'dx',pub.dx,'dy',pub.dy,'dyaw',pub.dyaw
   #print 'x',pub.x,'y',pub.y,'z',pub.z,'yaw',pub.yaw
   pub.publish_odom()

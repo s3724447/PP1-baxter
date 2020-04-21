@@ -15,11 +15,8 @@ set -xv
 # SCRIPTDIR=...
 get_script_dir
 
-NAME=vxlab-rosie
-
 docker rm -f novnc
 docker rm -f rviz
-docker rm -f $NAME
 
 docker network rm vxlab
 #docker network create x11
@@ -29,8 +26,9 @@ docker network create --subnet 10.42.170.0/24 --gateway 10.42.170.254 vxlab
 docker run --network vxlab --name novnc --rm -p 8080:8080 theasp/novnc 2>&1 > x11.log &
 
 # Not accessible on CSRack blades without VPN
-docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11.log &
+#docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11.log &
 
+NAME=vxlab-rosie
 sleep 10
 docker rm -f $NAME
 docker run --network vxlab -v $SCRIPTDIR/navigation_ws:/root/navigation_ws -v $SCRIPTDIR/rosie:/root/rosie --name $NAME -it -e DISPLAY=novnc:0 vxlab-rosie
