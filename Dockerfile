@@ -134,41 +134,12 @@ ADD baxter.sh baxter.sh
 #RUN echo 'vxlab ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
 #ADD vncstart vncstart
 
-WORKDIR /root
 # rosie mounted at runtime
-RUN echo 'source ~/rosie/rosenv.bash' >> .bashrc
-
-RUN echo force rebuild
-# Navigation tree --- install prerequisite packages
-ADD navigation_ws /root/navigation_ws
-# Last known working version for ros-planning/navigation.git
-###RUN git checkout 73d46b69e20a039f8a35a3f78145ac84a643720b
-#ADD mobility_base_2dnav /root/navigation_ws/navigation/mobility_base_2dnav
-WORKDIR /root/navigation_ws/navigation
-RUN rosdep install -y --from-paths .
-#RUN rm -rf build devel
-#RUN source ~/ws_baxter/devel/setup.bash && ./rosbuild
-
-# Added in runtime volume: /root/rosie
-#WORKDIR /root
-#ADD RMIT.png RMIT.png
-#ADD vxlab.world vxlab.world
-#ADD lift-arms lift-arms
-#ADD move-rosie move-rosie
-#COPY rosenv.bash rosenv.bash
-#ADD simstart simstart
-#RUN chmod +x simstart lift-arms move-rosie
-#COPY vxlab_nav mb-navigation/navigation/vxlab_nav
-#WORKDIR /root/mb-navigation
-#RUN rosdep install -y --from-paths .
-
-WORKDIR /root
+RUN echo 'source ~/rosie/rosenv.bash' >> /root/.bashrc
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  telnet
-
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  ros-kinetic-hector-slam ros-kinetic-hector-slam-launch ros-kinetic-teleop-twist-keyboard
+  iproute2 host \
+  ros-kinetic-teleop-twist-keyboard
 
 WORKDIR /root/rosie
 #RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde

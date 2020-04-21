@@ -141,7 +141,7 @@ def mypub_cmdvel(msg):
   # ROS: yaw increases in an anti-clockwise direction
   # (http://www.ros.org/reps/rep-0103.html)
   pub.yaw = pub.yaw + pub.dyaw * micros / 1000000
-  print 'yaw',pub.yaw
+  #print 'yaw',pub.yaw
   #print 'dx',pub.dx,'dy',pub.dy,'dyaw',pub.dyaw
   #print 'x',pub.x,'y',pub.y,'z',pub.z,'yaw',pub.yaw
   pub.publish_odom()
