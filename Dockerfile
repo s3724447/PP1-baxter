@@ -2,26 +2,29 @@
 # vicariousinc/baxter-simulator:kinetic
 # Run simulated Baxter in Gazebo
 
+
 FROM osrf/ros:kinetic-desktop-full
+MAINTAINER Dave Coleman dave@dav.ee
+
 COPY 02proxy /etc/apt/apt.conf.d/02proxy
 
 # Fix ROS keys
 RUN apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
 RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
-# Update apt-get because previous images clear this cache
+# Update apt because previous images clear this cache
 # Commands are combined in single RUN statement with "apt/lists" folder removal to reduce image size
-RUN apt-get update && \
+RUN apt update && \
     # Install some base dependencies
-    apt-get install -y \
-        # Some source builds require a package.xml be downloaded via wget from an external location
-        wget less \
-        # Required for rosdep command
-        sudo
+    apt install -y \
+	iproute2 host wget less sudo vim-tiny iputils-ping
 
+# Fix issue for error when using cameras in gazebo 7(?)
+# https://github.com/uzh-rpg/rpg_quadrotor_control/issues/58
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
+RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN apt-get update && apt -y dist-upgrade
 
-MAINTAINER Dave Coleman dave@dav.ee
 
 
 ENV TERM xterm
@@ -65,7 +68,7 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 # For debugging
 #
 
-RUN apt-get update && apt-get -y install vim-tiny ros-kinetic-catkin
+RUN apt-get update && apt -y install ros-kinetic-catkin
 
 #
 # Dataspeed mobility base
@@ -83,7 +86,7 @@ RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall
 RUN wstool status -t src && wstool update -t src
 
 ##RUN sudo apt-get -y install ros-indigo-baxter-simulator ros-kinetic-joint-state-controller
-RUN sudo apt-get -y install ros-kinetic-joint-state-controller
+RUN sudo apt -y install ros-kinetic-joint-state-controller
 RUN rosdep update && rosdep install -y --from-paths src --ignore-src -r
 
 RUN rm -rf build devel
@@ -119,13 +122,9 @@ ENV DISPLAY :0
 
 WORKDIR /root
 
-RUN apt-get -qq update && \
+RUN apt -qq update && \
     apt install -y ros-kinetic-nav2d
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  vim \
-  iputils-ping
-#RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde
 
 WORKDIR $CATKIN_WS
 ADD baxter.sh baxter.sh
@@ -137,11 +136,9 @@ ADD baxter.sh baxter.sh
 # rosie mounted at runtime
 RUN echo 'source ~/rosie/rosenv.bash' >> /root/.bashrc
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  iproute2 host \
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-kinetic-teleop-twist-keyboard
 
 WORKDIR /root/rosie
-#RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

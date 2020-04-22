@@ -1,0 +1,14 @@
+gazebo_ros_control:
+  pid_gains:
+    joint2: {p: 100.0, i: 0.01, d: 10.0}
+robot:
+  left_joint_position_controller:
+    joints:
+      left_s0_controller:
+         pid:
+           p: 0
+  right_joint_position_controller:
+    joints:
+      right_s0_controller:
+         pid:
+           p: 0

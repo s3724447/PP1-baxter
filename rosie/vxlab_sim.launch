@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="false"/>
+  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0" />
+  <arg name="R" default="0" />
+  <arg name="P" default="0" />
+  <arg name="Y" default="0" />
+  <arg name="baxter" default="false" />
+  <arg name="fast" default="true" />
+  <arg name="xacro_file" default="'$(find mobility_base_description)/urdf/mobility_base.urdf.xacro' gazebo:=true baxter:=$(arg baxter) fast:=$(arg fast)" />
+
+  <rosparam file="/root/rosie/bugfix.yaml" />
+
+  <!-- Start gazebo and load the world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+  </include>
+
+  <!-- Spawn the Mobility Base -->
+  <include file="$(find mobility_base_gazebo)/launch/mobility_base_robot.launch" >
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="z" value="$(arg z)"/>
+    <arg name="R" value="$(arg R)"/>
+    <arg name="P" value="$(arg P)"/>
+    <arg name="Y" value="$(arg Y)"/>
+    <arg name="baxter" value="$(arg baxter)" />
+    <arg name="xacro_file" value="$(arg xacro_file)" />
+  </include>
+
+</launch>

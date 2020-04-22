@@ -1,0 +1,7 @@
+#!/bin/bash 
+#cp resolv.conf docker-opengl/etc/resolv.conf
+#cp graphical-app-launcher.conf noVNC.conf x11vnc.conf xdummy.conf docker-opengl/etc/supervisor/conf.d/
+#cp graphical-app-launcher.conf noVNC.conf x11vnc.conf xdummy.conf 
+
+touch 02proxy
+docker build -t "vxlab-rosie-nav" . -f Dockerfile.nav --network host 2>&1 | tee build.log

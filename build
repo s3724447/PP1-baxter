@@ -5,7 +5,7 @@
 
 touch 02proxy
 docker build -t "vxlab-rosie" . --network host 2>&1 | tee build.log
-docker build -t "vxlab-rosie-nav" . -f Dockerfile.nav --network host 2>&1 | tee build.log
+#docker build -t "vxlab-rosie-nav" . -f Dockerfile.nav --network host 2>&1 | tee build.log
 
 #sudo docker build -t "vxlab-baxter" . --no-cache
 #sudo docker save vxlab-baxter > vxlab-baxter-dockerimage.tar
