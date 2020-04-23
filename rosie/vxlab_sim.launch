@@ -33,7 +33,7 @@
   </include>
 
   <!-- Spawn the Mobility Base -->
-  <include file="$(find mobility_base_gazebo)/launch/mobility_base_robot.launch" >
+  <include file="/root/rosie/mobility_base_robot.launch" >
     <arg name="x" value="$(arg x)"/>
     <arg name="y" value="$(arg y)"/>
     <arg name="z" value="$(arg z)"/>

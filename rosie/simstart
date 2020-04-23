@@ -16,5 +16,4 @@ export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 
 source devel/setup.bash
 
-roslaunch mobility_base_gazebo mobility_base_empty_world.launch baxter:=true
-#roslaunch baxter_gazebo baxter_world.launch
+roslaunch /root/rosie/vxlab_sim.launch baxter:=true
