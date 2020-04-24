@@ -22,7 +22,9 @@ RUN apt update && \
 # Fix issue for error when using cameras in gazebo 7(?)
 # https://github.com/uzh-rpg/rpg_quadrotor_control/issues/58
 # - but this introduces a regression with untucking arms!
-RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
+#RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
+#RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable artful main" > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 
 # Ensure Ubuntu and ROS up to date
