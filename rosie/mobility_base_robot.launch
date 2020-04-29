@@ -7,7 +7,7 @@
   <arg name="P" default="0" />
   <arg name="Y" default="0" />
   <arg name="baxter" default="false" />
-  <arg name="fast" default="true" />
+  <arg name="fast" default="false" />
   <arg name="xacro_file" default="'$(find mobility_base_description)/urdf/mobility_base.urdf.xacro' gazebo:=true baxter:=$(arg baxter) fast:=$(arg fast)" />
 
   <arg name="left_electric_gripper" default="true"/>

@@ -24,13 +24,14 @@ RUN apt update && \
 # - but this introduces a regression with untucking arms!
 #RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
 #RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
-RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable artful main" > /etc/apt/sources.list.d/gazebo-stable.list
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable xenial main" > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 
 # Ensure Ubuntu and ROS up to date
 RUN apt-get update && apt -y dist-upgrade
 
-RUN echo force rebuild from here
+RUN apt update && apt -y install ros-kinetic-gazebo9-ros-pkgs
+#RUN sudo rm -rf /etc/ros/rosdep && rosdep init && rosdep update
 
 ENV TERM xterm
 
@@ -44,7 +45,15 @@ RUN wstool init . && \
     wstool merge https://raw.githubusercontent.com/vicariousinc/baxter_simulator/${ROS_DISTRO}-gazebo7/baxter_simulator.rosinstall && \
     wstool update
 
-COPY resolv.conf /etc/resolv.conf
+#WORKDIR /opt/ros/kinetic/share/gazebo_dev
+#RUN sed 's%libgazebo7-dev%libgazebo9-dev%' package.xml > /tmp/package.xml
+#RUN mv /tmp/package.xml package.xml
+
+# Build repo
+#WORKDIR $CATKIN_WS
+#RUN sed 's%libgazebo7-dev%libgazebo9-dev%' src/gazebo_ros_pkgs/gazebo_dev/package.xml > /tmp/package.xml
+#RUN mv /tmp/package.xml src/gazebo_ros_pkgs/gazebo_dev/package.xml
+
 
 RUN apt-get -qq update && \
     # Install some base dependencies
@@ -52,10 +61,14 @@ RUN apt-get -qq update && \
         # Required for installing dependencies
         python-rosdep \
         # Preferred build tool
-        python-catkin-tools && \
+        python-catkin-tools
     # Download all dependencies
-    rosdep update && \
-    rosdep install -r -y --from-paths . --ignore-src --skip-keys='gazebo7' --rosdistro ${ROS_DISTRO} --as-root=apt:false && \
+RUN rosdep update
+
+COPY 02proxy /etc/apt/apt.conf.d/02proxy
+
+#RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" --rosdistro ${ROS_DISTRO} --as-root=apt:false && \
+RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" && \
     # Clear apt-cache to reduce image size
     rm -rf /var/lib/apt/lists/*
 
@@ -65,6 +78,7 @@ RUN mv /bin/sh /bin/sh-old && \
 
 # Build repo
 WORKDIR $CATKIN_WS
+
 ENV PYTHONIOENCODING UTF-8
 RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     # Status rate is limited so that just enough info is shown to keep Docker from timing out, but not too much
@@ -84,7 +98,9 @@ RUN apt-get update && apt -y install ros-kinetic-catkin
 WORKDIR $CATKIN_WS
 
 RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/master/mobility_base.rosinstall -O /tmp/mobility_base.rosinstall
-RUN wget https://bitbucket.org/DataspeedInc/mobility_base_simulator/raw/master/mobility_base_simulator.rosinstall -O /tmp/mobility_base_simulator.rosinstall
+#RUN wget https://bitbucket.org/DataspeedInc/mobility_base_simulator/raw/master/mobility_base_simulator.rosinstall -O /tmp/mobility_base_simulator.rosinstall
+# https://github.com/kw90/mobility_base_simulator/
+COPY mobility_base_simulator.rosinstall /tmp/mobility_base_simulator.rosinstall
 
 RUN wstool merge -t src /tmp/mobility_base.rosinstall
 RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall
@@ -94,7 +110,10 @@ RUN wstool status -t src && wstool update -t src
 
 ##RUN sudo apt-get -y install ros-indigo-baxter-simulator ros-kinetic-joint-state-controller
 RUN sudo apt -y install ros-kinetic-joint-state-controller
-RUN rosdep update && rosdep install -y --from-paths src --ignore-src -r
+
+RUN apt purge ros-kinetic-velodyne-simulator ros-kinetic-wamv-gazebo
+
+RUN rosdep update && rosdep install -v -y -r --from-paths src --ignore-src --skip-keys="velodyne velodyne_description velodyne_laserscan velodyne_pointcloud velodyne_driver velodyne_msgs gazebo velodyne_gazebo_plugins libgazebo7 libgazebo7-dev"
 
 RUN rm -rf build devel
 RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release && \
@@ -147,5 +166,10 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-kinetic-teleop-twist-keyboard
 
 WORKDIR /root/rosie
+
+# install, build ros_control:
+#   http://wiki.ros.org/ros_control
+# install four_wheel_steering_msgs
+#   https://github.com/ros-drivers/four_wheel_steering_msgs
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

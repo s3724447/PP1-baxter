@@ -29,12 +29,10 @@ docker run --network vxlab --name novnc --rm -p 8080:8080 theasp/novnc 2>&1 > x1
 # Not accessible on CSRack blades without VPN
 #docker run --network vxlab --name rviz --rm -p 8082:8080 theasp/novnc 2>&1 > x11.log &
 
-INAME=${1:-vxlab-rosie}
-echo INAME $INAME
+NAME=vxlab-rosie
 sleep 10
 
-CNAME=vxlab-rosie
+docker rm -f vxlab-rosie
+docker rm -f vxlab-rosie-nav
 
-docker rm -f $CNAME
-
-docker run --network vxlab -v $SCRIPTDIR/rosie:/root/rosie --name $CNAME -it -e DISPLAY=novnc:0 $INAME
+docker run --network vxlab -v $SCRIPTDIR/rosie:/root/rosie --name vxlab-rosie -it -e DISPLAY=novnc:0 vxlab-rosie-xenial

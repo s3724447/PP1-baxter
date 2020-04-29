@@ -1,43 +1,39 @@
 robot:
+  gazebo_ros_control:
+    pid_gains:
+      right_s0:
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_s1:
+        p: 100.0
+        i: 0.01
+        d: 10.0
       right_s0_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
+        p: 100.0
+        i: 0.01
+        d: 10.0
       right_s1_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
-      right_e0_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
-      right_e1_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
-      right_w0_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
-      right_w1_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
-      right_w2_position_controller:
-        pid_gains:
-          joint:
-            p: 100
-            i: 0.01
-            d: 10.0
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_e0:
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_e1:
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_w0:
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_w1:
+        p: 100.0
+        i: 0.01
+        d: 10.0
+      right_w2:
+        p: 100.0
+        i: 0.01
+        d: 10.0

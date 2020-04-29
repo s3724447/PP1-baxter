@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 
-  <arg name="paused" default="false"/>
+  <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
@@ -30,18 +30,6 @@
     <arg name="debug" value="false"/>
     <arg name="verbose" value="true"/>
     <arg name="world_name" value="/root/rosie/vxlab.world"/>
-  </include>
-
-  <!-- Spawn the Mobility Base -->
-  <include file="/root/rosie/mobility_base_robot.launch" >
-    <arg name="x" value="$(arg x)"/>
-    <arg name="y" value="$(arg y)"/>
-    <arg name="z" value="$(arg z)"/>
-    <arg name="R" value="$(arg R)"/>
-    <arg name="P" value="$(arg P)"/>
-    <arg name="Y" value="$(arg Y)"/>
-    <arg name="baxter" value="$(arg baxter)" />
-    <arg name="xacro_file" value="$(arg xacro_file)" />
   </include>
 
 </launch>
