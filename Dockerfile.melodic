@@ -80,18 +80,24 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 # Dataspeed mobility base
 #
 
-WORKDIR $CATKIN_WS
+RUN echo force rebuild
+ENV MB_WS /root/mb_ws/
+WORKDIR $MB_WS/
 
-RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/master/mobility_base.rosinstall -O /tmp/mobility_base.rosinstall
-COPY mobility_base_simulator.rosinstall /tmp/mobility_base_simulator.rosinstall
+RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/master/mobility_base.rosinstall -O mobility_base.rosinstall
+RUN wget https://raw.githubusercontent.com/ipeakermit/mobility_base_simulator/master/mobility_base_simulator.rosinstall -O mobility_base_simulator.rosinstall
 
-RUN wstool merge -t src /tmp/mobility_base.rosinstall
-RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall
+WORKDIR $MB_WS/src
+RUN wstool init .
+
+WORKDIR $MB_WS
+RUN wstool merge -t src mobility_base.rosinstall
+RUN wstool merge -t src mobility_base_simulator.rosinstall
 
 # wstool status needed for proper make?? (https://github.com/vcstools/wstool/issues/77)
 RUN wstool status -t src && wstool update -t src
 # superseded by ubuntu package
-RUN rm -rf /root/ws_baxter/src/usb_cam
+RUN rm -rf /root/mb_ws/src/usb_cam
 
 RUN apt update
 RUN apt -y install ros-melodic-joint-state-controller ros-melodic-usb-cam
@@ -102,10 +108,11 @@ RUN apt -y install ros-melodic-joint-state-controller ros-melodic-usb-cam
 RUN rosdep update && rosdep install -v -y -r --from-paths src --ignore-src --skip-keys="velodyne velodyne_description velodyne_laserscan velodyne_pointcloud velodyne_driver velodyne_msgs gazebo velodyne_gazebo_plugins libgazebo7 libgazebo7-dev ffmpeg v4l-utils ros-melodic-urg-node ros-melodic-pepperl-fuchs-r2000 usb_cam"
 
 RUN rm -rf build devel
-RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release && \
+RUN source /root/ws_baxter/devel/setup.bash && \
+    catkin config --extend /root/ws_baxter/devel --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     # Status rate is limited so that just enough info is shown to keep Docker from timing out, but not too much
     # such that the Docker log gets too long (another form of timeout)
-    catkin build --jobs 1 --limit-status-rate 0.001 --no-notify
+    catkin build --jobs 1 --limit-status-rate 0.1 --no-notify
 
 #
 # VXLab extensions...

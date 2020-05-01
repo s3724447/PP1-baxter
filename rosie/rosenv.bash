@@ -9,7 +9,8 @@ export MB_LASER_BIRDCAGE_R2000=1
 export MB_LASER_BIRDCAGE_R2000_FREQ=50
 export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 
-source ~/ws_baxter/devel/setup.bash
+#source ~/ws_baxter/devel/setup.bash
+source ~/mb_ws/devel/setup.bash
 
-source ~/navigation_ws/devel/setup.bash
+#source ~/navigation_ws/devel/setup.bash
 

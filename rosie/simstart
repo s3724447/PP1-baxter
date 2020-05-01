@@ -12,7 +12,7 @@ export MB_LASER_BIRDCAGE_R2000=1
 export MB_LASER_BIRDCAGE_R2000_FREQ=50
 export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 
-source devel/setup.bash
+#source devel/setup.bash
 
 { sleep 3 ; tail -f ~/.ros/log/latest/* ; } &
 roslaunch /root/rosie/vxlab_sim.launch baxter:=true
