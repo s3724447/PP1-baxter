@@ -1,0 +1,10 @@
+rm -f ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+ln -s ~/rosie/MobilityBasePlugin.cpp ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+
+rm -f /root/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+ln -s ~/rosie/baxter_base.urdf.xacro /root/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+
+rm -f /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
+ln -s ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
+
+cp ignition.fuel.config.yaml ~/.ignition/fuel/config.yaml
