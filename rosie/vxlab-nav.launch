@@ -1,11 +1,11 @@
+<?xml version="1.0"?>
 <launch>
 
-   <master auto="start"/>
  <!-- Run the map server --> 
     <node name="map_server" pkg="map_server" type="map_server" args="$(find mobility_base_2dnav)/yaml/map_server.yaml"/>
 
  <!--- Run AMCL --> 
-    <include file="$(find amcl)/examples/amcl_omni.launch" />
+    <include file="/root/rosie/amcl_omni.launch" />
 
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <remap from="cmd_vel" to="/mobility_base/cmd_vel"/>

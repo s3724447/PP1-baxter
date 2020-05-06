@@ -3,8 +3,10 @@
 # Run simulated Baxter in Gazebo
 
 
-FROM osrf/ros:melodic-desktop-full
-MAINTAINER Dave Coleman dave@dav.ee
+#FROM osrf/ros:melodic-desktop-full
+FROM ros:melodic-ros-core
+MAINTAINER Ian Peake ian.peake@rmit.edu.au
+
 
 COPY 02proxy /etc/apt/apt.conf.d/02proxy
 
@@ -19,7 +21,6 @@ RUN apt update && \
     apt install -y \
 	iproute2 host wget less sudo vim-tiny iputils-ping
 
-RUN echo force rebuild
 
 # Ensure Ubuntu and ROS up to date
 RUN apt-get update && apt -y dist-upgrade
@@ -80,7 +81,6 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 # Dataspeed mobility base
 #
 
-RUN echo force rebuild
 ENV MB_WS /root/mb_ws/
 WORKDIR $MB_WS/
 

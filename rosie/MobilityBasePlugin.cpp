@@ -451,11 +451,11 @@ void MobilityBasePlugin::recvCmdVel(const geometry_msgs::Twist::ConstPtr& msg)
 {
   boost::lock_guard<boost::mutex> lock(cmd_vel_mutex_);
   cmd_vel_stamp_ = world_->SimTime();
-  ROS_INFO("Received cmd_vel message!");
+  //ROS_INFO("Received cmd_vel message!");
   cmd_vel_.X(msg->linear.x);
   cmd_vel_.Y(msg->linear.y);
   cmd_vel_.Z(msg->angular.z);
-  ROS_INFO("cmd_vel_.X() set to %f", cmd_vel_.X());
+  //ROS_INFO("cmd_vel_.X() set to %f", cmd_vel_.X());
 }
 
 void MobilityBasePlugin::recvCmdVelRaw(const geometry_msgs::Twist::ConstPtr& msg)

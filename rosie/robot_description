@@ -67,12 +67,12 @@
   \ filename=\"package://mobility_base_description/meshes/lidar_bracket.STL\"/>\n\
   \      </geometry>\n      <material name=\"black\">\n        <color rgba=\".1 .1\
   \ .1 1\"/>\n      </material>\n    </visual>\n    <inertial>\n      <origin xyz=\"\
-  0 0 0\"/>\n      <mass value=\"20\"/>\n      <!-- Inertia tensor is approximated\
+  0 0 0\"/>\n      <mass value=\"1000\"/>\n      <!-- Inertia tensor is approximated\
   \ by a solid cube with homogeneous mass distribution\n           More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
   \           m = 50 kg; w = 0.9652 m; h = 0.1016 m; d = 0.5588 m;\n           ixx\
   \ = 1/12 * m * (h^2 + d^2)\n           ixx = 1/12 * m * (w^2 + d^2)\n          \
-  \ ixx = 1/12 * m * (w^2 + h^2)\n        -->\n      <inertia ixx=\"0.219892033333\"\
-  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.319623016667\" iyz=\"0.0\" izz=\"0.384139016667\"\
+  \ ixx = 1/12 * m * (w^2 + h^2)\n        -->\n      <inertia ixx=\"166.666666667\"\
+  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"166.666666667\" iyz=\"0.0\" izz=\"166.666666667\"\
   />\n    </inertial>\n  </link>\n  <!-- Base Shrouds -->\n  <joint name=\"base_shrouds\"\
   \ type=\"fixed\">\n    <parent link=\"base_link\"/>\n    <child link=\"base_shrouds\"\
   />\n    <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n  </joint>\n  <link name=\"base_shrouds\"\
@@ -471,16 +471,16 @@
   \  <joint name=\"right_s0\" type=\"revolute\">\n    <origin rpy=\"0 0 0\" xyz=\"\
   0.055695 0 0.011038\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent link=\"right_arm_mount\"\
   />\n    <child link=\"right_upper_shoulder\"/>\n    <limit effort=\"50.0\" lower=\"\
-  -1.70167993878\" upper=\"1.70167993878\" velocity=\"1.5\"/>\n    <dynamics damping=\"\
+  -2.70167993878\" upper=\"2.70167993878\" velocity=\"2\"/>\n    <dynamics damping=\"\
   0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"right_s1\" type=\"revolute\"\
   >\n    <origin rpy=\"-1.57079632679 0 0\" xyz=\"0.069 0 0.27035\"/>\n    <axis xyz=\"\
   0 0 1\"/>\n    <parent link=\"right_upper_shoulder\"/>\n    <child link=\"right_lower_shoulder\"\
-  />\n    <limit effort=\"50.0\" lower=\"-2.147\" upper=\"1.047\" velocity=\"1.5\"\
-  />\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"\
+  />\n    <limit effort=\"50.0\" lower=\"-3.147\" upper=\"2.047\" velocity=\"2\"/>\n\
+  \    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"\
   right_e0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679 0 1.57079632679\"\
   \ xyz=\"0.102 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent link=\"right_lower_shoulder\"\
   />\n    <child link=\"right_upper_elbow\"/>\n    <limit effort=\"50.0\" lower=\"\
-  -3.05417993878\" upper=\"3.05417993878\" velocity=\"1.5\"/>\n    <dynamics damping=\"\
+  -3.05417993878\" upper=\"3.05417993878\" velocity=\"2\"/>\n    <dynamics damping=\"\
   0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"right_e0_fixed\" type=\"fixed\"\
   >\n    <origin rpy=\"1.57079632679 0 1.57079632679\" xyz=\"0.107 0 0\"/>\n    <axis\
   \ xyz=\"0 0 1\"/>\n    <parent link=\"right_lower_shoulder\"/>\n    <child link=\"\
@@ -488,8 +488,8 @@
   >\n    <origin rpy=\"-1.57079632679 -1.57079632679 0\" xyz=\"0.069 0 0.26242\"/>\n\
   \    <axis xyz=\"0 0 1\"/>\n    <parent link=\"right_upper_elbow\"/>\n    <child\
   \ link=\"right_lower_elbow\"/>\n    <limit effort=\"50.0\" lower=\"-0.05\" upper=\"\
-  2.618\" velocity=\"1.5\"/>\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n \
-  \ </joint>\n  <joint name=\"right_w0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679\
+  2.618\" velocity=\"2\"/>\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n\
+  \  <joint name=\"right_w0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679\
   \ 0 1.57079632679\" xyz=\"0.10359 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent\
   \ link=\"right_lower_elbow\"/>\n    <child link=\"right_upper_forearm\"/>\n    <limit\
   \ effort=\"15.0\" lower=\"-3.059\" upper=\"3.059\" velocity=\"4.0\"/>\n    <dynamics\
@@ -638,16 +638,16 @@
   \  <joint name=\"left_s0\" type=\"revolute\">\n    <origin rpy=\"0 0 0\" xyz=\"\
   0.055695 0 0.011038\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent link=\"left_arm_mount\"\
   />\n    <child link=\"left_upper_shoulder\"/>\n    <limit effort=\"50.0\" lower=\"\
-  -1.70167993878\" upper=\"1.70167993878\" velocity=\"1.5\"/>\n    <dynamics damping=\"\
+  -2.70167993878\" upper=\"2.70167993878\" velocity=\"2\"/>\n    <dynamics damping=\"\
   0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"left_s1\" type=\"revolute\"\
   >\n    <origin rpy=\"-1.57079632679 0 0\" xyz=\"0.069 0 0.27035\"/>\n    <axis xyz=\"\
   0 0 1\"/>\n    <parent link=\"left_upper_shoulder\"/>\n    <child link=\"left_lower_shoulder\"\
-  />\n    <limit effort=\"50.0\" lower=\"-2.147\" upper=\"1.047\" velocity=\"1.5\"\
-  />\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"\
+  />\n    <limit effort=\"50.0\" lower=\"-3.147\" upper=\"2.047\" velocity=\"2\"/>\n\
+  \    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"\
   left_e0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679 0 1.57079632679\"\
   \ xyz=\"0.102 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent link=\"left_lower_shoulder\"\
   />\n    <child link=\"left_upper_elbow\"/>\n    <limit effort=\"50.0\" lower=\"\
-  -3.05417993878\" upper=\"3.05417993878\" velocity=\"1.5\"/>\n    <dynamics damping=\"\
+  -3.05417993878\" upper=\"3.05417993878\" velocity=\"2\"/>\n    <dynamics damping=\"\
   0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"left_e0_fixed\" type=\"fixed\"\
   >\n    <origin rpy=\"1.57079632679 0 1.57079632679\" xyz=\"0.107 0 0\"/>\n    <axis\
   \ xyz=\"0 0 1\"/>\n    <parent link=\"left_lower_shoulder\"/>\n    <child link=\"\
@@ -655,9 +655,9 @@
   >\n    <origin rpy=\"-1.57079632679 -1.57079632679 0\" xyz=\"0.069 0 0.26242\"/>\n\
   \    <axis xyz=\"0 0 1\"/>\n    <parent link=\"left_upper_elbow\"/>\n    <child\
   \ link=\"left_lower_elbow\"/>\n    <limit effort=\"50.0\" lower=\"-0.05\" upper=\"\
-  2.618\" velocity=\"1.5\"/>\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n \
-  \ </joint>\n  <joint name=\"left_w0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679\
-  \ 0 1.57079632679\" xyz=\"0.10359 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent\
+  2.618\" velocity=\"2\"/>\n    <dynamics damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n\
+  \  <joint name=\"left_w0\" type=\"revolute\">\n    <origin rpy=\"1.57079632679 0\
+  \ 1.57079632679\" xyz=\"0.10359 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <parent\
   \ link=\"left_lower_elbow\"/>\n    <child link=\"left_upper_forearm\"/>\n    <limit\
   \ effort=\"15.0\" lower=\"-3.059\" upper=\"3.059\" velocity=\"4.0\"/>\n    <dynamics\
   \ damping=\"0.7\" friction=\"0.0\"/>\n  </joint>\n  <joint name=\"left_w0_fixed\"\
@@ -856,353 +856,78 @@
   \  </gazebo>\n  <gazebo reference=\"r_gripper_l_finger_joint\">\n    <implicitSpringDamper>1</implicitSpringDamper>\n\
   \  </gazebo>\n  <joint name=\"wheel_fl\" type=\"continuous\">\n    <parent link=\"\
   base_link\"/>\n    <child link=\"wheel_fl\"/>\n    <origin rpy=\"-1.57079632679\
-  \ 0 0\" xyz=\"0.25275 0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <!--dynamics\
-  \ damping=\"0\" friction=\"1\"/-->\n  </joint>\n  <link name=\"wheel_fl\">\n   \
-  \ <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.02\"/>\n      <geometry>\n \
-  \       <mesh filename=\"package://mobility_base_description/meshes/hub_left.STL\"\
-  \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
-  >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n\
-  \      <origin rpy=\"3.14159265359 0 0\" xyz=\"0 0 -0.02\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/hub_left.STL\"\
-  \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
-  >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n\
-  \      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <cylinder\
-  \ length=\"0.0508\" radius=\"0.065\"/>\n      </geometry>\n    </collision>\n  \
-  \  <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <!-- Inertia tensor is approximated by a cylinder with homogeneous mass\
-  \ distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
+  \ 0 0\" xyz=\"0.25275 0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <dynamics damping=\"\
+  0\" friction=\"1\"/>\n  </joint>\n  <link name=\"wheel_fl\">\n    <visual>\n   \
+  \   <origin rpy=\"0 0 0\" xyz=\"0 0 0.02\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/hub_left.STL\" scale=\"0.001 0.001 0.001\"\
+  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  3.14159265359 0 0\" xyz=\"0 0 -0.02\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/hub_left.STL\" scale=\"0.001 0.001 0.001\"\
+  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
+  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <cylinder length=\"0.0508\"\
+  \ radius=\"0.1016\"/>\n      </geometry>\n    </collision>\n    <inertial>\n   \
+  \   <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"/>\n      <!--\
+  \ Inertia tensor is approximated by a cylinder with homogeneous mass distribution\n\
+  \             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
   \             m = wheel_mass/13 kg; h = wheel_width m; r = wheel_radius m\n    \
   \         ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 * r^2\
   \ + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
   0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\"\
-  \ izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint name=\"wheel_fl_roller_0_base_joint\"\
-  \ type=\"fixed\">\n    <parent link=\"wheel_fl\"/>\n    <child link=\"wheel_fl_roller_0_base\"\
-  />\n    <origin rpy=\"0 0 0.0\" xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n\
-  \  <link name=\"wheel_fl_roller_0_base\">\n    <visual>\n      <origin rpy=\"0 0\
-  \ 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <box size=\"0.000001 0.000001 0.000001\"\
-  />\n      </geometry>\n    </visual>\n    <inertial>\n      <origin xyz=\"0 0 0\"\
-  />\n      <mass value=\"0.153846153846\"/>\n      <inertia ixx=\"0.000430106666667\"\
-  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\" izz=\"0.000794043076923\"\
-  />\n    </inertial>\n  </link>\n  <joint name=\"wheel_fl_roller_0\" type=\"continuous\"\
-  >\n    <parent link=\"wheel_fl_roller_0_base\"/>\n    <child link=\"wheel_fl_roller_0\"\
-  />\n    <origin rpy=\"-0.785398163397 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"\
-  0 0 1\">\n      <dynamics damping=\"0\" friction=\"10\"/>\n    </axis>\n  </joint>\n\
-  \  <link name=\"wheel_fl_roller_0\">\n    <visual>\n      <origin rpy=\"0 0 0\"\
-  \ xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ izz=\"0.000794043076923\"/>\n    </inertial>\n    <visual>\n      <origin rpy=\"\
+  -0.785398163397 -0.0 0\" xyz=\"0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.680174761757 -0.392699081699\
+  \ 0\" xyz=\"0.0742400277579 0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.392699081699 -0.680174761757\
+  \ 0\" xyz=\"0.0428625 0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.0 -0.785398163397 0\" xyz=\"\
+  0.0 0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_0\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_1_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_1_base\"/>\n    <origin rpy=\"0 0 0.523598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_1_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_1\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_1_base\"\
-  />\n    <child link=\"wheel_fl_roller_1\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_1\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.392699081699 -0.680174761757 0\" xyz=\"-0.0428625 0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_1\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_2_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_2_base\"/>\n    <origin rpy=\"0 0 1.0471975512\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_2_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_2\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_2_base\"\
-  />\n    <child link=\"wheel_fl_roller_2\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_2\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.680174761757 -0.392699081699 0\" xyz=\"-0.0742400277579 0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_2\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_3_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_3_base\"/>\n    <origin rpy=\"0 0 1.57079632679\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_3_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_3\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_3_base\"\
-  />\n    <child link=\"wheel_fl_roller_3\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_3\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.785398163397 -0.0 0\" xyz=\"-0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.680174761757 0.392699081699\
+  \ 0\" xyz=\"-0.0742400277579 -0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.392699081699 0.680174761757\
+  \ 0\" xyz=\"-0.0428625 -0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.0 0.785398163397 0\" xyz=\"\
+  0.0 -0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_3\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_4_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_4_base\"/>\n    <origin rpy=\"0 0 2.09439510239\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_4_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_4\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_4_base\"\
-  />\n    <child link=\"wheel_fl_roller_4\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_4\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.392699081699 0.680174761757 0\" xyz=\"0.0428625 -0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_4\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_5_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_5_base\"/>\n    <origin rpy=\"0 0 2.61799387799\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_5_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_5\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_5_base\"\
-  />\n    <child link=\"wheel_fl_roller_5\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_5\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.680174761757 0.392699081699 0\" xyz=\"0.0742400277579 -0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_5\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_6_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_6_base\"/>\n    <origin rpy=\"0 0 3.14159265359\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_6_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_6\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_6_base\"\
-  />\n    <child link=\"wheel_fl_roller_6\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_6\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_6\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_7_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_7_base\"/>\n    <origin rpy=\"0 0 3.66519142919\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_7_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_7\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_7_base\"\
-  />\n    <child link=\"wheel_fl_roller_7\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_7\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_7\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_8_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_8_base\"/>\n    <origin rpy=\"0 0 4.18879020479\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_8_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_8\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_8_base\"\
-  />\n    <child link=\"wheel_fl_roller_8\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_8\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_8\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_9_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_9_base\"/>\n    <origin rpy=\"0 0 4.71238898038\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_9_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_9\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_9_base\"\
-  />\n    <child link=\"wheel_fl_roller_9\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_9\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_9\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_10_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_10_base\"/>\n    <origin rpy=\"0 0 5.23598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_10_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_10\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_10_base\"\
-  />\n    <child link=\"wheel_fl_roller_10\"/>\n    <origin rpy=\"-0.785398163397\
-  \ 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_10\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_10\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fl_roller_11_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fl\"\
-  />\n    <child link=\"wheel_fl_roller_11_base\"/>\n    <origin rpy=\"0 0 5.75958653158\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fl_roller_11_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fl_roller_11\" type=\"continuous\">\n    <parent link=\"wheel_fl_roller_11_base\"\
-  />\n    <child link=\"wheel_fl_roller_11\"/>\n    <origin rpy=\"-0.785398163397\
-  \ 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fl_roller_11\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fl_roller_11\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n  </link>\n  <gazebo reference=\"\
+  wheel_fl\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
   \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
   \ name=\"wheel_fr\" type=\"continuous\">\n    <parent link=\"base_link\"/>\n   \
   \ <child link=\"wheel_fr\"/>\n    <origin rpy=\"-1.57079632679 0 0\" xyz=\"0.25275\
-  \ -0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <!--dynamics damping=\"0\" friction=\"\
-  1\"/-->\n  </joint>\n  <link name=\"wheel_fr\">\n    <visual>\n      <origin rpy=\"\
+  \ -0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <dynamics damping=\"0\" friction=\"\
+  1\"/>\n  </joint>\n  <link name=\"wheel_fr\">\n    <visual>\n      <origin rpy=\"\
   0 0 0\" xyz=\"0 0 0.02\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/hub_right.STL\"\
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n\
@@ -1211,342 +936,67 @@
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n\
   \      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <cylinder\
-  \ length=\"0.0508\" radius=\"0.065\"/>\n      </geometry>\n    </collision>\n  \
-  \  <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
+  \ length=\"0.0508\" radius=\"0.1016\"/>\n      </geometry>\n    </collision>\n \
+  \   <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
   />\n      <!-- Inertia tensor is approximated by a cylinder with homogeneous mass\
   \ distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
   \             m = wheel_mass/13 kg; h = wheel_width m; r = wheel_radius m\n    \
   \         ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 * r^2\
   \ + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
   0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\"\
-  \ izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint name=\"wheel_fr_roller_0_base_joint\"\
-  \ type=\"fixed\">\n    <parent link=\"wheel_fr\"/>\n    <child link=\"wheel_fr_roller_0_base\"\
-  />\n    <origin rpy=\"0 0 0.0\" xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n\
-  \  <link name=\"wheel_fr_roller_0_base\">\n    <visual>\n      <origin rpy=\"0 0\
-  \ 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <box size=\"0.000001 0.000001 0.000001\"\
-  />\n      </geometry>\n    </visual>\n    <inertial>\n      <origin xyz=\"0 0 0\"\
-  />\n      <mass value=\"0.153846153846\"/>\n      <inertia ixx=\"0.000430106666667\"\
-  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\" izz=\"0.000794043076923\"\
-  />\n    </inertial>\n  </link>\n  <joint name=\"wheel_fr_roller_0\" type=\"continuous\"\
-  >\n    <parent link=\"wheel_fr_roller_0_base\"/>\n    <child link=\"wheel_fr_roller_0\"\
-  />\n    <origin rpy=\"0.785398163397 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"\
-  0 0 1\">\n      <dynamics damping=\"0\" friction=\"10\"/>\n    </axis>\n  </joint>\n\
-  \  <link name=\"wheel_fr_roller_0\">\n    <visual>\n      <origin rpy=\"0 0 0\"\
-  \ xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ izz=\"0.000794043076923\"/>\n    </inertial>\n    <visual>\n      <origin rpy=\"\
+  0.785398163397 0.0 0\" xyz=\"0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.680174761757 0.392699081699\
+  \ 0\" xyz=\"0.0742400277579 0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.392699081699 0.680174761757\
+  \ 0\" xyz=\"0.0428625 0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.0 0.785398163397 0\" xyz=\"\
+  0.0 0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_0\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_1_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_1_base\"/>\n    <origin rpy=\"0 0 0.523598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_1_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_1\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_1_base\"\
-  />\n    <child link=\"wheel_fr_roller_1\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_1\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.392699081699 0.680174761757 0\" xyz=\"-0.0428625 0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_1\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_2_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_2_base\"/>\n    <origin rpy=\"0 0 1.0471975512\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_2_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_2\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_2_base\"\
-  />\n    <child link=\"wheel_fr_roller_2\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_2\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.680174761757 0.392699081699 0\" xyz=\"-0.0742400277579 0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_2\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_3_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_3_base\"/>\n    <origin rpy=\"0 0 1.57079632679\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_3_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_3\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_3_base\"\
-  />\n    <child link=\"wheel_fr_roller_3\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_3\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.785398163397 0.0 0\" xyz=\"-0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.680174761757 -0.392699081699\
+  \ 0\" xyz=\"-0.0742400277579 -0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.392699081699 -0.680174761757\
+  \ 0\" xyz=\"-0.0428625 -0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.0 -0.785398163397 0\" xyz=\"\
+  0.0 -0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_3\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_4_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_4_base\"/>\n    <origin rpy=\"0 0 2.09439510239\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_4_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_4\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_4_base\"\
-  />\n    <child link=\"wheel_fr_roller_4\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_4\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.392699081699 -0.680174761757 0\" xyz=\"0.0428625 -0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_4\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_5_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_5_base\"/>\n    <origin rpy=\"0 0 2.61799387799\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_5_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_5\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_5_base\"\
-  />\n    <child link=\"wheel_fr_roller_5\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_5\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.680174761757 -0.392699081699 0\" xyz=\"0.0742400277579 -0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_5\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_6_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_6_base\"/>\n    <origin rpy=\"0 0 3.14159265359\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_6_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_6\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_6_base\"\
-  />\n    <child link=\"wheel_fr_roller_6\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_6\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_6\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_7_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_7_base\"/>\n    <origin rpy=\"0 0 3.66519142919\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_7_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_7\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_7_base\"\
-  />\n    <child link=\"wheel_fr_roller_7\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_7\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_7\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_8_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_8_base\"/>\n    <origin rpy=\"0 0 4.18879020479\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_8_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_8\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_8_base\"\
-  />\n    <child link=\"wheel_fr_roller_8\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_8\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_8\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_9_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_9_base\"/>\n    <origin rpy=\"0 0 4.71238898038\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_9_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_9\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_9_base\"\
-  />\n    <child link=\"wheel_fr_roller_9\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_9\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_9\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_10_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_10_base\"/>\n    <origin rpy=\"0 0 5.23598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_10_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_10\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_10_base\"\
-  />\n    <child link=\"wheel_fr_roller_10\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_10\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_10\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_fr_roller_11_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_fr\"\
-  />\n    <child link=\"wheel_fr_roller_11_base\"/>\n    <origin rpy=\"0 0 5.75958653158\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_fr_roller_11_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_fr_roller_11\" type=\"continuous\">\n    <parent link=\"wheel_fr_roller_11_base\"\
-  />\n    <child link=\"wheel_fr_roller_11\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_fr_roller_11\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_fr_roller_11\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n  </link>\n  <gazebo reference=\"\
+  wheel_fr\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
   \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
   \ name=\"wheel_rl\" type=\"continuous\">\n    <parent link=\"base_link\"/>\n   \
   \ <child link=\"wheel_rl\"/>\n    <origin rpy=\"-1.57079632679 0 0\" xyz=\"-0.25275\
-  \ 0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <!--dynamics damping=\"0\" friction=\"\
-  1\"/-->\n  </joint>\n  <link name=\"wheel_rl\">\n    <visual>\n      <origin rpy=\"\
+  \ 0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <dynamics damping=\"0\" friction=\"\
+  1\"/>\n  </joint>\n  <link name=\"wheel_rl\">\n    <visual>\n      <origin rpy=\"\
   0 0 0\" xyz=\"0 0 0.02\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/hub_right.STL\"\
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n\
@@ -1555,342 +1005,67 @@
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n\
   \      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <cylinder\
-  \ length=\"0.0508\" radius=\"0.065\"/>\n      </geometry>\n    </collision>\n  \
-  \  <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
+  \ length=\"0.0508\" radius=\"0.1016\"/>\n      </geometry>\n    </collision>\n \
+  \   <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
   />\n      <!-- Inertia tensor is approximated by a cylinder with homogeneous mass\
   \ distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
   \             m = wheel_mass/13 kg; h = wheel_width m; r = wheel_radius m\n    \
   \         ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 * r^2\
   \ + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
   0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\"\
-  \ izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint name=\"wheel_rl_roller_0_base_joint\"\
-  \ type=\"fixed\">\n    <parent link=\"wheel_rl\"/>\n    <child link=\"wheel_rl_roller_0_base\"\
-  />\n    <origin rpy=\"0 0 0.0\" xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n\
-  \  <link name=\"wheel_rl_roller_0_base\">\n    <visual>\n      <origin rpy=\"0 0\
-  \ 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <box size=\"0.000001 0.000001 0.000001\"\
-  />\n      </geometry>\n    </visual>\n    <inertial>\n      <origin xyz=\"0 0 0\"\
-  />\n      <mass value=\"0.153846153846\"/>\n      <inertia ixx=\"0.000430106666667\"\
-  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\" izz=\"0.000794043076923\"\
-  />\n    </inertial>\n  </link>\n  <joint name=\"wheel_rl_roller_0\" type=\"continuous\"\
-  >\n    <parent link=\"wheel_rl_roller_0_base\"/>\n    <child link=\"wheel_rl_roller_0\"\
-  />\n    <origin rpy=\"0.785398163397 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"\
-  0 0 1\">\n      <dynamics damping=\"0\" friction=\"10\"/>\n    </axis>\n  </joint>\n\
-  \  <link name=\"wheel_rl_roller_0\">\n    <visual>\n      <origin rpy=\"0 0 0\"\
-  \ xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ izz=\"0.000794043076923\"/>\n    </inertial>\n    <visual>\n      <origin rpy=\"\
+  0.785398163397 0.0 0\" xyz=\"0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.680174761757 0.392699081699\
+  \ 0\" xyz=\"0.0742400277579 0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.392699081699 0.680174761757\
+  \ 0\" xyz=\"0.0428625 0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.0 0.785398163397 0\" xyz=\"\
+  0.0 0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_0\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_1_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_1_base\"/>\n    <origin rpy=\"0 0 0.523598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_1_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_1\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_1_base\"\
-  />\n    <child link=\"wheel_rl_roller_1\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_1\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.392699081699 0.680174761757 0\" xyz=\"-0.0428625 0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_1\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_2_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_2_base\"/>\n    <origin rpy=\"0 0 1.0471975512\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_2_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_2\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_2_base\"\
-  />\n    <child link=\"wheel_rl_roller_2\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_2\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.680174761757 0.392699081699 0\" xyz=\"-0.0742400277579 0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_2\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_3_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_3_base\"/>\n    <origin rpy=\"0 0 1.57079632679\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_3_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_3\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_3_base\"\
-  />\n    <child link=\"wheel_rl_roller_3\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_3\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.785398163397 0.0 0\" xyz=\"-0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.680174761757 -0.392699081699\
+  \ 0\" xyz=\"-0.0742400277579 -0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.392699081699 -0.680174761757\
+  \ 0\" xyz=\"-0.0428625 -0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.0 -0.785398163397 0\" xyz=\"\
+  0.0 -0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_3\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_4_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_4_base\"/>\n    <origin rpy=\"0 0 2.09439510239\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_4_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_4\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_4_base\"\
-  />\n    <child link=\"wheel_rl_roller_4\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_4\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.392699081699 -0.680174761757 0\" xyz=\"0.0428625 -0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_4\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_5_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_5_base\"/>\n    <origin rpy=\"0 0 2.61799387799\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_5_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_5\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_5_base\"\
-  />\n    <child link=\"wheel_rl_roller_5\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_5\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.680174761757 -0.392699081699 0\" xyz=\"0.0742400277579 -0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_5\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_6_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_6_base\"/>\n    <origin rpy=\"0 0 3.14159265359\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_6_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_6\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_6_base\"\
-  />\n    <child link=\"wheel_rl_roller_6\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_6\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_6\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_7_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_7_base\"/>\n    <origin rpy=\"0 0 3.66519142919\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_7_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_7\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_7_base\"\
-  />\n    <child link=\"wheel_rl_roller_7\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_7\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_7\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_8_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_8_base\"/>\n    <origin rpy=\"0 0 4.18879020479\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_8_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_8\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_8_base\"\
-  />\n    <child link=\"wheel_rl_roller_8\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_8\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_8\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_9_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_9_base\"/>\n    <origin rpy=\"0 0 4.71238898038\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_9_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_9\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_9_base\"\
-  />\n    <child link=\"wheel_rl_roller_9\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_9\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_9\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_10_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_10_base\"/>\n    <origin rpy=\"0 0 5.23598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_10_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_10\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_10_base\"\
-  />\n    <child link=\"wheel_rl_roller_10\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_10\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_10\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rl_roller_11_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rl\"\
-  />\n    <child link=\"wheel_rl_roller_11_base\"/>\n    <origin rpy=\"0 0 5.75958653158\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rl_roller_11_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rl_roller_11\" type=\"continuous\">\n    <parent link=\"wheel_rl_roller_11_base\"\
-  />\n    <child link=\"wheel_rl_roller_11\"/>\n    <origin rpy=\"0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rl_roller_11\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rl_roller_11\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n  </link>\n  <gazebo reference=\"\
+  wheel_rl\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
   \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
   \ name=\"wheel_rr\" type=\"continuous\">\n    <parent link=\"base_link\"/>\n   \
   \ <child link=\"wheel_rr\"/>\n    <origin rpy=\"-1.57079632679 0 0\" xyz=\"-0.25275\
-  \ -0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <!--dynamics damping=\"0\" friction=\"\
-  1\"/-->\n  </joint>\n  <link name=\"wheel_rr\">\n    <visual>\n      <origin rpy=\"\
+  \ -0.34025 0\"/>\n    <axis xyz=\"0 0 1\"/>\n    <dynamics damping=\"0\" friction=\"\
+  1\"/>\n  </joint>\n  <link name=\"wheel_rr\">\n    <visual>\n      <origin rpy=\"\
   0 0 0\" xyz=\"0 0 0.02\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/hub_left.STL\"\
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n\
@@ -1899,337 +1074,62 @@
   \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"grey\"\
   >\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n\
   \      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <cylinder\
-  \ length=\"0.0508\" radius=\"0.065\"/>\n      </geometry>\n    </collision>\n  \
-  \  <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
+  \ length=\"0.0508\" radius=\"0.1016\"/>\n      </geometry>\n    </collision>\n \
+  \   <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
   />\n      <!-- Inertia tensor is approximated by a cylinder with homogeneous mass\
   \ distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
   \             m = wheel_mass/13 kg; h = wheel_width m; r = wheel_radius m\n    \
   \         ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 * r^2\
   \ + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
   0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\"\
-  \ izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint name=\"wheel_rr_roller_0_base_joint\"\
-  \ type=\"fixed\">\n    <parent link=\"wheel_rr\"/>\n    <child link=\"wheel_rr_roller_0_base\"\
-  />\n    <origin rpy=\"0 0 0.0\" xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n\
-  \  <link name=\"wheel_rr_roller_0_base\">\n    <visual>\n      <origin rpy=\"0 0\
-  \ 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <box size=\"0.000001 0.000001 0.000001\"\
-  />\n      </geometry>\n    </visual>\n    <inertial>\n      <origin xyz=\"0 0 0\"\
-  />\n      <mass value=\"0.153846153846\"/>\n      <inertia ixx=\"0.000430106666667\"\
-  \ ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\" iyz=\"0.0\" izz=\"0.000794043076923\"\
-  />\n    </inertial>\n  </link>\n  <joint name=\"wheel_rr_roller_0\" type=\"continuous\"\
-  >\n    <parent link=\"wheel_rr_roller_0_base\"/>\n    <child link=\"wheel_rr_roller_0\"\
-  />\n    <origin rpy=\"-0.785398163397 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"\
-  0 0 1\">\n      <dynamics damping=\"0\" friction=\"10\"/>\n    </axis>\n  </joint>\n\
-  \  <link name=\"wheel_rr_roller_0\">\n    <visual>\n      <origin rpy=\"0 0 0\"\
-  \ xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ izz=\"0.000794043076923\"/>\n    </inertial>\n    <visual>\n      <origin rpy=\"\
+  -0.785398163397 -0.0 0\" xyz=\"0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.680174761757 -0.392699081699\
+  \ 0\" xyz=\"0.0742400277579 0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.392699081699 -0.680174761757\
+  \ 0\" xyz=\"0.0428625 0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.0 -0.785398163397 0\" xyz=\"\
+  0.0 0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_0\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_1_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_1_base\"/>\n    <origin rpy=\"0 0 0.523598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_1_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_1\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_1_base\"\
-  />\n    <child link=\"wheel_rr_roller_1\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_1\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.392699081699 -0.680174761757 0\" xyz=\"-0.0428625 0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_1\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_2_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_2_base\"/>\n    <origin rpy=\"0 0 1.0471975512\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_2_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_2\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_2_base\"\
-  />\n    <child link=\"wheel_rr_roller_2\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_2\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.680174761757 -0.392699081699 0\" xyz=\"-0.0742400277579 0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_2\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_3_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_3_base\"/>\n    <origin rpy=\"0 0 1.57079632679\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_3_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_3\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_3_base\"\
-  />\n    <child link=\"wheel_rr_roller_3\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_3\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  0.785398163397 -0.0 0\" xyz=\"-0.085725 0.0 0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n\
+  \      <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.680174761757 0.392699081699\
+  \ 0\" xyz=\"-0.0742400277579 -0.0428625 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"0.392699081699 0.680174761757\
+  \ 0\" xyz=\"-0.0428625 -0.0742400277579 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://mobility_base_description/meshes/roller.STL\"/>\n      </geometry>\n \
+  \     <material name=\"grey\">\n        <color rgba=\".5 .5 .5 1\"/>\n      </material>\n\
+  \    </visual>\n    <visual>\n      <origin rpy=\"-0.0 0.785398163397 0\" xyz=\"\
+  0.0 -0.085725 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_3\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_4_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_4_base\"/>\n    <origin rpy=\"0 0 2.09439510239\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_4_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_4\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_4_base\"\
-  />\n    <child link=\"wheel_rr_roller_4\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_4\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.392699081699 0.680174761757 0\" xyz=\"0.0428625 -0.0742400277579 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_4\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_5_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_5_base\"/>\n    <origin rpy=\"0 0 2.61799387799\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_5_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_5\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_5_base\"\
-  />\n    <child link=\"wheel_rr_roller_5\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_5\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <visual>\n      <origin rpy=\"\
+  -0.680174761757 0.392699081699 0\" xyz=\"0.0742400277579 -0.0428625 0\"/>\n    \
+  \  <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
   />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_5\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_6_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_6_base\"/>\n    <origin rpy=\"0 0 3.14159265359\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_6_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_6\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_6_base\"\
-  />\n    <child link=\"wheel_rr_roller_6\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_6\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_6\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_7_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_7_base\"/>\n    <origin rpy=\"0 0 3.66519142919\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_7_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_7\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_7_base\"\
-  />\n    <child link=\"wheel_rr_roller_7\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_7\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_7\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_8_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_8_base\"/>\n    <origin rpy=\"0 0 4.18879020479\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_8_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_8\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_8_base\"\
-  />\n    <child link=\"wheel_rr_roller_8\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_8\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_8\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_9_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_9_base\"/>\n    <origin rpy=\"0 0 4.71238898038\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_9_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_9\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_9_base\"\
-  />\n    <child link=\"wheel_rr_roller_9\"/>\n    <origin rpy=\"-0.785398163397 0\
-  \ 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_9\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_9\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_10_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_10_base\"/>\n    <origin rpy=\"0 0 5.23598775598\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_10_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_10\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_10_base\"\
-  />\n    <child link=\"wheel_rr_roller_10\"/>\n    <origin rpy=\"-0.785398163397\
-  \ 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_10\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_10\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
-  \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
-  \ name=\"wheel_rr_roller_11_base_joint\" type=\"fixed\">\n    <parent link=\"wheel_rr\"\
-  />\n    <child link=\"wheel_rr_roller_11_base\"/>\n    <origin rpy=\"0 0 5.75958653158\"\
-  \ xyz=\"0 0 0\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n  <link name=\"wheel_rr_roller_11_base\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <box size=\"0.000001 0.000001 0.000001\"/>\n      </geometry>\n    </visual>\n\
-  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"0.153846153846\"\
-  />\n      <inertia ixx=\"0.000430106666667\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.000430106666667\"\
-  \ iyz=\"0.0\" izz=\"0.000794043076923\"/>\n    </inertial>\n  </link>\n  <joint\
-  \ name=\"wheel_rr_roller_11\" type=\"continuous\">\n    <parent link=\"wheel_rr_roller_11_base\"\
-  />\n    <child link=\"wheel_rr_roller_11\"/>\n    <origin rpy=\"-0.785398163397\
-  \ 0 0\" xyz=\"0.085725 0 0\"/>\n    <axis xyz=\"0 0 1\">\n      <dynamics damping=\"\
-  0\" friction=\"10\"/>\n    </axis>\n  </joint>\n  <link name=\"wheel_rr_roller_11\"\
-  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
-  \        <mesh filename=\"package://mobility_base_description/meshes/roller.STL\"\
-  />\n      </geometry>\n      <material name=\"grey\">\n        <color rgba=\".5\
-  \ .5 .5 1\"/>\n      </material>\n    </visual>\n    <collision>\n      <origin\
-  \ rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://mobility_base_description/meshes/roller_collision.STL\"\
-  />\n      </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0\
-  \ 0\"/>\n      <mass value=\"0.0476272\"/>\n      <!-- Inertia tensor is approximated\
-  \ by a cylinder with homogeneous mass distribution\n             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors\n\
-  \             m = roller_mass kg; h = roller_length m; r = roller_radius m\n   \
-  \          ixx = 1/12 * m * (3 * r^2 + h^2)\n             iyy = 1/12 * m * (3 *\
-  \ r^2 + h^2)\n             izz = 1/2 * m * r^2 \n          -->\n      <inertia ixx=\"\
-  3.24620687027e-05\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"3.24620687027e-05\" iyz=\"0.0\"\
-  \ izz=\"6.0013992875e-06\"/>\n    </inertial>\n  </link>\n  <gazebo reference=\"\
-  wheel_rr_roller_11\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
+  \ .5 .5 1\"/>\n      </material>\n    </visual>\n  </link>\n  <gazebo reference=\"\
+  wheel_rr\">\n    <mu1>100.0</mu1>\n    <mu2>50.0</mu2>\n    <kp>100000000.0</kp>\n\
   \    <kd>10000.0</kd>\n    <material>Gazebo/Grey</material>\n  </gazebo>\n  <joint\
   \ name=\"floor_camera_base_joint\" type=\"fixed\">\n    <origin rpy=\"0 1.57079632679\
   \ 0\" xyz=\"0 0 0.077\"/>\n    <parent link=\"base_footprint\"/>\n    <child link=\"\
@@ -2300,7 +1200,7 @@
   \  <gazebo reference=\"wheel_rl\">\n    <material>Gazebo/Grey</material>\n  </gazebo>\n\
   \  <gazebo reference=\"wheel_rr\">\n    <material>Gazebo/Grey</material>\n  </gazebo>\n\
   \  <gazebo>\n    <plugin filename=\"libmobility_base_gazebo_plugins.so\" name=\"\
-  gazebo_mobility_base_plugin\">\n      <fast>false</fast>\n      <parent_frame_id>/map</parent_frame_id>\n\
+  gazebo_mobility_base_plugin\">\n      <fast>true</fast>\n      <parent_frame_id>/map</parent_frame_id>\n\
   \      <child_frame_id>/mobility_base_sim</child_frame_id>\n    </plugin>\n  </gazebo>\n\
   </robot>\n\n"
 

@@ -1,10 +1,19 @@
-rm -f ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
-ln -s ~/rosie/MobilityBasePlugin.cpp ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+#!/bin/bash
 
-rm -f /root/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
-ln -s ~/rosie/baxter_base.urdf.xacro /root/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+#rm -f ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+#cp ~/rosie/MobilityBasePlugin.cpp ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+
+rm -f ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
 
 rm -f /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
-ln -s ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
+cp ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 
-cp ignition.fuel.config.yaml ~/.ignition/fuel/config.yaml
+rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
+cp ~/rosie/baxter_sdk_control.launch ~/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
+
+rm -f ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+cp ~/rosie/baxter_position_controller.cpp ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+
+mkdir -p ~/.ignition/fuel
+cp ~/rosie/ignition.fuel.config.yaml ~/.ignition/fuel/config.yaml

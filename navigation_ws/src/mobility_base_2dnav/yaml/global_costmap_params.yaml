@@ -5,7 +5,7 @@ global_costmap:
   publish_frequency: 0.5  
   width: 40
   height: 40
-  origin_x: -20
-  origin_y: -20
+  origin_x: 0
+  origin_y: 0
 static_map: true
 rolling_window: true

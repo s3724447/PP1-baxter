@@ -1,2 +1,0 @@
-rm -f ~/ws_baxter/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
-ln -s ~/rosie/MobilityBasePlugin.cpp ~/ws_baxter/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp

@@ -14,5 +14,7 @@ export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 
 #source devel/setup.bash
 
-{ sleep 3 ; tail -f ~/.ros/log/latest/* ; } &
+/root/rosie/installconfig
+
+{ sleep 3 ; tail -f ~/.ros/log/latest/* ; sleep 10; /root/rosie/checkconfig ; } &
 roslaunch /root/rosie/vxlab_sim.launch baxter:=true
