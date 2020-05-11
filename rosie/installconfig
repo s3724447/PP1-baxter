@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#rm -f ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
-#cp ~/rosie/MobilityBasePlugin.cpp ~/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+ln -s ~/.rviz ~/rosie/rviz_settings
 
 rm -f ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
 cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
@@ -12,8 +11,14 @@ cp ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_b
 rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 cp ~/rosie/baxter_sdk_control.launch ~/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 
-rm -f ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
-cp ~/rosie/baxter_position_controller.cpp ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+#rm -f ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+#cp ~/rosie/baxter_position_controller.cpp ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+
+#rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/src/baxter_emulator.cpp
+#cp ~/rosie/baxter_emulator.cpp /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/src/baxter_emulator.cpp
+
+#rm -f ~/ws_baxter/src/baxter_simulator/baxter_gazebo/src/baxter_gazebo_ros_control_plugin.cpp
+#cp ~/rosie/baxter_gazebo_ros_control_plugin.cpp ~/ws_baxter/src/baxter_simulator/baxter_gazebo/src/baxter_gazebo_ros_control_plugin.cpp
 
 mkdir -p ~/.ignition/fuel
 cp ~/rosie/ignition.fuel.config.yaml ~/.ignition/fuel/config.yaml

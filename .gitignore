@@ -4,4 +4,8 @@
 *.log
 navigation_ws/.catkin_workspace
 navigation_ws/navigation_msgs.disable/
+navigation_ws/.catkin_tools/
+navigation_ws/build/
+navigation_ws/devel/
 *.tmp
+old.navigation_ws/

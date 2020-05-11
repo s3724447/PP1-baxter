@@ -130,10 +130,10 @@ def mypub_cmdvel(msg):
   lasttwist = twist
   lastcmdvel = newcmdvel
   # Calculate new position in terms of delta-Twist
-  pub.dx = twist.linear.x
-  pub.dy = twist.linear.y
+  pub.dx = twist.linear.x * 0.8
+  pub.dy = twist.linear.y * 0.8
   # MAGIC NUMBER
-  pub.dyaw = twist.angular.z / 1.5
+  pub.dyaw = twist.angular.z / 1.4
   c1 = (pub.dx * micros / 1000000)
   c2 = (pub.dy * micros / 1000000)
   pub.x = pub.x + c1 * math.cos(pub.yaw) + c2 * math.sin(pub.yaw)
@@ -150,5 +150,7 @@ rospy.init_node('dataspeed_base_odometry', anonymous=False)
 #rospy.Subscriber('/mobility_base/cmd_vel', Twist, mypub_cmdvel)
 rospy.Subscriber('/mobility_base/twist', TwistStamped, mypub_cmdvel)
 #rospy.Subscriber('/mobility_base/imu/data_raw', Imu, mypub_imu)
-print 'Mobility base odometry ready'
-rospy.spin()
+rospy.loginfo("Mobility base odometry.py running")
+while True:
+  rospy.sleep(1.0)
+rospy.loginfo("Mobility base odometry.py closing")

@@ -1,5 +1,7 @@
 # to avoid weird problem with rosie tipping over in sim
 
+source ~/rosie/rosenv-nav
+
 ./odometry.py &
 #./rvizstart &
 

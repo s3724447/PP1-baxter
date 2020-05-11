@@ -15,6 +15,6 @@ export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 source devel/setup.bash
 
 #roslaunch baxter_gazebo baxter_world.launch paused:=true
-roslaunch baxter_gazebo baxter_world.launch
+roslaunch baxter_gazebo baxter_world.launch paused:=true
 sleep 1
 tail -f ~/.ros/log/latest/* &

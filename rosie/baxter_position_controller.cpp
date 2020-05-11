@@ -104,7 +104,7 @@ bool BaxterPositionController::init(
       position_controllers_[i]->init(robot, joint_nh);
 
       // DEBUG
-      //position_controllers_[i]->printDebug();
+      position_controllers_[i]->printDebug();
 
     } // end of joint-namespaces
 
@@ -162,7 +162,6 @@ void BaxterPositionController::stopping(const ros::Time& time)
 
 void BaxterPositionController::update(const ros::Time& time, const ros::Duration& period)
 {
-  ROS_INFO_STREAM("BaxterPositionController::update - enter");
   // Debug info
   verbose_ = false;
   update_counter_ ++;
@@ -177,12 +176,10 @@ void BaxterPositionController::update(const ros::Time& time, const ros::Duration
     // Update the individual joint controllers
     position_controllers_[i]->update(time, period);
   }
-  ROS_INFO_STREAM("BaxterPositionController::update - exit");
 }
 
 void BaxterPositionController::updateCommands()
 {
-  ROS_INFO_STREAM("BaxterPositionController::updateCommands - enter");
   // Check if we have a new command to publish
   if( !new_command_ )
     return;
@@ -202,6 +199,7 @@ void BaxterPositionController::updateCommands()
   }
 
   std::map<std::string,std::size_t>::iterator name_it;
+  ROS_INFO_STREAM("BaxterPositionController::updateCommands, setCommand: "<< command);
 
   // Map incoming joint names and angles to the correct internal ordering
   for(size_t i=0; i<command.names.size(); i++)
@@ -212,10 +210,10 @@ void BaxterPositionController::updateCommands()
     if( name_it != joint_to_index_map_.end() )
     {
       // Joint is in the map, so we'll update the joint position
+      ROS_INFO_STREAM("BaxterPositionController::updateCommands, controller "<< position_controllers_[name_it->second] << " " << command.command[i]);
       position_controllers_[name_it->second]->setCommand( command.command[i] );
     }
   }
-  ROS_INFO_STREAM("BaxterPositionController::updateCommands - exit");
 }
 
 void BaxterPositionController::commandCB(const baxter_core_msgs::JointCommandConstPtr& msg)

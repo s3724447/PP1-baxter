@@ -3,9 +3,10 @@ global_costmap:
   robot_base_frame: base_footprint
   update_frequency: 1.0
   publish_frequency: 0.5  
-  width: 40
-  height: 40
-  origin_x: 0
-  origin_y: 0
+  #resolution: 0.1
+  width: 25
+  height: 25
+  origin_x: -12.5
+  origin_y: -12.5
 static_map: true
 rolling_window: true

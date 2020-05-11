@@ -19,8 +19,6 @@
   <arg name="fast" default="true" />
   <arg name="xacro_file" default="'$(find mobility_base_description)/urdf/mobility_base.urdf.xacro' gazebo:=true baxter:=$(arg baxter) fast:=$(arg fast)" />
 
-  <rosparam file="/root/rosie/bugfix.yaml" />
-
   <!-- Start gazebo and load the world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch" >
     <arg name="paused" value="$(arg paused)"/>
