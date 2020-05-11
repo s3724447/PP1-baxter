@@ -1,7 +1,14 @@
 rosservice call gazebo/set_model_configuration "{model_name: mobility_base,
 joint_names: ['right_s0', 'right_s1', 'right_e0', 'right_e1', 'right_w0', 'right_w1', 'right_w2', 'left_s0', 'left_s1', 'left_e0', 'left_e1', 'left_w0', 'left_w1', 'left_w2'],
-joint_positions: [ 1.0, -2.07, -2, 2.55, -0.0, 0.02, -0.0, -1.0, -2.07, 3.0, 2.55, 0.0, 0.01, 0.0]}"
+joint_positions: [ 0.8, -2.07, -2.0, 2.55, -0.0, 0.02, -0.0, -0.8, -2.07, 3.0, 2.55, 0.0, 0.01, 0.0]
+}"
 
-#rosservice call gazebo/unpause_physics
+# achievable in sim
+#joint_positions: [0.8, -1.3, -2.6, 2.55, -0.0, 0.01,  0.0, -0.8, -1.3,  2.6, 2.55,  0.0, 0.01,  0.0]
 
-#rosrun baxter_tools tuck_arms.py -u
+# programmed in tuck_arms
+#joint_positions: [ 1.0, -2.07, -3.0, 2.55, -0.0, 0.02, -0.0, -1.0, -2.07, 3.0, 2.55, 0.0, 0.01, 0.0]}"
+
+sleep 1
+
+rosservice call gazebo/unpause_physics
