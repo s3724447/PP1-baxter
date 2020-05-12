@@ -68,3 +68,4 @@ WORKDIR /root/rosie
 #RUN apt-get update && apt-get -y install vim-tiny xvfb x11vnc twm fvwm lxde
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/root/rosie/sleep-forever"]

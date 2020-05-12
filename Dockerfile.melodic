@@ -168,4 +168,5 @@ WORKDIR /root/rosie
 # install four_wheel_steering_msgs
 #   https://github.com/ros-drivers/four_wheel_steering_msgs
 
-#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+#CMD ["/root/rosie/simstart"]
+CMD ["/root/rosie/sleep-forever"]

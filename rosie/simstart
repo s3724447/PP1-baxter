@@ -12,9 +12,12 @@ export MB_LASER_BIRDCAGE_R2000=1
 export MB_LASER_BIRDCAGE_R2000_FREQ=50
 export MB_LASER_BIRDCAGE_R2000_SAMPLES=3600
 
-#source devel/setup.bash
+source ~/rosie/rosenv.bash
 
-/root/rosie/installconfig
+~/rosie/installconfig
 
 { sleep 3 ; tail -f ~/.ros/log/latest/* ; sleep 10; /root/rosie/checkconfig ; } &
-roslaunch /root/rosie/vxlab_sim.launch baxter:=true paused:=true
+
+export LIBGL_ALWAYS_INDIRECT=0
+
+roslaunch /root/rosie/vxlab_sim.launch baxter:=true paused:=true || /bin/sleep 600
