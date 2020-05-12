@@ -1,0 +1,49 @@
+version: "3.5"
+services:
+    novnc:
+        container_name: novnc
+        image: theasp/novnc
+        networks:
+          vxlab:
+        ports:
+          - "8080:8080"
+    rosie-sim:
+        container_name: vxlab-rosie
+        build:
+          context: .
+          dockerfile: Dockerfile.melodic
+          #network: host
+        networks:
+          vxlab:
+        volumes:
+        - type: bind
+          source: ./rosie
+          target: /root/rosie
+        environment:
+          DISPLAY: novnc:0
+    rosie-nav:
+        container_name: vxlab-rosie-nav
+        build:
+          context: .
+          dockerfile: Dockerfile.nav
+        networks:
+          vxlab:
+        volumes:
+        - type: bind
+          source: ./rosie
+          target: /root/rosie
+        environment:
+          DISPLAY: novnc:0
+
+networks:
+    vxlab:
+      external: true
+      name: vxlab
+
+#networks:
+    #vxlab:
+        #name: vxlab
+        #ipam:
+            #config:
+              #- subnet: "10.42.170.0/24"
+                #- gateway: "10.42.170.254"
