@@ -1,6 +1,8 @@
 #!/bin/bash
 
-ln -s ~/.rviz ~/rosie/rviz_settings
+ln -s ~/rosie/rviz_settings ~/.rviz
+
+cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
 rm -f ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
 cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
