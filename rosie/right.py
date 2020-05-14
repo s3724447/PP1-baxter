@@ -85,9 +85,9 @@ def motion_demo():
   dist = 2
   vel = Twist()
   # 
-  # North
-  vel.linear.x = speed
-  vel.linear.y = 0
+  # Right
+  vel.linear.x = 0
+  vel.linear.y = speed
   vel.angular.z = 0
   motion(vel, dist/speed)
 

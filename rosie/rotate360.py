@@ -81,15 +81,14 @@ def motion_demo():
   #
   rospy.Timer(rospy.Duration(0.1), timer_callback)
   #
-  speed = 0.2
-  dist = 2
+  speed = 0.5
   vel = Twist()
   # 
   # North
-  vel.linear.x = speed
+  vel.linear.x = 0
   vel.linear.y = 0
-  vel.angular.z = 0
-  motion(vel, dist/speed)
+  vel.angular.z = speed
+  motion(vel, 10)
 
 if __name__ == '__main__':
   motion_demo()
