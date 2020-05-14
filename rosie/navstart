@@ -2,7 +2,11 @@
 
 source ~/rosie/rosenv-nav
 
-./odometry.py &
+~/rosie/odometry.py &
 #./rvizstart &
+
+#roslaunch ~/rosie/vxlab-nav-dwa-local-planner.launch
+
+# base_local_planner/TrajectoryPlannerROS dwa_local_planner/DWAPlannerROS pose_follower/PoseFollower teb_local_planner/TebLocalPlannerROS
 
 roslaunch ~/rosie/vxlab-nav.launch

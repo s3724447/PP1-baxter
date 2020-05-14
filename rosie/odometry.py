@@ -130,10 +130,13 @@ def mypub_cmdvel(msg):
   lasttwist = twist
   lastcmdvel = newcmdvel
   # Calculate new position in terms of delta-Twist
-  pub.dx = twist.linear.x * 0.8
-  pub.dy = twist.linear.y * 0.8
+  #pub.dx = twist.linear.x * 0.7
+  pub.dx = twist.linear.x * 0.6
+  #pub.dy = twist.linear.y * 0.7
+  pub.dy = twist.linear.y * 0.6
   # MAGIC NUMBER
-  pub.dyaw = twist.angular.z / 1.4
+  #pub.dyaw = twist.angular.z / 1.55
+  pub.dyaw = twist.angular.z / 1.6
   c1 = (pub.dx * micros / 1000000)
   c2 = (pub.dy * micros / 1000000)
   pub.x = pub.x + c1 * math.cos(pub.yaw) + c2 * math.sin(pub.yaw)
