@@ -1,0 +1,10 @@
+#!/bin/bash
+
+HOSTNAME=`hostname`
+export ROS_IP=`host ${HOSTNAME} | sed 's/.* //g'`
+export MASTER_IP=`host vxlab-rosie | sed 's/.* //g'`
+export ROS_MASTER_URI=http://$MASTER_IP:11311
+
+#export ROS_MASTER_URI=http://10.42.1.254:11311
+#export ROS_MASTER_URI=http://10.42.1.1:11311
+#export ROS_MASTER_URI=http://mb.vx.rmit.edu.au:11311

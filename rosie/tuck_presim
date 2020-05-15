@@ -13,6 +13,6 @@ joint_positions: [ 0.8, -2.07, -2.0, 2.55, -0.0, 0.02, -0.0, -0.8, -2.07, 3.0, 2
 # programmed in tuck_arms
 #joint_positions: [ 1.0, -2.07, -3.0, 2.55, -0.0, 0.02, -0.0, -1.0, -2.07, 3.0, 2.55, 0.0, 0.01, 0.0]}"
 
-sleep 1
+#sleep 1
 
-rosservice call gazebo/unpause_physics
+#rosservice call gazebo/unpause_physics

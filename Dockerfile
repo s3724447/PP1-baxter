@@ -148,4 +148,4 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
 
 WORKDIR /root/rosie
 
-#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord"]

@@ -1,0 +1,4 @@
+#!/bin/bash
+eval $(weave env)
+docker stop baxter_alvar_right && docker rm baxter_alvar_right
+docker run --name baxter_alvar_right -d -e "LIMB=right" vxlab-alvar

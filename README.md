@@ -13,26 +13,35 @@ Build config:
 
 Build using:
 
-./build
+docker-compose build
 
 Run using:
 
-./run
+docker-compose up -d
 
-This will start three containers: Simulation platform (vxlab-rosie) in the foreground. In the background: X session for gazebo (novnc), X session for rviz (rviz).
+This will start three containers in the background: vxlab-rosie (Simulation platform); novnc (X session for graphical output in browser), vxlab-rosie-nav (Navigation).
 
-In simulation platform:
+Simulator:
 
-cd rosie
-./simstart
+docker exec -it vxlab-rosie bash
 
-To see the gazebo window, run a browser on the same machine, with the URL: http://localhost:8081/vnc_auto.html
+~/rosie/simload &
 
-Once the gazebo world has started up, very soon you will should lift the robot arms off the floor fairly soon, or the arms touching the ground plane triggers a bug which tips the robot over: Use CTRL-Z, then type "bg" + ENTER, to put the script in the background. Then type:
+Graphical output with Gazebo:
 
-./lift-arms
+Point your browser on the same machine, substituting HOSTNAME: http://HOSTNAME:8080/vnc_auto.html
 
-To test navigation (experimental, including launching an rviz window):
+Once the gazebo world has started up, type:
+
+~/rosie/prepsim
+
+Graphical display:
+
+Point your browser at HOSTNAME:8080
+
+Simulator never appears (with XCB errors on console): try moving the Baxter window, closing your browser, rerunning the simulator
+
+Navigation:
 
 Setup (once only):
 
@@ -40,10 +49,11 @@ cd ~/navigation_ws ; ./deps && ./rosbuild
 
 Run:
 
-cd ~/rosie
-./navstart
+~/rosie/navstart
 
-To see the rviz window, run a browser on the same machine, with the URL: http://localhost:8082/vnc_auto.html
+Rviz (navigation/debugging):
+
+To see an rviz window (for debugging), type:
 
 Using rviz requires reading some documentation. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 

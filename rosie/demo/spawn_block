@@ -1,0 +1,1 @@
+rosrun gazebo_ros spawn_model -urdf -file /root/ws_baxter/src/baxter_simulator/baxter_sim_examples/models/block/model.urdf -model block -y 10

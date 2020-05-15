@@ -1,0 +1,1 @@
+rosrun gazebo_ros spawn_model -sdf -database coke_can -model coke_can -y 1

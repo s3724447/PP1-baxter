@@ -1,0 +1,1 @@
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/blockdemo/model.sdf -model blocktextured -y 3

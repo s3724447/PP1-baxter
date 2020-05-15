@@ -1,0 +1,3 @@
+~/rosie/markerspawn
+~/rosie/tuck_presim
+rosservice call gazebo/unpause_physics

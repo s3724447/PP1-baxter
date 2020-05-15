@@ -1,0 +1,28 @@
+#!/bin/bash
+
+get_script_dir () {
+     SOURCE="${BASH_SOURCE[0]}"
+     # While $SOURCE is a symlink, resolve it
+     while [ -h "$SOURCE" ]; do
+          DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+          SOURCE="$( readlink "$SOURCE" )"
+          # If $SOURCE was a relative symlink (so no "/" as prefix, need to resolve it relative to the symlink base directory
+          [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+     done
+     SCRIPTDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+     echo "script directory is $SCRIPTDIR"
+}
+set -xv
+# SCRIPTDIR=...
+get_script_dir
+
+LIMB=${1-head}
+CNAME="${LIMB}-alvar"
+
+$SCRIPTDIR/build
+
+docker stop $CNAME
+docker rm $CNAME
+set -xv
+#../../run-with-docker -c $CNAME -r "-e LIMB=$LIMB -d --entrypoint=/root/ws_alvar/start" -i vxlab-alvar
+docker run --network vxlab --name $CNAME -e LIMB=$LIMB -d --entrypoint=/root/ws_alvar/start -i vxlab-alvar
