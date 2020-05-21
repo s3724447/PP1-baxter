@@ -4,13 +4,15 @@ ln -s ~/rosie/rviz_settings ~/.rviz
 
 cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
-rm -f ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+cp baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
+
+# Fix head collision model causing arms not to untuck(?!)
 cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
 
-rm -f /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
+#rm -f /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 cp ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 
-rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
+#rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 cp ~/rosie/baxter_sdk_control.launch ~/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 
 #rm -f ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
