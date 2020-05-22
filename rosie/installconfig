@@ -4,7 +4,7 @@ ln -s ~/rosie/rviz_settings ~/.rviz
 
 cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
-cp baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
+cp ~/rosie/baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
 
 # Fix head collision model causing arms not to untuck(?!)
 cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro

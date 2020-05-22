@@ -169,4 +169,4 @@ WORKDIR /root/rosie
 #   https://github.com/ros-drivers/four_wheel_steering_msgs
 
 #CMD ["/root/rosie/simstart"]
-CMD ["/root/rosie/sleep-forever"]
+CMD ["/root/rosie/rosie-sim-guest-runner"]
