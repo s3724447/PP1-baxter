@@ -5,7 +5,7 @@ https://youtu.be/U0TmnjHC2r8
 
 Requires install of docker-ce on your platform to build and run container.
 
-Experimental navigation stack on "navigation" branch.
+Experimental navigation + computer vision stack on "navigation" branch.
 
 Build config:
 
@@ -19,21 +19,13 @@ Run using:
 
 docker-compose up -d
 
-This will start three containers in the background: vxlab-rosie (Simulation platform); novnc (X session for graphical output in browser), vxlab-rosie-nav (Navigation).
+This will start three containers in the background: vxlab-rosie (Simulation platform); novnc (X session for graphical output in browser); vxlab-rosie-nav (Navigation).
 
 Simulator:
 
 docker exec -it vxlab-rosie bash
 
-~/rosie/simload &
-
-Graphical output with Gazebo:
-
-Point your browser on the same machine, substituting HOSTNAME: http://HOSTNAME:8080/vnc_auto.html
-
-Once the gazebo world has started up, type:
-
-~/rosie/prepsim
+Point your browser on the simulation host, substituting HOSTNAME: http://HOSTNAME:8080/vnc_auto.html
 
 Graphical display:
 
@@ -45,7 +37,7 @@ Navigation:
 
 Setup (once only):
 
-cd ~/navigation_ws ; ./deps && ./rosbuild
+cd ~/navigation_ws ; ./setup
 
 Run:
 
