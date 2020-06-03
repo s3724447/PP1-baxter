@@ -21,17 +21,15 @@ def mylog(msg):
   rospy.loginfo("**** " + cmdname+": "+msg+" ****")
 
 def process_log(data):
-  #if not data.msg.startswith("await_simstart"):
-  #    rospy.loginfo("await_simstart: "+data.msg)
-  if mode_video and data.msg == msgs["video"]:
+  if mode=="video" and data.msg == msgs["video"]:
       mylog("**** await_simstart: "+data.msg+" ****")
       shutdown(0, data.msg)
-  if mode_simstart and data.msg == msgs["simloaded"]:
+  if mode=="simstart" and data.msg == msgs["simloaded"]:
       mylog("**** await_simstart: "+data.msg+" ****")
       shutdown(0, data.msg)
-  #if mode_video and data.msg.startswith(msgs["xcb"]):
-  #    mylog("**** await_simstart: "+data.msg+" ****")
-  #    shutdown(1, data.msg)
+  if mode=="xcb_error" and data.msg.startswith(msgs["xcb"]):
+      mylog("**** await_simstart: "+data.msg+" ****")
+      shutdown(1, data.msg)
 
 def mytimeout(event):
     rospy.loginfo("**** await_simstart: TIMEOUT ****")
@@ -40,13 +38,21 @@ def mytimeout(event):
 
 global cmdname
 cmdname = str(sys.argv[0])
+
+global mode
+mode = ""
 print 'command name',cmdname
-mode_video = cmdname.endswith('await_video_ready.py')
-mode_simstart = cmdname.endswith('await_simulator_is_loaded.py')
-print 'video:',mode_video
-print 'simstart:',mode_simstart
-if (not mode_video) and (not mode_simstart):
-    print 'assertion failure'
+
+if cmdname.endswith('await_video_ready.py'):
+  mode = "video"
+if cmdname.endswith('await_simulator_is_loaded.py'):
+  mode = "simstart"
+if cmdname.endswith('await_xcb_error.py'):
+  mode = "xcb_error"
+
+print 'mode:',mode
+if mode == "":
+    mylog('assertion failure; no defined mode')
     sys.exit(1)
 
 rospy.init_node('await_simstart', anonymous=True, disable_signals=True)

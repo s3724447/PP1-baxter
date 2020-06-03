@@ -121,7 +121,7 @@
         <cameraName>right_hand_camera</cameraName>
         <imageTopicName>image</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>right_hand_camera</frameName>
+        <frameName>/right_hand_camera</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -159,7 +159,7 @@
         <cameraName>left_hand_camera</cameraName>
         <imageTopicName>image</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>left_hand_camera</frameName>
+        <frameName>/left_hand_camera</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -207,7 +207,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>100.0</updateRate>
         <topicName>/robot/sonar/head_sonar/state</topicName>
-        <frameName>sonar_ring</frameName>
+        <frameName>/sonar_ring</frameName>
       </plugin>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
@@ -235,7 +235,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>100</updateRate>
         <topicName>/sim/laserscan/right_hand_range/state</topicName>
-        <frameName>right_hand_range</frameName>
+        <frameName>/right_hand_range</frameName>
       </plugin>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
@@ -263,7 +263,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>100</updateRate>
         <topicName>/sim/laserscan/left_hand_range/state</topicName>
-        <frameName>left_hand_range</frameName>
+        <frameName>/left_hand_range</frameName>
       </plugin>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
