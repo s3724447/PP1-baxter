@@ -11,7 +11,7 @@ services:
         container_name: vxlab-rosie
         build:
           context: .
-          dockerfile: Dockerfile.melodic
+          dockerfile: Dockerfile.blue
           #network: host
         networks:
           vxlab:

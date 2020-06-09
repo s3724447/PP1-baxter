@@ -1,0 +1,4 @@
+#!/bin/bash
+source ~/mir_ws/devel/setup.bash
+source ~/rosie/rosenv.bash
+roslaunch ~/rosie/mir100_vxlab.launch
