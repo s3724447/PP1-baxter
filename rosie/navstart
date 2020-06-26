@@ -2,8 +2,14 @@
 
 source ~/rosie/rosenv-nav
 
-~/rosie/odometry.py &
-#./rvizstart &
+###./rvizstart &
+
+#cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
+#cp ~/rosie/nav-yaml/ns/global_costmap_params_ns.yaml ~/navigation_ws/src/mobility_base_2dnav/yaml/global_costmap_params.yaml
+#cp ~/rosie/nav-yaml/ns/local_costmap_params_ns.yaml ~/navigation_ws/src/mobility_base_2dnav/yaml/local_costmap_params.yaml
+
+#~/rosie/odometry.py &
+~/rosie/odometry_ns.py &
 
 #roslaunch ~/rosie/vxlab-nav-dwa-local-planner.launch
 

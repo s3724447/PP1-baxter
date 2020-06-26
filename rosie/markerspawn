@@ -1,5 +1,6 @@
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker0 -x 2.0 -y 1.5 -z 0.0
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker4 -x 0.0 -y 2.5 -z 0.0
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker3 -x 0.0 -y 2.5 -z 0.0
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker2 -x 2.0 -y 1.5 -z 0.0
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker14 -x 0.0 -y -0.5 -z 0.0
+#!/bin/bash
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker0 -x 2.0 -y 1.5 -z 0.0
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker4 -x 0.0 -y 2.5 -z 0.0
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker3 -x 0.0 -y 2.5 -z 0.0
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker2 -x 2.0 -y 1.5 -z 0.0
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker14 -x 0.0 -y -0.5 -z 0.0

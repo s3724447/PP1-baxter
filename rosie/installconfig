@@ -2,27 +2,30 @@
 
 ln -s ~/rosie/rviz_settings ~/.rviz
 
-cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
+cp MobilityBasePlugin.cpp /root/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
 
-cp ~/rosie/baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
+cp ~/rosie/baxter_sim_controllers.yaml /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/config/baxter_sim_controllers.yaml
+
+# namespace /rosie
+cp ~/rosie/baxter_sim_kinematics.launch /root/ws_baxter/src/baxter_simulator/baxter_sim_kinematics/launch/baxter_sim_kinematics.launch
+
+#cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
 # Fix head collision model causing arms not to untuck(?!)
-cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.urdf.xacro
+cp ~/rosie/baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
 
-#rm -f /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 cp ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 
-#rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 cp ~/rosie/baxter_sdk_control.launch ~/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 
-#rm -f ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
-#cp ~/rosie/baxter_position_controller.cpp ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
+cp ~/rosie/baxter_position_controller.cpp ~/ws_baxter/src/baxter_simulator/baxter_sim_controllers/src/baxter_position_controller.cpp
 
-#rm -f /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/src/baxter_emulator.cpp
 #cp ~/rosie/baxter_emulator.cpp /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/src/baxter_emulator.cpp
 
-#rm -f ~/ws_baxter/src/baxter_simulator/baxter_gazebo/src/baxter_gazebo_ros_control_plugin.cpp
 #cp ~/rosie/baxter_gazebo_ros_control_plugin.cpp ~/ws_baxter/src/baxter_simulator/baxter_gazebo/src/baxter_gazebo_ros_control_plugin.cpp
 
 mkdir -p ~/.ignition/fuel
 cp ~/rosie/ignition.fuel.config.yaml ~/.ignition/fuel/config.yaml
+
+cd ~/ws_baxter
+catkin_make

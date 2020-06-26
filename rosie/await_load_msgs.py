@@ -11,7 +11,8 @@ global close
 close = False
 
 msgs = {
-  "video": "GazeboRosVideo (gzserver, ns = /mobility_base/) has started",
+  #"video": "GazeboRosVideo (gzserver, ns = /mobility_base/) has started",
+  "video": "GazeboRosVideo (gzserver, ns = /",
   "simloaded": "Simulator is loaded and started successfully",
   "xcb": "[Wrn] [GuiIface.cc:120] QXcbConnection: XCB error"
 }
@@ -21,10 +22,10 @@ def mylog(msg):
   rospy.loginfo("**** " + cmdname+": "+msg+" ****")
 
 def process_log(data):
-  if mode=="video" and data.msg == msgs["video"]:
+  if mode=="video" and data.msg.startswith(msgs["video"]):
       mylog("**** await_simstart: "+data.msg+" ****")
       shutdown(0, data.msg)
-  if mode=="simstart" and data.msg == msgs["simloaded"]:
+  if mode=="simstart" and data.msg.startswith(msgs["simloaded"]):
       mylog("**** await_simstart: "+data.msg+" ****")
       shutdown(0, data.msg)
   if mode=="xcb_error" and data.msg.startswith(msgs["xcb"]):
@@ -80,7 +81,7 @@ rospy.loginfo('**** await_simstart: sleeping ****')
 deadline_s = 100
 def is_timeout():
     elapsed = time.time() - start_time
-    print 'await_simstart: elapsed '+str(elapsed)
+    print 'await_simstart: mode='+mode+' elapsed '+str(elapsed)
     return elapsed > deadline_s
 
 start_time = time.time()

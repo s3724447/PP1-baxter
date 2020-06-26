@@ -21,15 +21,13 @@ from geometry_msgs.msg import Point, Quaternion
 #roslib.load_manifest('odom_publisher')
 
 class RosOdomPublisher:
-  gps_ekf_odom_pub = rospy.Publisher('/odom', Odometry)
+  gps_ekf_odom_pub = rospy.Publisher('/rosie/odom', Odometry)
   tf_br = tf.TransformBroadcaster()
 
   publish_odom_tf = True
 
-  frame_id = '/odom'
+  frame_id = '/rosie_odom'
   child_frame_id = '/base_footprint'
-  #frame_id = '/map'
-  #child_frame_id = '/base_footprint_odom'
 
   # Covariance
   P = np.mat(np.diag([0.0]*3))
