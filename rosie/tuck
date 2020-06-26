@@ -1,2 +1,2 @@
-export ROS_NAMESPACE='/rosie'
+#export ROS_NAMESPACE='/rosie'
 rosrun baxter_tools tuck_arms.py -t

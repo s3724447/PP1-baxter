@@ -2,13 +2,13 @@
 
 ln -s ~/rosie/rviz_settings ~/.rviz
 
-cp MobilityBasePlugin_ns.cpp /root/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+cp ~/rosie/MobilityBasePlugin_ns.cpp /root/mb_ws/src/mobility_base_simulator/mobility_base_gazebo_plugins/src/MobilityBasePlugin.cpp
+
+cp ~/rosie/baxter_sim_controllers_ns.yaml /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/config/baxter_sim_controllers.yaml
 
 cp ~/rosie/tuck_arms.py ~/ws_baxter/src/baxter_tools/scripts/tuck_arms.py
 cp ~/rosie/limb.py ~/ws_baxter/src/baxter_interface/src/baxter_interface/
 cp ~/rosie/head.py ~/ws_baxter/src/baxter_interface/src/baxter_interface/
-
-cp ~/rosie/baxter_sim_controllers_ns.yaml /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/config/baxter_sim_controllers.yaml
 
 # namespace /rosie
 cp ~/rosie/baxter_sim_kinematics_ns.launch /root/ws_baxter/src/baxter_simulator/baxter_sim_kinematics/launch/baxter_sim_kinematics.launch
@@ -17,7 +17,8 @@ cp ~/rosie/baxter_sim_kinematics_ns.launch /root/ws_baxter/src/baxter_simulator/
 cp ~/rosie/baxter_sdk_control_ns.launch /root/ws_baxter/src/baxter_simulator/baxter_sim_hardware/launch/baxter_sdk_control.launch
 
 # Fix head collision model causing arms not to untuck(?!)
-cp ~/rosie/baxter_base_ns.gazebo.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
+cp ~/rosie/baxter_base_ns.gazebo.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/
+cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/
 
 cp ~/rosie/mobility_base_ns.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
 
