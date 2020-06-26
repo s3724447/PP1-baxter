@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobility_base">
+  <xacro:arg name="gazebo" default="false"/>
+  <xacro:arg name="baxter" default="false"/>
+  <xacro:arg name="fast"   default="true"/>
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:property name="base_mass" value="100" />
+  <xacro:property name="base_length" value="0.2159" />
+  <xacro:property name="base_width" value="0.381" />
+  <xacro:property name="base_height" value="0.2921" />
+
+  <xacro:property name="shroud_base_x" value="${0.5055/2}" />
+  <xacro:property name="shroud_base_y" value="${0.5055/2}" />
+  <xacro:property name="shroud_x" value="${0.2286/2}" />
+  <xacro:property name="shroud_y" value="${0.2733/2}" />
+  <xacro:property name="bumper_z" value="${-0.0189}" />
+  <xacro:property name="bumper_travel" value="${0.003175}" />
+
+  <xacro:property name="wheel_base_x" value="${0.5055/2}" />
+  <xacro:property name="wheel_base_y" value="${0.6805/2}" />
+  <xacro:property name="wheel_mass" value="2" />
+  <xacro:property name="wheel_radius" value="0.1016" />
+  <xacro:property name="wheel_width" value="0.0508" />
+
+  <xacro:property name="roller_mass" value="0.0476272" />
+  <xacro:property name="roller_radius" value="0.015875" />
+  <xacro:property name="roller_length" value="0.0861568" />
+
+  <xacro:property name="lidar_bracket_x" value="${0.2317}" />
+  <xacro:property name="lidar_bracket_z" value="${0.4116}" />
+
+  <xacro:property name="birdcage_plate" value="${0.0055}" />
+  <xacro:property name="birdcage_bottom" value="${0.2440}" />
+  <xacro:property name="birdcage_top" value="${0.3777}" />
+
+  <xacro:property name="mount_x" value="$(optenv MB_MOUNT_X 0)" />
+  <xacro:property name="mount_y" value="$(optenv MB_MOUNT_Y 0)" />
+  <xacro:property name="mount_z" value="$(optenv MB_MOUNT_Z 0)" />
+  <xacro:property name="mount_z_baxter" value="${0.5293}" />
+
+  <!-- Materials -->
+  <xacro:macro name="darkred_material" >
+    <material name="darkred" >
+      <color rgba=".5 .1 .1 1"/>
+    </material>
+  </xacro:macro>
+  <xacro:macro name="grey_material" >
+    <material name="grey" >
+      <color rgba=".5 .5 .5 1"/>
+    </material>
+  </xacro:macro>
+  <xacro:macro name="black_material" >
+    <material name="black" >
+      <color rgba=".1 .1 .1 1"/>
+    </material>
+  </xacro:macro>
+
+  <!-- Macro Single Roller -->
+  <xacro:macro name="roller_fixed" params="flip c s" >
+    <visual>
+      <origin xyz="${(wheel_radius-roller_radius)*(c)} ${(wheel_radius-roller_radius)*(s)} 0" rpy="${flip*M_PI/4*c} ${flip*M_PI/4*s} 0" />
+      <geometry>
+        <mesh filename="package://mobility_base_description/meshes/roller.STL" />
+      </geometry>
+      <xacro:grey_material />
+    </visual>
+  </xacro:macro>
+  <xacro:macro name="roller_sim" params="parent prefix flip index" >
+    <joint name="${prefix}_roller_${index}_base_joint" type="fixed" >
+      <parent link="${parent}" />
+      <child link="${prefix}_roller_${index}_base" />
+      <origin xyz="0 0 0" rpy="0 0 ${index*M_PI/6}" />
+      <axis xyz="0 0 1" />
+    </joint>
+    <link name="${prefix}_roller_${index}_base" >
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.000001 0.000001 0.000001" />
+        </geometry>
+      </visual>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${wheel_mass/13}" />
+        <inertia ixx="${1/12*wheel_mass/13*((3*wheel_radius*wheel_radius)+(wheel_width*wheel_width))}" ixy="0.0" ixz="0.0"
+                 iyy="${1/12*wheel_mass/13*((3*wheel_radius*wheel_radius)+(wheel_width*wheel_width))}" iyz="0.0" 
+                 izz="${1/2*wheel_mass/13*(wheel_radius*wheel_radius)}" />
+      </inertial>
+    </link>
+    <joint name="${prefix}_roller_${index}" type="continuous" >
+      <parent link="${prefix}_roller_${index}_base" />
+      <child link="${prefix}_roller_${index}" />
+      <origin xyz="${wheel_radius-roller_radius} 0 0" rpy="${flip*M_PI/4} 0 0" />
+      <axis xyz="0 0 1">
+        <dynamics damping="0" friction="10"/>
+      </axis>
+    </joint>
+    <link name="${prefix}_roller_${index}" >
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/roller.STL"/>
+        </geometry>
+        <xacro:grey_material />
+      </visual>
+      <xacro:unless value="$(arg fast)">
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://mobility_base_description/meshes/roller_collision.STL" />
+          </geometry>
+        </collision>
+      </xacro:unless>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${roller_mass}" />
+        <!-- Inertia tensor is approximated by a cylinder with homogeneous mass distribution
+             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors
+             m = roller_mass kg; h = roller_length m; r = roller_radius m
+             ixx = 1/12 * m * (3 * r^2 + h^2)
+             iyy = 1/12 * m * (3 * r^2 + h^2)
+             izz = 1/2 * m * r^2 
+          -->
+        <inertia ixx="${1/12*roller_mass*((3*roller_radius*roller_radius)+(roller_length*roller_length))}" ixy="0.0" ixz="0.0"
+                 iyy="${1/12*roller_mass*((3*roller_radius*roller_radius)+(roller_length*roller_length))}" iyz="0.0" 
+                 izz="${1/2*roller_mass*(roller_radius*roller_radius)}" />
+      </inertial>
+    </link>
+    <gazebo reference="${prefix}_roller_${index}">
+      <xacro:if value="$(arg fast)">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+      </xacro:if>
+      <xacro:unless value="$(arg fast)">
+        <mu1>100.0</mu1>
+        <mu2>50.0</mu2>
+      </xacro:unless>
+      <kp>100000000.0</kp>
+      <kd>10000.0</kd>
+      <material>Gazebo/Grey</material>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Macro 12 Rollers in a wheel -->
+  <xacro:macro name="rollers_fixed" params="flip" >
+    <xacro:roller_fixed flip="${flip}" c=" 1.000000000" s=" 0.000000000" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.866025404" s=" 0.500000000" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.500000000" s=" 0.866025404" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.000000000" s=" 1.000000000" />
+    <xacro:roller_fixed flip="${flip}" c="-0.500000000" s=" 0.866025404" />
+    <xacro:roller_fixed flip="${flip}" c="-0.866025404" s=" 0.500000000" />
+    <xacro:roller_fixed flip="${flip}" c="-1.000000000" s=" 0.000000000" />
+    <xacro:roller_fixed flip="${flip}" c="-0.866025404" s="-0.500000000" />
+    <xacro:roller_fixed flip="${flip}" c="-0.500000000" s="-0.866025404" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.000000000" s="-1.000000000" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.500000000" s="-0.866025404" />
+    <xacro:roller_fixed flip="${flip}" c=" 0.866025404" s="-0.500000000" />
+  </xacro:macro>
+  <xacro:macro name="rollers_sim" params="parent prefix flip" >
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="0"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="1"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="2"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="3"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="4"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="5"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="6"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="7"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="8"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="9"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="10"/>
+    <xacro:roller_sim parent="${parent}" prefix="${prefix}" flip="${flip}" index="11"/>
+  </xacro:macro>
+
+  <!-- Macro Wheel with 12 rollers -->
+  <xacro:macro name="mecanum_wheel_12" params="suffix reflectx reflecty flip hub" >
+    <joint name="wheel${suffix}" type="continuous" >
+      <parent link="base_link" />
+      <child link="wheel${suffix}" />
+      <origin xyz="${reflectx*wheel_base_x} ${reflecty*wheel_base_y} 0" rpy="${-M_PI/2} 0 0" />
+      <axis xyz="0 0 1" />
+      <dynamics damping="0" friction="1"/>
+    </joint>
+    <link name="wheel${suffix}" >
+      <visual>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <geometry>
+          <xacro:if value="${hub}">
+            <mesh filename="package://mobility_base_description/meshes/hub_left.STL" scale="0.001 0.001 0.001" />
+          </xacro:if>
+          <xacro:unless value="${hub}">
+            <mesh filename="package://mobility_base_description/meshes/hub_right.STL" scale="0.001 0.001 0.001" />
+          </xacro:unless>
+        </geometry>
+        <xacro:grey_material />
+      </visual>
+      <visual>
+        <origin xyz="0 0 -0.02" rpy="${M_PI} 0 0"/>
+        <geometry>
+          <xacro:if value="${hub}">
+            <mesh filename="package://mobility_base_description/meshes/hub_left.STL" scale="0.001 0.001 0.001" />
+          </xacro:if>
+          <xacro:unless value="${hub}">
+            <mesh filename="package://mobility_base_description/meshes/hub_right.STL" scale="0.001 0.001 0.001" />
+          </xacro:unless>
+        </geometry>
+        <xacro:grey_material />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <xacro:if value="$(arg gazebo)">
+          <xacro:if value="$(arg fast)">
+            <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+          </xacro:if>
+          <xacro:unless value="$(arg fast)">
+            <cylinder length="${wheel_width}" radius="0.065"/>
+          </xacro:unless>
+        </xacro:if>
+        <xacro:unless value="$(arg gazebo)">
+          <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+        </xacro:unless>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${wheel_mass/13}" />
+        <!-- Inertia tensor is approximated by a cylinder with homogeneous mass distribution
+             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors
+             m = wheel_mass/13 kg; h = wheel_width m; r = wheel_radius m
+             ixx = 1/12 * m * (3 * r^2 + h^2)
+             iyy = 1/12 * m * (3 * r^2 + h^2)
+             izz = 1/2 * m * r^2 
+          -->
+        <inertia ixx="${1/12*wheel_mass/13*((3*wheel_radius*wheel_radius)+(wheel_width*wheel_width))}" ixy="0.0" ixz="0.0"
+                 iyy="${1/12*wheel_mass/13*((3*wheel_radius*wheel_radius)+(wheel_width*wheel_width))}" iyz="0.0" 
+                 izz="${1/2*wheel_mass/13*(wheel_radius*wheel_radius)}" />
+      </inertial>
+      <xacro:unless value="$(arg gazebo)">
+        <xacro:rollers_fixed flip="${flip}"/>
+      </xacro:unless>
+      <xacro:if value="$(arg gazebo)">
+        <xacro:if value="$(arg fast)">
+          <xacro:rollers_fixed flip="${flip}"/>
+        </xacro:if>
+      </xacro:if>
+      </link>
+      <xacro:if value="$(arg gazebo)">
+        <xacro:unless value="$(arg fast)">
+          <xacro:rollers_sim parent="wheel${suffix}" prefix="wheel${suffix}" flip="${flip}"/>
+        </xacro:unless>
+      </xacro:if>
+    
+
+    <xacro:if value="$(arg fast)">
+      <gazebo reference="wheel${suffix}">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <kp>100000000.0</kp>
+        <kd>10000.0</kd>
+        <material>Gazebo/Grey</material>
+      </gazebo>
+    </xacro:if>
+
+  </xacro:macro>
+
+  <!-- Macro Shroud -->
+  <xacro:macro name="shroud" params="reflectx reflecty yaw" >
+      <visual>
+        <origin xyz="${reflectx*shroud_base_x} ${reflecty*shroud_base_y} 0" rpy="0 0 ${yaw}"/>
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/shroud.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="${reflectx*shroud_base_x} ${reflecty*shroud_base_y} 0" rpy="0 0 ${yaw}"/>
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/shroud.dae" />
+        </geometry>
+      </collision>
+  </xacro:macro>
+
+  <!-- Macro Bumper -->
+  <xacro:macro name="bumper" params="x1 y1 x2 y2 yaw" >
+      <visual>
+        <origin xyz="${x1*shroud_base_x + x2*(shroud_x+bumper_travel)} ${y1*shroud_base_y + y2*(shroud_y+bumper_travel)} ${bumper_z}" rpy="0 0 ${yaw}"/>
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/bumper.STL" />
+        </geometry>
+        <xacro:black_material />
+      </visual>
+      <collision>
+        <origin xyz="${x1*shroud_base_x + x2*(shroud_x+bumper_travel)} ${y1*shroud_base_y + y2*(shroud_y+bumper_travel)} ${bumper_z}" rpy="0 0 ${yaw}"/>
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/bumper.STL" />
+        </geometry>
+      </collision>
+  </xacro:macro>
+
+  <!-- Macro Lidar Bracket -->
+  <xacro:macro name="lidar_bracket" params="reflect yaw" >
+      <visual>
+        <origin xyz="${reflect*lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 ${yaw}"/>
+        <geometry>
+          <mesh filename="package://mobility_base_description/meshes/lidar_bracket.STL" />
+        </geometry>
+        <xacro:black_material />
+      </visual>
+  </xacro:macro>
+
+  <!-- Base Footprint -->
+  <link name="rosie_base_footprint" />
+  
+  <!-- Base Link -->
+  <joint name="footprint" type="fixed" >
+   <parent link="rosie_base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+  </joint>
+  <link name="base_link" >
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://mobility_base_description/meshes/frame.STL" />
+      </geometry>
+      <xacro:black_material />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://mobility_base_description/meshes/frame.STL" />
+      </geometry>
+    </collision>
+    <!--collision>
+      <origin xyz="0 0 ${base_height/2-0.055}" rpy="0 0 0" />
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}" />
+      </geometry>
+    </collision-->
+    <!-- Bumpers -->
+    <xacro:bumper x1=" 1" y1=" 1" x2=" 1" y2=" 0" yaw="${0.0*M_PI}" />
+    <xacro:bumper x1=" 1" y1=" 1" x2=" 0" y2=" 1" yaw="${0.5*M_PI}" />
+    <!--xacro:bumper x1=" 1" y1=" 1" x2="-1" y2=" 0" yaw="${1.0*M_PI}" /-->
+    <!--xacro:bumper x1=" 1" y1=" 1" x2=" 0" y2="-1" yaw="${1.5*M_PI}" /-->
+    <xacro:bumper x1=" 1" y1="-1" x2=" 1" y2=" 0" yaw="${0.0*M_PI}" />
+    <!--xacro:bumper x1=" 1" y1="-1" x2=" 0" y2=" 1" yaw="${0.5*M_PI}" /-->
+    <!--xacro:bumper x1=" 1" y1="-1" x2="-1" y2=" 0" yaw="${1.0*M_PI}" /-->
+    <xacro:bumper x1=" 1" y1="-1" x2=" 0" y2="-1" yaw="${1.5*M_PI}" />
+    <!--xacro:bumper x1="-1" y1=" 1" x2=" 1" y2=" 0" yaw="${0.0*M_PI}" /-->
+    <xacro:bumper x1="-1" y1=" 1" x2=" 0" y2=" 1" yaw="${0.5*M_PI}" />
+    <xacro:bumper x1="-1" y1=" 1" x2="-1" y2=" 0" yaw="${1.0*M_PI}" />
+    <!--xacro:bumper x1="-1" y1=" 1" x2=" 0" y2="-1" yaw="${1.5*M_PI}" /-->
+    <!--xacro:bumper x1="-1" y1="-1" x2=" 1" y2=" 0" yaw="${0.0*M_PI}" /-->
+    <!--xacro:bumper x1="-1" y1="-1" x2=" 0" y2=" 1" yaw="${0.5*M_PI}" /-->
+    <xacro:bumper x1="-1" y1="-1" x2="-1" y2=" 0" yaw="${1.0*M_PI}" />
+    <xacro:bumper x1="-1" y1="-1" x2=" 0" y2="-1" yaw="${1.5*M_PI}" />
+    <!-- Lidar Brackets -->
+    <xacro:lidar_bracket reflect=" 1" yaw="${0*M_PI}" />
+    <xacro:lidar_bracket reflect="-1" yaw="${1*M_PI}" />
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="${base_mass}"/>
+      <!-- Inertia tensor is approximated by a solid cube with homogeneous mass distribution
+           More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors
+           m = 50 kg; w = 0.9652 m; h = 0.1016 m; d = 0.5588 m;
+           ixx = 1/12 * m * (h^2 + d^2)
+           ixx = 1/12 * m * (w^2 + d^2)
+           ixx = 1/12 * m * (w^2 + h^2)
+        -->
+      <inertia ixx="${1/12*base_mass*(base_height*base_height + base_length*base_length)}" ixy="0.0" ixz="0.0"
+               iyy="${1/12*base_mass*(base_width*base_width + base_length*base_length)}" iyz="0.0" 
+               izz="${1/12*base_mass*(base_width*base_width + base_height*base_height)}" />
+    </inertial>
+  </link>
+
+  <!-- Base Shrouds -->
+  <joint name="base_shrouds" type="fixed" >
+   <parent link="base_link" />
+    <child link="base_shrouds" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="base_shrouds" >
+    <xacro:shroud reflectx=" 1" reflecty=" 1" yaw="${0*M_PI}" />
+    <xacro:shroud reflectx=" 1" reflecty="-1" yaw="${1*M_PI}" />
+    <xacro:shroud reflectx="-1" reflecty=" 1" yaw="${0*M_PI}" />
+    <xacro:shroud reflectx="-1" reflecty="-1" yaw="${1*M_PI}" />
+  </link>
+
+  <!-- Base (Baxter mount) -->
+  <joint name="base" type="fixed" >
+   <parent link="base_link" />
+    <child link="base" />
+    <origin xyz="${mount_x} ${mount_y} ${mount_z+mount_z_baxter}" rpy="0 0 0" />
+  </joint>
+  <xacro:unless value="$(arg baxter)" >
+    <link name="base" >
+    </link>
+  </xacro:unless>
+  <xacro:if value="$(arg baxter)" >
+    <xacro:include filename="$(find mobility_base_description)/urdf/baxter.urdf.xacro" >
+      <xacro:arg name="gazebo" value="true"/>
+      <xacro:arg name="pedestal" value="false"/>
+    </xacro:include>
+  </xacro:if>
+
+  <!-- Wheels -->
+  <xacro:mecanum_wheel_12 suffix="_fl" reflectx=" 1" reflecty=" 1" flip="-1" hub="true" />
+  <xacro:mecanum_wheel_12 suffix="_fr" reflectx=" 1" reflecty="-1" flip=" 1" hub="false" />
+  <xacro:mecanum_wheel_12 suffix="_rl" reflectx="-1" reflecty=" 1" flip=" 1" hub="false" />
+  <xacro:mecanum_wheel_12 suffix="_rr" reflectx="-1" reflecty="-1" flip="-1" hub="true" />
+
+  <!-- Floor Camera -->
+  <xacro:if value="$(optenv MB_FLOOR_CAMERA 1)">
+    <xacro:include filename="$(find mobility_base_description)/urdf/sensors/LI-USB30-V034M.urdf.xacro"/>
+    <LI-USB30-V034M parent="rosie_base_footprint" name="floor_camera" frame_rate="$(optenv MB_FLOOR_CAMERA_FRAME_RATE 15.0)">
+      <origin xyz="0 0 0.077" rpy="0 ${M_PI/2} 0" />
+    </LI-USB30-V034M>
+  </xacro:if>
+
+  <!-- Accessory LIDAR macros -->
+  <xacro:include filename="$(find mobility_base_description)/urdf/sensors/Hokuyo_URG-04LX.urdf.xacro"/>
+  <xacro:include filename="$(find mobility_base_description)/urdf/sensors/Hokuyo_UST-10LX.urdf.xacro"/>
+  <xacro:include filename="$(find mobility_base_description)/urdf/sensors/Hokuyo_UST-20LX.urdf.xacro"/>
+
+  <!-- Front Hokuyo LIDAR -->
+  <xacro:if value="$(optenv MB_LASER_FRONT_HOKUYO 0)">
+    <xacro:if value="$(optenv MB_LASER_FRONT_HOKUYO_URG_04LX 0)">
+      <Hokuyo_URG-04LX parent="base_link" name="laser_front_hokuyo">
+        <origin xyz="${lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 0" />
+      </Hokuyo_URG-04LX>
+    </xacro:if>
+    <xacro:if value="$(optenv MB_LASER_FRONT_HOKUYO_UST_10LX 0)">
+      <Hokuyo_UST-10LX parent="base_link" name="laser_front_hokuyo">
+        <origin xyz="${lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 0" />
+      </Hokuyo_UST-10LX>
+    </xacro:if>
+    <xacro:if value="$(optenv MB_LASER_FRONT_HOKUYO_UST_20LX 0)">
+      <Hokuyo_UST-20LX parent="base_link" name="laser_front_hokuyo">
+        <origin xyz="${lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 0" />
+      </Hokuyo_UST-20LX>
+    </xacro:if>
+  </xacro:if>
+
+  <!-- Rear Hokuyo LIDAR -->
+  <xacro:if value="$(optenv MB_LASER_REAR_HOKUYO 0)">
+    <xacro:if value="$(optenv MB_LASER_REAR_HOKUYO_URG_04LX 0)">
+      <Hokuyo_URG-04LX parent="base_link" name="laser_rear_hokuyo">
+        <origin xyz="${-lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 ${M_PI}" />
+      </Hokuyo_URG-04LX>
+    </xacro:if>
+    <xacro:if value="$(optenv MB_LASER_REAR_HOKUYO_UST_10LX 0)">
+      <Hokuyo_UST-10LX parent="base_link" name="laser_rear_hokuyo">
+        <origin xyz="${-lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 ${M_PI}" />
+      </Hokuyo_UST-10LX>
+    </xacro:if>
+    <xacro:if value="$(optenv MB_LASER_REAR_HOKUYO_UST_20LX 0)">
+      <Hokuyo_UST-20LX parent="base_link" name="laser_rear_hokuyo">
+        <origin xyz="${-lidar_bracket_x} 0 ${lidar_bracket_z}" rpy="0 0 ${M_PI}" />
+      </Hokuyo_UST-20LX>
+    </xacro:if>
+  </xacro:if>
+
+  <!-- Birdcage Pepperl Fuchs R2000 LIDAR -->
+  <xacro:if value="$(optenv MB_LASER_BIRDCAGE_R2000 0)">
+    <xacro:include filename="$(find mobility_base_description)/urdf/sensors/Pepperl-Fuchs-R2000.urdf.xacro"/>
+    <Pepperl-Fuchs-R2000 parent="base_link" name="laser_birdcage_r2000">
+      <origin xyz="0 0 ${birdcage_bottom+birdcage_plate}" rpy="0 0 0" />
+    </Pepperl-Fuchs-R2000>
+  </xacro:if>
+
+  <!-- Birdcage Velodyne VLP-16 LIDAR -->
+  <xacro:if value="$(optenv MB_LASER_BIRDCAGE_VLP16 0)">
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+    <VLP-16 parent="base_link" name="laser_birdcage_vlp16" topic="/laser_birdcage_vlp16/points">
+      <xacro:unless value="$(optenv MB_LASER_BIRDCAGE_VLP16_FLIP 0)">
+        <origin xyz="0 0 ${birdcage_bottom+birdcage_plate}" rpy="0 0 0" />
+      </xacro:unless>
+      <xacro:if value="$(optenv MB_LASER_BIRDCAGE_VLP16_FLIP 0)">
+        <origin xyz="0 0 ${birdcage_top-birdcage_plate}" rpy="${M_PI} 0 0" />
+      </xacro:if>
+    </VLP-16>
+  </xacro:if>
+
+
+  <!-- Gazebo -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="wheel_fl">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="wheel_fr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="wheel_rl">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="wheel_rr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo>
+    <plugin name="gazebo_mobility_base_plugin" filename="libmobility_base_gazebo_plugins.so">
+      <fast>$(arg fast)</fast>
+      <parent_frame_id>/map</parent_frame_id>
+      <child_frame_id>/mobility_base_sim</child_frame_id>
+    </plugin>
+  </gazebo>
+
+</robot>

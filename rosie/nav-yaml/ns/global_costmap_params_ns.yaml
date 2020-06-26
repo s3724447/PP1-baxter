@@ -1,0 +1,12 @@
+global_costmap:
+  global_frame: map
+  robot_base_frame: rosie_base_footprint
+  update_frequency: 1.0
+  publish_frequency: 0.5  
+  #resolution: 0.1
+  width: 25
+  height: 25
+  origin_x: -12.5
+  origin_y: -12.5
+static_map: true
+rolling_window: true
