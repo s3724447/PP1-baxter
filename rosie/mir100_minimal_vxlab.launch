@@ -13,12 +13,10 @@
   </group>
 
   <!-- Add passive + mimic joints to joint_states topic -->
-  <!--
-  <node name="mir_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  <node name="joint_state_publisher_blue" pkg="joint_state_publisher" type="joint_state_publisher">
     <rosparam param="source_list">[mir/joint_states]</rosparam>
     <param name="rate" value="200.0" />
   </node>
-  -->
 
   <group ns="blue">
   <!-- bare minimum required to spawn mir in vxlab world with rosie (controllers?) -->

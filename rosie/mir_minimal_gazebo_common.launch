@@ -15,7 +15,7 @@
   <rosparam file="$(find mir_description)/config/joint_state_controller.yaml" command="load" />
   <rosparam file="$(find mir_description)/config/diffdrive_controller.yaml" command="load" subst_value="true" />
 
-  <!-- Start only the controllers -->
+  <!-- Controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
     args="joint_state_controller mobile_base_controller"/>
 
@@ -26,7 +26,7 @@
 
   <!-- Robot state publisher -->
   <!--
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" />
+  <node name="robot_state_publisher_blue" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" />
   -->
 
   <!-- Load teleop -->
