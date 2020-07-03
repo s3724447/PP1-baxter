@@ -26,7 +26,7 @@ class RosOdomPublisher:
 
   publish_odom_tf = True
 
-  frame_id = '/rosie_odom'
+  frame_id = '/odom'
   child_frame_id = '/base_footprint'
 
   # Covariance
@@ -129,12 +129,12 @@ def mypub_cmdvel(msg):
   lastcmdvel = newcmdvel
   # Calculate new position in terms of delta-Twist
   #pub.dx = twist.linear.x * 0.7
-  pub.dx = twist.linear.x * 0.6
+  pub.dx = twist.linear.x * 0.4
   #pub.dy = twist.linear.y * 0.7
-  pub.dy = twist.linear.y * 0.6
+  pub.dy = twist.linear.y * 0.4
   # MAGIC NUMBER
   #pub.dyaw = twist.angular.z / 1.55
-  pub.dyaw = twist.angular.z / 1.6
+  pub.dyaw = twist.angular.z * 0.35
   c1 = (pub.dx * micros / 1000000)
   c2 = (pub.dy * micros / 1000000)
   pub.x = pub.x + c1 * math.cos(pub.yaw) + c2 * math.sin(pub.yaw)
