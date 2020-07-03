@@ -7,9 +7,6 @@
 FROM ros:melodic-ros-core
 MAINTAINER Ian Peake ian.peake@rmit.edu.au
 
-RUN echo force update
-
-
 COPY 02proxy /etc/apt/apt.conf.d/02proxy
 
 # Fix ROS keys
