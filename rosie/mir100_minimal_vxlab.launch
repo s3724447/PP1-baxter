@@ -7,18 +7,18 @@
   <arg name="robot_yaw" default="0.0" />
 
   <group>
-    <remap from="joint_states"                   to="mir/joint_states" />
+    <!-- <remap from="joint_states"                   to="blue/joint_states" /> -->
     <remap from="mobile_base_controller/cmd_vel" to="cmd_vel" />
     <remap from="mobile_base_controller/odom"    to="odom_comb" />
   </group>
 
+  <group ns="blue">
   <!-- Add passive + mimic joints to joint_states topic -->
   <node name="joint_state_publisher_blue" pkg="joint_state_publisher" type="joint_state_publisher">
-    <rosparam param="source_list">[mir/joint_states]</rosparam>
+    <rosparam param="source_list">[/blue/joint_states]</rosparam>
     <param name="rate" value="200.0" />
   </node>
 
-  <group ns="blue">
   <!-- bare minimum required to spawn mir in vxlab world with rosie (controllers?) -->
   <include file="/root/rosie/mir_minimal_gazebo_common.launch">
     <arg name="robot_x"   value="$(arg robot_x)" />
