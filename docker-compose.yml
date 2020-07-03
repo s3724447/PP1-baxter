@@ -7,6 +7,13 @@ services:
           vxlab:
         ports:
           - "8080:8080"
+    display2:
+        container_name: display2
+        image: theasp/novnc
+        networks:
+          vxlab:
+        ports:
+          - "8081:8080"
     vxlab-rosie:
         container_name: vxlab-rosie
         build:
@@ -33,7 +40,7 @@ services:
           source: ./rosie
           target: /root/rosie
         environment:
-          DISPLAY: novnc:0
+          DISPLAY: display2:0
     alvar-head:
         container_name: alvar-head
         build:
