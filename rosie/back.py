@@ -81,7 +81,7 @@ def motion_demo():
   #
   rospy.Timer(rospy.Duration(0.1), timer_callback)
   #
-  speed = 0.2
+  speed = 0.5
   dist = 2
   vel = Twist()
   # 

@@ -11,6 +11,11 @@
 
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+   <!--
+    <param name="base_global_planner" value="SBPLLatticePlanner"/>
+    <param name="SBPLLatticePlanner/primitive_filename" value="$(find mir_navigation)/mprim/unicycle_highcost_10cm.mprim" />
+    -->
     <param name="tf_prefix" value="rosie" />
     <remap from="cmd_vel" to="/mobility_base/cmd_vel"/>
     <rosparam param="use_sim_time">true</rosparam>

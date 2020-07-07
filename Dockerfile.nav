@@ -62,7 +62,7 @@ RUN echo 'source ~/navigation_ws/devel/setup.bash' >> .bashrc
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   iproute2 host \
-  ros-melodic-hector-slam ros-melodic-hector-slam-launch ros-melodic-teleop-twist-keyboard ros-melodic-move-base ros-melodic-amcl ros-melodic-map-server
+  ros-melodic-hector-slam ros-melodic-hector-slam-launch ros-melodic-teleop-twist-keyboard ros-melodic-move-base ros-melodic-amcl ros-melodic-map-server ros-melodic-sbpl-lattice-planner
 
 ADD navigation_ws navigation_ws
 
