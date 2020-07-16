@@ -16,7 +16,7 @@ cp ~/rosie/baxter_sim_kinematics.launch /root/ws_baxter/src/baxter_simulator/bax
 #cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
 # Fix head collision model causing arms not to untuck(?!)
-cp ~/rosie/baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/
+cp ~/rosie/baxter_base.gazebo.xacro.camera-topic-fix ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/baxter_base.gazebo.xacro
 cp ~/rosie/baxter_base.urdf.xacro ~/ws_baxter/src/baxter_common/baxter_description/urdf/baxter_base/
 
 cp ~/rosie/mobility_base.urdf.xacro /root/mb_ws/src/mobility_base_ros/mobility_base_description/urdf/mobility_base.urdf.xacro
