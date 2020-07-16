@@ -40,7 +40,7 @@ DWALocalPlanner:
 
   #y_vels: [-0.3,-0.1,0.1,0.3]
 
-  sim_time: 3.0
+  sim_time: 4.0
   sim_granularity: 0.025
   angular_sim_granularity: 0.025
   vx_samples: 8
