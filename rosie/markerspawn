@@ -1,4 +1,21 @@
 #!/bin/bash
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker0 -x 3.0 -y 1.5 -z 0.0
+rosservice call /gazebo/delete_model marker0
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock50_obj/model.sdf -model marker0 -x 3.0 -y 1.5 -z 0.0
+
+rosservice call /gazebo/delete_model marker_s0
+rosservice call /gazebo/delete_model marker_s1
+rosservice call /gazebo/delete_model marker_s2
+rosservice call /gazebo/delete_model marker_s3
+rosservice call /gazebo/delete_model marker_s4
+rosservice call /gazebo/delete_model marker_s5
+rosservice call /gazebo/delete_model marker_s6
+rosservice call /gazebo/delete_model marker_s7
+rosservice call /gazebo/delete_model marker_s8
+rosservice call /gazebo/delete_model marker_s9
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblockgrab_obj/model.sdf -model marker_s0 -x 1.0 -y 1.5 -z 0.0
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblockgrab_obj/model.sdf -model marker_s1 -x 1.0 -y 1.5 -z 0.0
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblockgrab_obj/model.sdf -model marker_s2 -x 1.0 -y 1.5 -z 0.0
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblockgrab_obj/model.sdf -model marker_s3 -x 1.0 -y 1.5 -z 0.0
+
 #rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker1 -x 3.0 -y 1.5 -z 0.5
 #rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model marker1 -x 3.0 -y 1.5 -z 1.0

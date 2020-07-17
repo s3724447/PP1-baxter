@@ -1,5 +1,6 @@
 <launch>
         <arg name="limb" default="left" />
+        <!-- marker size in centimetres -->
 	<arg name="marker_size" default="40.0" /> <!-- 2.8 -->
 	<arg name="max_new_marker_error" default="0.1" />
 	<arg name="max_track_error" default="0.1" />

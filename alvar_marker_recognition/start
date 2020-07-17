@@ -15,11 +15,23 @@ echo LIMB $LIMB ARM $arm ROS_IP $ROS_IP ROS_MASTER_URI $ROS_MASTER_URI
 
 set -xv
 
-# temporarily disabled for sim
-rosrun ar_track_alvar camera_controlx.py -o ${arm}_camera -r 1280x800 -g $gain
+# temporarily disabled for sim?
+#rosrun ar_track_alvar camera_controlx.py -o ${arm}_camera -r 1280x800 -g $gain
+
+marker_size="50.0"
+
+case $LIMB in
+    left|right)
+	#marker_size=2.8 
+	marker_size=4.0
+	# working but too big to grasp
+	#marker_size=10.0
+    ;;	     
+esac
 
 while true
 do
-  roslaunch ./alvar_baxter_vxlab.launch limb:="${arm}"
+  set -xv
+  roslaunch ./alvar_baxter_vxlab.launch limb:="${arm}" marker_size:="${marker_size}"
   sleep 5
 done
