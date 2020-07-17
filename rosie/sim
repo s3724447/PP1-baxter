@@ -59,6 +59,9 @@ rosservice call gazebo/unpause_physics
 
 rostopic pub /rosie_events std_msgs/String 'Rosie Sim Started' -1
 
+# center head
+rostopic pub /robot/head/command_head_pan baxter_core_msgs/HeadPanCommand '{ target: 0.0, speed_ratio: 0.1 }'
+
 gzclient &
 
 ~/rosie/untuck &
