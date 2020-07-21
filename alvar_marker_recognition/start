@@ -21,7 +21,7 @@ set -xv
 marker_size="50.0"
 
 case $LIMB in
-    left|right)
+    left*|right*)
 	#marker_size=2.8 
 	marker_size=4.0
 	# working but too big to grasp
