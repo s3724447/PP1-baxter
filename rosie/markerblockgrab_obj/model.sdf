@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <model name="markerblockgrab">
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0 0 0 0</pose>
     <link name="box">
-      <pose>0 -1.5 0 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <collision name="collision">
         <geometry>
           <box>
@@ -21,7 +21,7 @@
           <script>
             <uri>file:///root/rosie/markerblockgrab_obj/materials/scripts/textures.material</uri>
             <uri>file:///root/rosie/markerblockgrab_obj/materials/textures</uri>
-            <name>markerblock/markers_alvar</name>
+            <name>markerblock/markers_alvar9</name>
           </script>
         </material>
       </visual>

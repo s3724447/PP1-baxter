@@ -1,4 +1,4 @@
-material markerblock/markers_alvar
+material markerblock/markers_alvar9
 {
   technique
   {
@@ -6,7 +6,7 @@ material markerblock/markers_alvar
     {
       texture_unit
       {
-        texture alvar.png
+        texture alvar9.png
       }
     }
   }
