@@ -6,6 +6,10 @@ source ~/rosie/rosenv-nav
 
 cp ~/rosie/nav-yaml/* ~/navigation_ws/src/mobility_base_2dnav/yaml
 
+kill `pgrep -o -f odometry.py`
+sleep 2
+kill -9 `pgrep -o -f odometry.py`
+
 ~/rosie/odometry.py &
 
 #roslaunch ~/rosie/vxlab-nav-dwa-local-planner.launch
