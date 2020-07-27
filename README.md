@@ -1,11 +1,11 @@
 # baxter-mobility-base-simdemo (vxlab-blue branch)
 ## ROS Gazebo Sim for Rosie (Baxter + Dataspeed Mobility Base) and Blue (MIR100) in VXLab
 
+https://youtu.be/U0TmnjHC2r8
+
 Features:
 - simultaneous navigation for both robots
 - computer vision for Rosie (Alvar).
-
-https://youtu.be/U0TmnjHC2r8
 
 ## Prerequisites:
 - docker-ce
@@ -32,38 +32,40 @@ To stop:
 
 `docker-compose down -d`
 
-## Usage:
-
-### Simulator:
-
-docker exec -it vxlab-rosie bash
+## View simulation:
 
 Point your browser on the simulation host, substituting HOSTNAME: http://HOSTNAME:8080/vnc_auto.html
 
 To view output:
 
-Point your browser at HOSTNAME:8080 (for novnc) or HOSTNAME:8081 (for display2)
+Point your browser at HOSTNAME:8080 (main output on "novnc" display) or HOSTNAME:8081 (secondary output on "display2")
 
-Rviz:
+You may need to run the gazebo client manually in the main container if it does not start automatically; see below.
 
-To see an rviz window (for debug info), type
+Connect to console of main container:
 
-DISPLAY=novnc:0 rviz
+`docker exec -it vxlab-rosie bash`
 
-or
+Run:
 
-DISPLAY=display2:0 rviz
+`DISPLAY=novnc:0 gzclient`
+
+## Debug simulation
+
+Connect to console of main container:
+
+`docker exec -it vxlab-rosie bash`
+
+Run:
+
+`DISPLAY=display2:0 rviz`
 
 Refer to documentation for rviz. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 
 Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Amusingly, since the map provided is of the actual VXLab, but does not match the simulated environment, Rosie does a plausible job at navigating to a given position, but does not succeed.
 
-Troubleshooting and notes:
+## Troubleshooting and notes:
 
 - Refer to documentation for Gazebo and the various ROS components
-
-- To attach to the main container, do "docker exec -it vxlab-rosie bash"
-
-- The simulation never appears (with XCB errors on console): try running "gzclient" from the vxlab-rosie container
 
 - Several containers mount a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
