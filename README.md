@@ -50,12 +50,11 @@ Connect to console of master container:
 
 `docker exec -it vxlab-rosie bash`
 
-To move Rosie (`untuck` command may be required first to enable motors running):
-
-`./untuck` and `./tuck`
-`./leftrotate.py` and `./rightrotate.py`
-`./left.py` and `./right.py`
-`./forward.py`and `./back.py`
+Demos for Rosie (`untuck` command may be required first to enable motors running):
+- `./untuck` and `./tuck`
+- `./leftrotate.py` and `./rightrotate.py`
+- `./left.py` and `./right.py`
+- `./forward.py`and `./back.py`
 
 etc.
 
@@ -73,12 +72,30 @@ Connect to console of main container (see elsewhere) and run:
 
 Refer to documentation for Rviz. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 
-Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Amusingly, since the map provided is of the actual VXLab, but does not match the simulated environment, Rosie does a plausible job at navigating to a given position, but does not succeed.
+Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Refer to ROS documentation for navigation.
 
 ## Code recognition (Alvar, Rviz)
 
 Move Rosie to where the head camera is pointed at the large block with the markers. The marker should appear in Rviz as a blue square in roughly the appropriate position.
 
+## MIR100
+
+`docker-exec -it vxlab-rosie bash`
+then
+`./blue-minimal` (for model)
+
+`docker-exec -it vxlab-blue bash`
+
+`cd ~/mir100`
+
+`./rosie-and-blue`
+
+A separate rviz is required for blue, launched from the vxlab-blue container.
+
 ## Notes:
+
+- On startup, especially first startup, you may need to interrupt and restart a graphical application such as gzclient a few times before it first draws correctly. This may include a stream of error messages such as:
+`QXcbConnection: XCB error: 2 (BadValue), sequence: 1555, resource id: 1200, major code: 130 (Unknown), minor code: 3`
+Some improvements are suggested at: http://wiki.ros.org/docker/Tutorials/GUI
 
 - Several containers mount a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
