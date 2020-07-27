@@ -9,10 +9,6 @@
 
 [![Rosie and Blue Navigating in VXLab](https://img.youtube.com/vi/Jtl_j8n0Mf8/0.jpg)](https://www.youtube.com/watch?v=Jtl_j8n0Mf8)
 
-https://youtu.be/Jtl_j8n0Mf8
-
-https://youtu.be/U0TmnjHC2r8
-
 ## Prerequisites:
 - docker-ce
 - docker-compose
@@ -48,11 +44,21 @@ Point your browser at HOSTNAME:8080 (main output on "novnc" display) or HOSTNAME
 
 You may need to run the gazebo client manually in the master container if it does not start automatically; see below.
 
+## Master container demos / commands:
+
 Connect to console of master container:
 
 `docker exec -it vxlab-rosie bash`
 
-Run:
+To move Rosie, run for example:
+
+`./leftrotate.py`
+`./right.py`
+`./forward.py`
+
+etc.
+
+If the gazebo simulation does not appear, run:
 
 `DISPLAY=novnc:0 gzclient`
 
