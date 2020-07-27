@@ -1,11 +1,11 @@
 # baxter-mobility-base-simdemo (vxlab-blue branch)
-## ROS Gazebo Sim for Rosie (Baxter + Dataspeed Mobility Base) and Blue (MIR100) in VXLab
+## ROS Simulation for Rosie (Baxter + Dataspeed Mobility Base) and Blue (MIR100) in VXLab
 
 https://youtu.be/U0TmnjHC2r8
 
 Features:
 - simultaneous navigation for both robots
-- computer vision for Rosie (Alvar).
+- computer vision for Rosie (Alvar)
 
 ## Prerequisites:
 - docker-ce
