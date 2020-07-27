@@ -7,6 +7,8 @@
 - computer vision for Rosie (Alvar)
 - collection of demo scripts mounted under ~/rosie in master container
 
+[![Rosie and Blue Navigating in VXLab](https://img.youtube.com/vi/U0TmnjHC2r8/0.jpg)](https://www.youtube.com/watch?v=U0TmnjHC2r8)
+
 https://youtu.be/U0TmnjHC2r8
 
 ## Prerequisites:
