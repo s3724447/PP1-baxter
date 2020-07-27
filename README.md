@@ -16,11 +16,10 @@ https://youtu.be/U0TmnjHC2r8
 
 docker-compose build
 
-## Run/stop using:
+## Run:
 
-`docker-compose up -d`
-
-`docker-compose down -d`
+`docker-compose up` (with output on terminal)
+`docker-compose up -d` (run in background, supressing output)
 
 This will start several containers in the background:
 - vxlab-rosie (Simulator "gzserver" and core assets for robots)
@@ -28,6 +27,10 @@ This will start several containers in the background:
 - vxlab-rosie-nav (Navigation for Rosie)
 - vxlab-blue (Navigation etc. for Blue)
 - alvar-head (Marker recognition for Rosie's head camera)
+
+To stop:
+
+`docker-compose down -d`
 
 ## Usage:
 
