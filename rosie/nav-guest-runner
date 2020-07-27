@@ -1,8 +1,9 @@
+#!/bin/bash
 
-~/rosie/navstart
 
 #!/bin/bash
 while true
 do
+  ~/rosie/navstart
   sleep 10
 done
