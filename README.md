@@ -19,7 +19,7 @@ docker-compose build
 
 ## Run:
 
-`docker-compose up` (with output on terminal)
+`docker-compose up` (with output on terminal) or
 `docker-compose up -d` (run in background, supressing output)
 
 This will start several containers in the background:
