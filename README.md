@@ -3,7 +3,7 @@ ROS Sim for Rosie (Baxter + Dataspeed Mobility Base) and Blue (MIR100) in VXLab,
 
 https://youtu.be/U0TmnjHC2r8
 
-Pre: docker-ce, docker-compose
+Pre: install docker-ce, docker-compose
 Optionally: edit 02proxy to point to a nearby Debian apt-cacher-ng proxy
 
 Build using:
