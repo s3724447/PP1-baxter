@@ -7,16 +7,20 @@ Features:
 
 https://youtu.be/U0TmnjHC2r8
 
-Pre: install docker-ce, docker-compose
-Optionally: edit 02proxy to point to a nearby Debian apt-cacher-ng proxy
+## Prerequisites:
+- docker-ce
+- docker-compose
+- optionally, edit 02proxy to point to a nearby Debian apt-cacher-ng proxy
 
-Build using:
+## Build using:
 
 docker-compose build
 
-Run using:
+## Run/stop using:
 
-docker-compose up -d
+`docker-compose up -d`
+
+`docker-compose down -d`
 
 This will start several containers in the background:
 - vxlab-rosie (Simulator "gzserver" and core assets for robots)
@@ -25,7 +29,9 @@ This will start several containers in the background:
 - vxlab-blue (Navigation etc. for Blue)
 - alvar-head (Marker recognition for Rosie's head camera)
 
-Simulator:
+## Usage:
+
+### Simulator:
 
 docker exec -it vxlab-rosie bash
 
