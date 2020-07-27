@@ -86,10 +86,8 @@ then
 `./blue-minimal` (for model)
 
 `docker-exec -it vxlab-blue bash`
-
-`cd ~/mir100`
-
-`./rosie-and-blue`
+then
+`cd ~/mir100 ; ./rosie-and-blue`
 
 A separate rviz is required for blue, launched from the vxlab-blue container.
 
