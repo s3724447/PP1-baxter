@@ -50,27 +50,24 @@ Connect to console of master container:
 
 `docker exec -it vxlab-rosie bash`
 
-To move Rosie, run for example:
+To move Rosie (`untuck` command may be required first to enable motors running):
 
-`./leftrotate.py`
-`./right.py`
-`./forward.py`
+`./untuck` and `./tuck`
+`./leftrotate.py` and `./rightrotate.py`
+`./left.py` and `./right.py`
+`./forward.py`and `./back.py`
 
 etc.
 
-If the gazebo simulation does not appear, run:
+If the gazebo simulation client output (`gzclient`) does not appear, run:
 
 `DISPLAY=novnc:0 gzclient`
 
 Refer to documentation for Gazebo, Baxter, Mobility Base, MIR100, Navigation, etc.
 
-## Debug simulation
+## Debug output (Rviz)
 
-Connect to console of main container:
-
-`docker exec -it vxlab-rosie bash`
-
-Run:
+Connect to console of main container (see elsewhere) and run:
 
 `DISPLAY=display2:0 rviz`
 
@@ -78,8 +75,10 @@ Refer to documentation for Rviz. The Displays pane on the left hand side has an 
 
 Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Amusingly, since the map provided is of the actual VXLab, but does not match the simulated environment, Rosie does a plausible job at navigating to a given position, but does not succeed.
 
-## Troubleshooting and notes:
+## Code recognition (Alvar, Rviz)
 
-- Refer to documentation for Gazebo and the various ROS components
+Move Rosie to where the head camera is pointed at the large block with the markers. The marker should appear in Rviz as a blue square in roughly the appropriate position.
+
+## Notes:
 
 - Several containers mount a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
