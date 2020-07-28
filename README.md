@@ -53,13 +53,13 @@ Connect to console of master container:
 
 Demos for Rosie (`untuck` command may be required first to enable motors running):
 - Arm setup (once per session): `./untuck` (and optionally `./tuck`)
-- Mobility base movement:
+- Mobility base movement (custom):
   - `./leftrotate.py` and `./rightrotate.py`
   - `./left.py` and `./right.py`
   - `./forward.py`and `./back.py`
+- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>`
 - Arm movement under keyboard control: `rosrun baxter_examples joint_position_keyboard.py`
-
-etc.
+- Arm movement using Inverse Kinematics: `cd ikeg ; ./tractest.py` 
 
 If the gazebo simulation client output (`gzclient`) does not appear, run:
 
@@ -77,14 +77,18 @@ Refer to documentation for Rviz. The Displays pane on the left hand side has an 
 
 Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Refer to ROS documentation for navigation.
 
-## Code recognition (Alvar, Rviz)
+## Marker recognition (Alvar, Rviz)
 
 Move Rosie to where the head camera is pointed at the large block with the markers. The marker should appear in Rviz as a blue square in roughly the appropriate position.
 
-## MIR100
+## MIR100 ("Blue")
+
+Connect to master container:
 
 `docker-exec -it vxlab-rosie bash`
+
 then
+
 `./blue-minimal` (for model)
 
 `docker-exec -it vxlab-blue bash`
