@@ -52,10 +52,12 @@ Connect to console of master container:
 `docker exec -it vxlab-rosie bash`
 
 Demos for Rosie (`untuck` command may be required first to enable motors running):
-- `./untuck` and `./tuck`
-- `./leftrotate.py` and `./rightrotate.py`
-- `./left.py` and `./right.py`
-- `./forward.py`and `./back.py`
+- Arm setup (once per session): `./untuck` (and optionally `./tuck`)
+- Mobility base movement:
+  - `./leftrotate.py` and `./rightrotate.py`
+  - `./left.py` and `./right.py`
+  - `./forward.py`and `./back.py`
+- Arm movement under keyboard control: `rosrun baxter_examples joint_position_keyboard.py`
 
 etc.
 
