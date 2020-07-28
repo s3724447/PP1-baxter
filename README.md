@@ -95,10 +95,13 @@ then
 
 then
 
-`cd ~/mir100
-./rosie-and-blue
-./localization
-./navigation`
+`cd ~/mir100`
+
+`./rosie-and-blue`
+
+`./localization`
+
+`./navigation`
 
 A separate rviz is required for blue, launched from the vxlab-blue container.
 
