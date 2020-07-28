@@ -92,10 +92,16 @@ then
 `./blue-minimal` (for model)
 
 `docker-exec -it vxlab-blue bash`
+
 then
-`cd ~/mir100 ; ./rosie-and-blue`
+
+`cd ~/mir100
+./rosie-and-blue
+./localization
+./navigation`
 
 A separate rviz is required for blue, launched from the vxlab-blue container.
+
 
 ## Notes:
 
