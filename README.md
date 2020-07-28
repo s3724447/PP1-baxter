@@ -22,6 +22,8 @@ docker-compose build
 
 ## Run:
 
+./create-vxlab-network
+
 `docker-compose up` (with output on terminal) or
 `docker-compose up -d` (run in background, supressing output)
 
