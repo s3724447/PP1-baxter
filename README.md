@@ -1,72 +1,118 @@
-# baxter-mobility-base-simdemo
-ROS Sim for Baxter + mobility base in VXLab
+# baxter-mobility-base-simdemo (vxlab-blue branch)
+## ROS Simulation for Rosie (Baxter + Dataspeed Mobility Base) and Blue (MIR100) in VXLab
 
-https://youtu.be/U0TmnjHC2r8
+## Features:
+- simultaneous navigation for both robots
+- computer vision for Rosie (Alvar)
+- collection of demo scripts mounted under ~/rosie in master container
 
-Requires install of docker-ce on your platform to build and run container.
+[![Rosie and Blue Navigating in VXLab](https://img.youtube.com/vi/Jtl_j8n0Mf8/0.jpg)](https://www.youtube.com/watch?v=Jtl_j8n0Mf8)
 
-Experimental navigation + computer vision stack on "navigation" branch.
+(Recommended branch: blue-mir100)
 
-Build config:
+## Prerequisites:
+- docker-ce
+- docker-compose
+- (optional mir100 in same sim: https://github.com/ipeakermit/mir_robot_in_vxlab_sim)
+- optionally, edit 02proxy to point to a nearby Debian apt-cacher-ng proxy
 
-(optionally, set 02proxy to point to a nearby apt-cacher-ng proxy)
-
-Build using:
+## Build using:
 
 docker-compose build
 
-Run using:
+## Run:
 
-docker-compose up -d
+./create-vxlab-network
 
-This will start three containers in the background: vxlab-rosie (Simulation platform); novnc (X session for graphical output in browser); vxlab-rosie-nav (Navigation).
+`docker-compose up` (with output on terminal) or
+`docker-compose up -d` (run in background, supressing output)
 
-Simulator:
+This will start several containers in the background:
+- vxlab-rosie (Simulator "gzserver" and core assets for robots)
+- novnc, display2 (X sessions for graphical output in browser)
+- vxlab-rosie-nav (Navigation for Rosie)
+- vxlab-blue (Navigation etc. for Blue)
+- alvar-head (Marker recognition for Rosie's head camera)
 
-docker exec -it vxlab-rosie bash
+To stop:
+
+`docker-compose down -d`
+
+## View simulation:
 
 Point your browser on the simulation host, substituting HOSTNAME: http://HOSTNAME:8080/vnc_auto.html
 
-Graphical display:
+To view output:
 
-Point your browser at HOSTNAME:8080
+Point your browser at HOSTNAME:8080 (main output on "novnc" display) or HOSTNAME:8081 (secondary output on "display2")
 
-Simulator never appears (with XCB errors on console): try moving the Baxter window, closing your browser, rerunning the simulator
+You may need to run the gazebo client manually in the master container if it does not start automatically; see below.
 
-Navigation:
+## Master container demos / commands:
 
-Setup (once only):
+Connect to console of master container:
 
-cd ~/navigation_ws ; ./setup
+`docker exec -it vxlab-rosie bash`
 
-Run:
+Demos for Rosie (`untuck` command may be required first to enable motors running):
+- Arm setup (once per session): `./untuck` (and optionally `./tuck`)
+- Mobility base movement (custom):
+  - `./leftrotate.py` and `./rightrotate.py`
+  - `./left.py` and `./right.py`
+  - `./forward.py`and `./back.py`
+- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>`
+- Arm movement under keyboard control: `rosrun baxter_examples joint_position_keyboard.py`
+- Arm movement using Inverse Kinematics: `cd ikeg ; ./tractest.py` 
 
-~/rosie/navstart
+If the gazebo simulation client output (`gzclient`) does not appear, run:
 
-Rviz (navigation/debugging):
+`DISPLAY=novnc:0 gzclient`
 
-To see an rviz window (for debugging), type:
+Refer to documentation for Gazebo, Baxter, Mobility Base, MIR100, Navigation, etc.
 
-Using rviz requires reading some documentation. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
+## Debug output (Rviz)
 
-Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Amusingly, since the map provided is of the actual VXLab, but does not match the simulated environment, Rosie does a plausible job at navigating to a given position, but does not succeed.
+Connect to console of main container (see elsewhere) and run:
 
-Design:
+`DISPLAY=display2:0 rviz`
 
-The navigation branch mounts configuration scripts as a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
+Refer to documentation for Rviz. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 
-Mapping:
+Press the Add button and explore adding different displays. The key ones are "Map" (by topic) and "Robot model" (by display type). Once these two are added you can also click on "2D Nav Goal", then click on the map to position an arrow for the desired location of the robot. Refer to ROS documentation for navigation.
 
-Use
+## Marker recognition (Alvar, Rviz)
 
-./mapping-start
+Move Rosie to where the head camera is pointed at the large block with the markers. The marker should appear in Rviz as a blue square in roughly the appropriate position.
 
-To start the mapping process. (In gazebo, add a map with topic "/map" to see what has been mapped.) In a separate docker bash shell, start a keyboard-based controller for the mobilty base using
+## MIR100 ("Blue")
 
-./controlstart
+Connect to master container:
 
-Instructions are shown on standard output. To generate a coherent map, use strafe commands only, no rotation. With the current configuration for the mapping component (hector_slam), rotation breaks the SLAM tracking so maps are incoherent.  Finally use
+`docker-exec -it vxlab-rosie bash`
 
-./savemap
+then
 
-to save the map
+`./blue-minimal` (for model)
+
+`docker-exec -it vxlab-blue bash`
+
+then
+
+`cd ~/mir100`
+
+`./rosie-and-blue`
+
+`./localization`
+
+`./navigation`
+
+A separate rviz is required for blue, launched from the vxlab-blue container.
+
+
+## Notes:
+
+- On startup, especially first startup, you may need to interrupt and restart a graphical application such as gzclient a few times before it first draws correctly. This may include a stream of error messages such as:
+`QXcbConnection: XCB error: 2 (BadValue), sequence: 1555, resource id: 1200, major code: 130 (Unknown), minor code: 3`
+Some improvements are suggested at: http://wiki.ros.org/docker/Tutorials/GUI
+
+- Several containers mount a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
