@@ -1,0 +1,2 @@
+docker network rm vxlab
+docker network create --subnet 10.42.170.0/24 --gateway 10.42.170.254 vxlab
