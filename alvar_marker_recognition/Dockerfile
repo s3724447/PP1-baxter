@@ -12,7 +12,7 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
 RUN apt update && \
     # Install some base dependencies
     apt install -y \
-        telnet curl iproute2 host wget less sudo vim-tiny iputils-ping lsof psmisc iproute2 host
+        telnet curl iproute2 host wget less sudo vim-tiny iputils-ping lsof psmisc iproute2 host build-essential
 
 # Ensure Ubuntu and ROS up to date
 RUN apt-get update && apt -y dist-upgrade
@@ -27,6 +27,8 @@ RUN apt-get -qq update && \
         # Preferred build tool
         python-catkin-tools
     # Download all dependencies
+
+RUN echo force rebuild
 RUN rosdep update
 
 ENV CATKIN_WS=/root/ws_alvar
@@ -37,6 +39,7 @@ WORKDIR $CATKIN_WS/src
 RUN mv /bin/sh /bin/sh-old && \
     ln -s /bin/bash /bin/sh
 
+RUN apt update && apt install -y git
 RUN git clone https://github.com/ros-perception/ar_track_alvar.git
 
 WORKDIR $CATKIN_WS
