@@ -12,7 +12,7 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
 RUN apt update && \
     # Install some base dependencies
     apt install -y \
-        telnet curl iproute2 host wget less sudo vim-tiny iputils-ping lsof psmisc iproute2 host build-essential
+        telnet curl iproute2 host wget less sudo vim-tiny iputils-ping lsof psmisc iproute2 host git build-essential
 
 # Ensure Ubuntu and ROS up to date
 RUN apt-get update && apt -y dist-upgrade
