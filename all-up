@@ -1,4 +1,0 @@
-cd ~/sandbox/rosie-sim
-docker-compose up -d
-cd ~/sandbox/blue-sim
-docker-compose up -d
