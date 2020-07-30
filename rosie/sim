@@ -36,7 +36,8 @@ function cleanup()
 }
 trap cleanup EXIT SIGINT SIGTERM
 
-export LIBGL_ALWAYS_INDIRECT=0
+#export LIBGL_ALWAYS_INDIRECT=0
+export QT_X11_NO_MITSHM=1
 roslaunch ~/rosie/vxlab_sim.launch baxter:=true paused:=true &
 ROS_PID=$!
 echo "**** roslaunch PID is $ROS_PID ****"
@@ -68,6 +69,9 @@ rostopic pub /robot/head/command_head_pan baxter_core_msgs/HeadPanCommand '{ tar
 gzclient &
 
 ~/rosie/untuck &
+
+#date > packages.log
+#./aptlist >> packages.log
 
 while true
 do
