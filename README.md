@@ -50,9 +50,17 @@ You may need to run the gazebo client manually in the master container if it doe
 
 ## Master container demos / commands:
 
-Connect to console of master container:
+To connect to the console of master container:
 
 `docker exec -it vxlab-rosie bash`
+
+You can do this multiple times from multiple bash/terminal sessions.
+
+(If the gazebo simulation client output (`gzclient`) has not already appeared, run:
+
+`DISPLAY=novnc:0 gzclient`
+
+then press ctrl-Z, type `bg` and press ENTER to put gzclient in the background and get the bash prompt back. Refer to bash job control documentation for more information.)
 
 Demos for Rosie (`untuck` command may be required first to enable motors running):
 - Arm setup (once per session): `./untuck` (and optionally `./tuck`)
@@ -60,13 +68,9 @@ Demos for Rosie (`untuck` command may be required first to enable motors running
   - `./leftrotate.py` and `./rightrotate.py`
   - `./left.py` and `./right.py`
   - `./forward.py`and `./back.py`
-- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>`
+- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>` (refer to Baxter documentation)
 - Arm movement under keyboard control: `rosrun baxter_examples joint_position_keyboard.py`
-- Arm movement using Inverse Kinematics: `cd ikeg ; ./tractest.py` 
-
-If the gazebo simulation client output (`gzclient`) does not appear, run:
-
-`DISPLAY=novnc:0 gzclient`
+- Arm movement using Trac inverse kinematics solver: `cd ikeg ; ./tractest.py` 
 
 Refer to documentation for Gazebo, Baxter, Mobility Base, MIR100, Navigation, etc.
 
