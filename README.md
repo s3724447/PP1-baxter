@@ -68,7 +68,7 @@ Demos for Rosie (`untuck` command may be required first to enable motors running
   - `./leftrotate.py` and `./rightrotate.py`
   - `./left.py` and `./right.py`
   - `./forward.py`and `./back.py`
-- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>`
+- Pre-existing Baxter function beginning with: `rosrun baxter_examples <TAB>` or `rosrun baxter_tools <TAB>` (refer to Baxter documentation)
 - Arm movement under keyboard control: `rosrun baxter_examples joint_position_keyboard.py`
 - Arm movement using Trac inverse kinematics solver: `cd ikeg ; ./tractest.py` 
 
