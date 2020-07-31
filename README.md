@@ -56,7 +56,7 @@ Connect to console of master container:
 
 (If the gazebo simulation client output (`gzclient`) has not already appeared, run:
 
-`DISPLAY=novnc:0 gzclient`)
+`DISPLAY=novnc:0 gzclient` then press ctrl-Z, type `bg` and press ENTER to put gzclient in the background and get the bash prompt back. Refer to bash job control documentation for more information.)
 
 Demos for Rosie (`untuck` command may be required first to enable motors running):
 - Arm setup (once per session): `./untuck` (and optionally `./tuck`)
