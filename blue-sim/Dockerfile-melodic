@@ -12,10 +12,8 @@ RUN apt update && \
     apt install -y \
         iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc
 
-RUN apt-get update && apt -y dist-upgrade
-
-RUN apt-get update && apt-get install -y \
-    build-essential python-catkin-tools python-catkin-lint
+RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
+    build-essential python-catkin-tools python-catkin-lint python-rosdep
 
 # Create ROS workspace
 COPY . /ws/src/mir_robot
