@@ -13,7 +13,7 @@ services:
         networks:
           vxlab:
         ports:
-          - "8081:8081"
+          - "8081:8080"
     vxlab-rosie:
         container_name: vxlab-rosie
         build:

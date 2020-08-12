@@ -58,7 +58,7 @@ You can do this multiple times from multiple bash/terminal sessions.
 
 (If the gazebo simulation client output (`gzclient`) has not already appeared, run:
 
-`DISPLAY=novnc:0 gzclient`
+`DISPLAY=novnc:0 gzclient &`
 
 then press ctrl-Z, type `bg` and press ENTER to put gzclient in the background and get the bash prompt back. Refer to bash job control documentation for more information.)
 
@@ -78,7 +78,7 @@ Refer to documentation for Gazebo, Baxter, Mobility Base, MIR100, Navigation, et
 
 Connect to console of main container (see elsewhere) and run:
 
-`DISPLAY=display2:0 rviz`
+`DISPLAY=display2:0 rviz &`
 
 Refer to documentation for Rviz. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 
@@ -92,17 +92,17 @@ Move Rosie to where the head camera is pointed at the large block with the marke
 
 Connect to master container:
 
-`docker-exec -it vxlab-rosie bash`
+`docker exec -it vxlab-rosie bash`
 
 then
 
 `./blue-minimal` (for model)
 
-`docker-exec -it vxlab-blue bash`
+`docker exec -it vxlab-blue bash`
 
 then
 
-`cd ~/mir100`
+`cd ~/mir100/blue`
 
 `./rosie-and-blue`
 
