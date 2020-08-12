@@ -2,4 +2,4 @@
 
 # Position(-0.037, 4.966, 0.000), Orientation(0.000, 0.000, 0.735, 0.678)
 
-rostopic pub -1 /rosie/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 0.0, y: 4.7, z: 0.631}, orientation: {z: 0.735, w: 0.678}}}'
+rostopic pub -1 /rosie/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 0.0, y: 4.7}, orientation: {z: 0.735, w: 0.678}}}'
