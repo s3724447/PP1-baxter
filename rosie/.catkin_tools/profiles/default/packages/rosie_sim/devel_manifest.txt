@@ -1,0 +1,5 @@
+.
+/root/rosie/devel/.private/rosie_sim/cmake.lock /root/rosie/devel/./cmake.lock
+/root/rosie/devel/.private/rosie_sim/share/rosie_sim/cmake/rosie_simConfig.cmake /root/rosie/devel/share/rosie_sim/cmake/rosie_simConfig.cmake
+/root/rosie/devel/.private/rosie_sim/share/rosie_sim/cmake/rosie_simConfig-version.cmake /root/rosie/devel/share/rosie_sim/cmake/rosie_simConfig-version.cmake
+/root/rosie/devel/.private/rosie_sim/lib/pkgconfig/rosie_sim.pc /root/rosie/devel/lib/pkgconfig/rosie_sim.pc

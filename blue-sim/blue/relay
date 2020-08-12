@@ -1,6 +1,6 @@
 #!/bin/bash
 source /ws/devel/setup.bash
-source ~/mir100/rosenv.bash
+source ~/mir100/blue/rosenv.bash
 
 roscore &
 sleep 5

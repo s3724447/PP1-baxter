@@ -13,7 +13,7 @@
   </include>
   -->
 
-  <include file="/root/mir100/move_base.xml">
+  <include file="/root/mir100/blue/move_base.xml">
     <arg name="local_planner" value="$(arg local_planner)"/>
     <arg name="with_virtual_walls" value="$(arg with_virtual_walls)" />
   </include>

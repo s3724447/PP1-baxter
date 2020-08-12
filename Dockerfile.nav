@@ -37,7 +37,7 @@ WORKDIR /root
 RUN apt-get -qq update && \
     apt install -y ros-melodic-nav2d
 
-WORKDIR /root
+
 # rosie mounted at runtime
 RUN echo 'source ~/rosie/rosenv.bash' >> .bashrc
 RUN echo 'source ~/navigation_ws/devel/setup.bash' >> .bashrc
@@ -50,4 +50,4 @@ ADD navigation_ws navigation_ws
 
 WORKDIR /root/rosie
 
-CMD ["/root/rosie/nav-guest-runner"]
+CMD ["./nav-guest-runner"]
