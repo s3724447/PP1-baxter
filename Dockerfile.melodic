@@ -32,12 +32,10 @@ ENV CATKIN_WS=/root/ws_baxter
 RUN mkdir -p $CATKIN_WS/src
 WORKDIR $CATKIN_WS/src
 
-#COPY baxter_simulator_emarolab.rosinstall baxter_simulator.rosinstall
 COPY baxter_simulator_dougparkarosa.rosinstall baxter_simulator.rosinstall
 
 # Download source code
 RUN wstool init . && \
-    #wstool merge https://raw.githubusercontent.com/vicariousinc/baxter_simulator/kinetic-gazebo7/baxter_simulator.rosinstall && \
     wstool merge baxter_simulator.rosinstall && \
     wstool update
 
@@ -53,7 +51,6 @@ RUN rosdep update
 
 COPY 02proxy /etc/apt/apt.conf.d/02proxy
 
-#RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" --rosdistro ${ROS_DISTRO} --as-root=apt:false && \
 RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" && \
     # Clear apt-cache to reduce image size
     rm -rf /var/lib/apt/lists/*
@@ -74,8 +71,6 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 #
 # For debugging
 #
-
-#RUN apt-get update && apt -y install ros-melodic-catkin
 
 #
 # Dataspeed mobility base
@@ -102,9 +97,6 @@ RUN rm -rf /root/mb_ws/src/usb_cam
 RUN apt update
 RUN apt -y install ros-melodic-joint-state-controller ros-melodic-usb-cam
 
-#RUN apt purge ros-melodic-velodyne-simulator ros-melodic-wamv-gazebo
-#RUN apt install -y libavcodec-dev
-
 RUN rosdep update && rosdep install -v -y -r --from-paths src --ignore-src --skip-keys="velodyne velodyne_description velodyne_laserscan velodyne_pointcloud velodyne_driver velodyne_msgs gazebo velodyne_gazebo_plugins libgazebo7 libgazebo7-dev ffmpeg v4l-utils ros-melodic-urg-node ros-melodic-pepperl-fuchs-r2000 usb_cam"
 
 RUN rm -rf build devel
@@ -123,19 +115,8 @@ RUN source /root/ws_baxter/devel/setup.bash && \
 #
 
 USER root
-#RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
-
-#RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
-#  cd /opt/noVNC && \
-#  git checkout 6a90803feb124791960e3962e328aa3cfb729aeb && \
-#  ln -s vnc_auto.html index.html
-
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
-
-# force repeat COPY
-#COPY etc /etc
-#COPY usr /usr
 
 ENV DISPLAY :0
 

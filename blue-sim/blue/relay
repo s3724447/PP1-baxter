@@ -1,0 +1,36 @@
+#!/bin/bash
+source /ws/devel/setup.bash
+source ~/mir100/rosenv.bash
+
+roscore &
+sleep 5
+
+for i in `pgrep -f foreign_relay.py`
+do
+  kill $i
+done
+
+#sleep 10
+
+echo 'Master URI (rosie):' $ROSIE_MASTER_URI
+
+SUB_TOPICS="/clock /map /map_updates `ROS_MASTER_URI=$ROSIE_MASTER_URI rostopic list -p | egrep '^/blue'`"
+PUB_TOPICS=`ROS_MASTER_URI=$ROSIE_MASTER_URI rostopic list -s | egrep '^/blue'`
+
+set -xv
+
+for topic in $SUB_TOPICS
+do
+  ./foreign_relay.py sub $topic $ROSIE_MASTER_URI &
+  sleep 1
+done
+
+# FIXME: no checking for loops; may not currently work for joint_states
+
+for topic in $PUB_TOPICS
+do
+  ./foreign_relay.py adv $topic $ROSIE_MASTER_URI &
+  sleep 1
+done
+
+rosrun topic_tools relay /blue/mobile_base_controller/odom /blue/odom_comb &

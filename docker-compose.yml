@@ -13,13 +13,12 @@ services:
         networks:
           vxlab:
         ports:
-          - "8081:8080"
+          - "8081:8081"
     vxlab-rosie:
         container_name: vxlab-rosie
         build:
           context: .
           dockerfile: Dockerfile.blue
-          #network: host
         networks:
           vxlab:
         volumes:
@@ -29,9 +28,6 @@ services:
         - type: bind
           source: /dev/shm
           target: /dev/shm
-          #- type: bind
-          #source: /tmp/.X11-unix
-          #target: /tmp/.X11-unix
         - type: bind
           source: /dev/dri
           target: /dev/dri
@@ -76,16 +72,11 @@ services:
           target: /root/rosie
         environment:
           LIMB: right_hand
-
-
- 
-
     vxlab-blue:
         container_name: vxlab-blue
         build:
           context: blue-sim
           dockerfile: Dockerfile-melodic
-          #network: host
         networks:
           vxlab:
         volumes:
@@ -96,18 +87,7 @@ services:
           DISPLAY: novnc:0
         entrypoint: ["sh", "-c", "sleep 21000"]
 
-
-
-
 networks:
     vxlab:
       external: true
       name: vxlab
-
-#networks:
-    #vxlab:
-        #name: vxlab
-        #ipam:
-            #config:
-              #- subnet: "10.42.170.0/24"
-                #- gateway: "10.42.170.254"

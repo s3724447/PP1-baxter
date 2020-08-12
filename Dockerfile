@@ -1,8 +1,6 @@
 # https://hub.docker.com/r/davetcoleman/baxter_simulator/~/dockerfile/
 # vicariousinc/baxter-simulator:kinetic
 # Run simulated Baxter in Gazebo
-
-
 FROM osrf/ros:kinetic-desktop-full
 MAINTAINER Dave Coleman dave@dav.ee
 
@@ -19,11 +17,6 @@ RUN apt update && \
     apt install -y \
 	iproute2 host wget less sudo vim-tiny iputils-ping
 
-# Fix issue for error when using cameras in gazebo 7(?)
-# https://github.com/uzh-rpg/rpg_quadrotor_control/issues/58
-# - but this introduces a regression with untucking arms!
-#RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
-#RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable artful main" > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 
@@ -71,10 +64,6 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
     # such that the Docker log gets too long (another form of timeout)
     catkin build --jobs 16 --limit-status-rate 0.001 --no-notify
 
-#
-# For debugging
-#
-
 RUN apt-get update && apt -y install ros-kinetic-catkin
 
 #
@@ -102,28 +91,11 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
     # such that the Docker log gets too long (another form of timeout)
     catkin build --jobs 1 --limit-status-rate 0.001 --no-notify
 
-#
-# VXLab extensions...
-#
-
-#
-# OpenGL + NoVNC (port 6080)
-#
-
 USER root
 #RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
 
-#RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
-#  cd /opt/noVNC && \
-#  git checkout 6a90803feb124791960e3962e328aa3cfb729aeb && \
-#  ln -s vnc_auto.html index.html
-
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
-
-# force repeat COPY
-#COPY etc /etc
-#COPY usr /usr
 
 ENV DISPLAY :0
 
@@ -135,10 +107,6 @@ RUN apt -qq update && \
 
 WORKDIR $CATKIN_WS
 ADD baxter.sh baxter.sh
-#ADD vncpasswd vncpasswd
-#RUN groupadd -r vxlab && adduser --disabled-password --ingroup vxlab --gecos '' vxlab
-#RUN echo 'vxlab ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
-#ADD vncstart vncstart
 
 # rosie mounted at runtime
 RUN echo 'source ~/rosie/rosenv.bash' >> /root/.bashrc

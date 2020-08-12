@@ -19,11 +19,6 @@ RUN apt update && \
     apt install -y \
 	iproute2 host wget less sudo vim-tiny iputils-ping
 
-# Fix issue for error when using cameras in gazebo 7(?)
-# https://github.com/uzh-rpg/rpg_quadrotor_control/issues/58
-# - but this introduces a regression with untucking arms!
-#RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
-#RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable xenial main" > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 
@@ -31,7 +26,6 @@ RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN apt-get update && apt -y dist-upgrade
 
 RUN apt update && apt -y install ros-kinetic-gazebo9-ros-pkgs
-#RUN sudo rm -rf /etc/ros/rosdep && rosdep init && rosdep update
 
 ENV TERM xterm
 
@@ -45,16 +39,6 @@ RUN wstool init . && \
     wstool merge https://raw.githubusercontent.com/vicariousinc/baxter_simulator/${ROS_DISTRO}-gazebo7/baxter_simulator.rosinstall && \
     wstool update
 
-#WORKDIR /opt/ros/kinetic/share/gazebo_dev
-#RUN sed 's%libgazebo7-dev%libgazebo9-dev%' package.xml > /tmp/package.xml
-#RUN mv /tmp/package.xml package.xml
-
-# Build repo
-#WORKDIR $CATKIN_WS
-#RUN sed 's%libgazebo7-dev%libgazebo9-dev%' src/gazebo_ros_pkgs/gazebo_dev/package.xml > /tmp/package.xml
-#RUN mv /tmp/package.xml src/gazebo_ros_pkgs/gazebo_dev/package.xml
-
-
 RUN apt-get -qq update && \
     # Install some base dependencies
     apt-get -qq install -y \
@@ -67,7 +51,6 @@ RUN rosdep update
 
 COPY 02proxy /etc/apt/apt.conf.d/02proxy
 
-#RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" --rosdistro ${ROS_DISTRO} --as-root=apt:false && \
 RUN rosdep install -r -y --from-paths . --ignore-src --skip-keys="gazebo libgazebo7 libgazebo7-dev" && \
     # Clear apt-cache to reduce image size
     rm -rf /var/lib/apt/lists/*
@@ -98,8 +81,6 @@ RUN apt-get update && apt -y install ros-kinetic-catkin
 WORKDIR $CATKIN_WS
 
 RUN wget https://bitbucket.org/DataspeedInc/mobility_base_ros/raw/master/mobility_base.rosinstall -O /tmp/mobility_base.rosinstall
-#RUN wget https://bitbucket.org/DataspeedInc/mobility_base_simulator/raw/master/mobility_base_simulator.rosinstall -O /tmp/mobility_base_simulator.rosinstall
-# https://github.com/kw90/mobility_base_simulator/
 COPY mobility_base_simulator.rosinstall /tmp/mobility_base_simulator.rosinstall
 
 RUN wstool merge -t src /tmp/mobility_base.rosinstall
@@ -108,7 +89,6 @@ RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall
 # wstool status needed for proper make?? (https://github.com/vcstools/wstool/issues/77)
 RUN wstool status -t src && wstool update -t src
 
-##RUN sudo apt-get -y install ros-indigo-baxter-simulator ros-kinetic-joint-state-controller
 RUN sudo apt -y install ros-kinetic-joint-state-controller
 
 RUN apt purge ros-kinetic-velodyne-simulator ros-kinetic-wamv-gazebo
@@ -130,19 +110,9 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 #
 
 USER root
-#RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
-
-#RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
-#  cd /opt/noVNC && \
-#  git checkout 6a90803feb124791960e3962e328aa3cfb729aeb && \
-#  ln -s vnc_auto.html index.html
 
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
-
-# force repeat COPY
-#COPY etc /etc
-#COPY usr /usr
 
 ENV DISPLAY :0
 
@@ -154,10 +124,6 @@ RUN apt -qq update && \
 
 WORKDIR $CATKIN_WS
 ADD baxter.sh baxter.sh
-#ADD vncpasswd vncpasswd
-#RUN groupadd -r vxlab && adduser --disabled-password --ingroup vxlab --gecos '' vxlab
-#RUN echo 'vxlab ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
-#ADD vncstart vncstart
 
 # rosie mounted at runtime
 RUN echo 'source ~/rosie/rosenv.bash' >> /root/.bashrc
@@ -166,10 +132,3 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-kinetic-teleop-twist-keyboard
 
 WORKDIR /root/rosie
-
-# install, build ros_control:
-#   http://wiki.ros.org/ros_control
-# install four_wheel_steering_msgs
-#   https://github.com/ros-drivers/four_wheel_steering_msgs
-
-#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

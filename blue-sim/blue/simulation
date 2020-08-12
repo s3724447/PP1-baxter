@@ -1,0 +1,5 @@
+#!/bin/bash
+source /ws/devel/setup.bash
+source ~/mir100/rosenv.bash
+roslaunch mir_gazebo mir_maze_world.launch verbose:=true
+#rosservice call /gazebo/unpause_physics   # or click the "start" button in the Gazebo GUI

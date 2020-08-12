@@ -1,4 +1,0 @@
-#!/bin/bash
-eval $(weave env)
-docker stop baxter_alvar_left && docker rm baxter_alvar_left
-docker run --name baxter_alvar_left -d -e LIMB:left --entrypoint=/root/ws_alvar/start_left vxlab-alvar

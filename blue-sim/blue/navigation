@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while true
+do
+
+source /ws/devel/setup.bash
+
+roslaunch ~/mir100/start_planner.launch \
+    map_file:=$(rospack find mir_gazebo)/maps/maze.yaml \
+    virtual_walls_map_file:=$(rospack find mir_gazebo)/maps/maze_virtual_walls.yaml
+
+echo Navigation restarting...
+
+sleep 2
+
+done
+
+#rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
+#rviz &

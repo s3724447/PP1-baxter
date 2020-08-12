@@ -19,11 +19,6 @@ RUN apt update && \
     apt install -y \
 	iproute2 host wget less sudo vim-tiny iputils-ping
 
-# Fix issue for error when using cameras in gazebo 7(?)
-# https://github.com/uzh-rpg/rpg_quadrotor_control/issues/58
-# - but this introduces a regression with untucking arms!
-#RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
-#RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable trusty main" > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 
@@ -90,7 +85,6 @@ RUN wstool merge -t src /tmp/mobility_base_simulator.rosinstall
 # wstool status needed for proper make?? (https://github.com/vcstools/wstool/issues/77)
 RUN wstool status -t src && wstool update -t src
 
-##RUN sudo apt-get -y install ros-indigo-baxter-simulator ros-kinetic-joint-state-controller
 RUN sudo apt -y install ros-kinetic-joint-state-controller
 RUN rosdep update && rosdep install -y --from-paths src --ignore-src -r
 
@@ -109,19 +103,9 @@ RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYP
 #
 
 USER root
-#RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/user
-
-#RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
-#  cd /opt/noVNC && \
-#  git checkout 6a90803feb124791960e3962e328aa3cfb729aeb && \
-#  ln -s vnc_auto.html index.html
 
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
-
-# force repeat COPY
-#COPY etc /etc
-#COPY usr /usr
 
 ENV DISPLAY :0
 
@@ -130,13 +114,8 @@ WORKDIR /root
 RUN apt -qq update && \
     apt install -y ros-kinetic-nav2d
 
-
 WORKDIR $CATKIN_WS
 ADD baxter.sh baxter.sh
-#ADD vncpasswd vncpasswd
-#RUN groupadd -r vxlab && adduser --disabled-password --ingroup vxlab --gecos '' vxlab
-#RUN echo 'vxlab ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
-#ADD vncstart vncstart
 
 # rosie mounted at runtime
 RUN echo 'source ~/rosie/rosenv.bash' >> /root/.bashrc
@@ -145,5 +124,3 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-kinetic-teleop-twist-keyboard
 
 WORKDIR /root/rosie
-
-#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
