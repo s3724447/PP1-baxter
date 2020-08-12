@@ -32,7 +32,7 @@
 
   <group ns="blue">
   <!-- spawn robot and bring up controllers etc. -->
-  <include file="/root/mir100/mir_gazebo_common.launch">
+  <include file="/root/mir100/blue/mir_gazebo_common.launch">
     <arg name="robot_x"   value="$(arg robot_x)" />
     <arg name="robot_y"   value="$(arg robot_y)" />
     <arg name="robot_yaw" value="$(arg robot_yaw)" />

@@ -19,6 +19,9 @@ RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
 COPY . /ws/src/mir_robot
 WORKDIR /ws
 
+RUN rosdep init
+RUN rosdep update
+
 # Use rosdep to install all dependencies (including ROS itself)
 RUN rosdep install --from-paths src -i -y --rosdistro melodic
 
