@@ -29,6 +29,7 @@ RUN apt-get -qq update && \
     # Download all dependencies
 
 RUN echo force rebuild
+RUN rosdep init
 RUN rosdep update
 
 ENV CATKIN_WS=/root/ws_alvar

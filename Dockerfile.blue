@@ -49,7 +49,7 @@ RUN apt-get -qq update && \
     # Download all dependencies
     
 #  remove this line if it breaks install
-#RUN rosdep init
+RUN rosdep init
 RUN rosdep update
 
 COPY 02proxy /etc/apt/apt.conf.d/02proxy

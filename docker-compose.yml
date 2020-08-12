@@ -29,9 +29,9 @@ services:
         - type: bind
           source: /dev/shm
           target: /dev/shm
-        - type: bind
-          source: /tmp/.X11-unix
-          target: /tmp/.X11-unix
+          #- type: bind
+          #source: /tmp/.X11-unix
+          #target: /tmp/.X11-unix
         - type: bind
           source: /dev/dri
           target: /dev/dri
@@ -77,24 +77,26 @@ services:
         environment:
           LIMB: right_hand
 
-    #
-    #
-    #
-    #vxlab-blue:
-    #    container_name: vxlab-blue
-    #    build:
-    #      context: blue-sim
-    #      dockerfile: Dockerfile-melodic
-    #      #network: host
-    #    networks:
-    #      vxlab:
-    #    volumes:
-    #    - type: bind
-    #      source: ./blue-sim/blue
-    #      target: /root/mir100
-    #    environment:
-    #      DISPLAY: novnc:0
-    #    entrypoint: ["sh", "-c", "sleep 21000"]
+
+ 
+
+    vxlab-blue:
+        container_name: vxlab-blue
+        build:
+          context: blue-sim
+          dockerfile: Dockerfile-melodic
+          #network: host
+        networks:
+          vxlab:
+        volumes:
+        - type: bind
+          source: ./blue-sim
+          target: /root/mir100
+        environment:
+          DISPLAY: novnc:0
+        entrypoint: ["sh", "-c", "sleep 21000"]
+
+
 
 
 networks:
