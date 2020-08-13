@@ -11,15 +11,10 @@ TrajectoryPlannerROS:
   min_in_place_vel_theta: -0.5
   max_in_place_vel_theta: 0.5
 
-  meter_scoring: true
-
-
   holonomic_robot: true
   y_vels: [-0.3,-0.1,0.1,0.3]
-  sim_granularity: 0.025
-  dwa: false
 
-  # Forward simulaton parameters
+  # Forward simulation parameters
   sim_time: 4.0
   sim_granularity: 0.025
   angular_sim_granularity: 0.04
