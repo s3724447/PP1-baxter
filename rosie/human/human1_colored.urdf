@@ -1716,5 +1716,8 @@
 		<origin xyz="0.083701  -0.0013929   -0.011817" rpy="-0.10862      0.4501     0.37976"/>
 	</sensor>
 
+	<gazebo>
+		<static>true</static>
+	</gazebo>
 
 </robot>

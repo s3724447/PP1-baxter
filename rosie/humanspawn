@@ -1,4 +1,17 @@
 #!/bin/bash
 
+# Delete models if already spawned
 rosservice call /gazebo/delete_model human1
-rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human1 -x -2.0 -y 2.0 -z 1.0
+rosservice call /gazebo/delete_model human2
+rosservice call /gazebo/delete_model human3
+rosservice call /gazebo/delete_model human4
+
+# Spawn new models
+# Window
+rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human1 -x -6.0 -y 3.0 -z 1.0
+# Little Room
+rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human2 -x -5.5 -y -5.0 -z 1.0 -Y 1.5
+# Govlab
+rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human3 -x 6.0 -y -2.0 -z 1.0
+# Door
+rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human4 -x 0.0 -y 5.0 -z 1.0 -Y -1.5
