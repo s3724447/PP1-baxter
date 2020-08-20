@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ROS_MASTER_IP=`~/rosie/hostlookup vxlab-blue`
+ROS_MASTER_URI=http://${ROS_MASTER_IP}:11311
+
+# Window
+#rostopic pub -1 /blue/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: -5.0, y: 3.0, z: 0.0}, orientation: {z: 1.0, w: 1.0}}}'
+# Little Room
+rostopic pub -1 /blue/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: -5.5, y: -4.0, z: 0.0}, orientation: {w: 1.0}}}'
+# Govlab
+#rostopic pub -1 /blue/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 7.0, y: -2.0, z: 0.0}, orientation: {z: -1.0, w: 1.0}}}'
+# Door
+#rostopic pub -1 /blue/move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 0.5, y: 5.0, z: 0.0}, orientation: {z: 1.0}}}'

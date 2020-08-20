@@ -14,4 +14,4 @@ rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -mod
 # Govlab
 rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human3 -x 6.0 -y -2.0 -z 1.0
 # Door
-rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human4 -x 0.0 -y 5.0 -z 1.0 -Y -1.5
+rosrun gazebo_ros spawn_model -urdf -file ~/rosie/human/human1_colored.urdf -model human4 -x 0.5 -y 6.0 -z 1.0 -Y -1.5
