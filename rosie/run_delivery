@@ -1,0 +1,15 @@
+#!/bin/bash
+while true; do
+  # Window
+  ./navgoal/blue_delivery -5.0 3.0 1.0 1.0
+  wait
+  # Little Room
+  ./navgoal/blue_delivery -5.5 -4.0 0.0 1.0
+  wait
+  # Govlab
+  ./navgoal/blue_delivery 7.0 -2.0 -1.0 1.0
+  wait
+  # Door
+  ./navgoal/blue_delivery 0.5 5.0 1.0 0.0
+  wait
+done

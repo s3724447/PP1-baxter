@@ -58,9 +58,7 @@ You can do this multiple times from multiple bash/terminal sessions.
 
 (If the gazebo simulation client output (`gzclient`) has not already appeared, run:
 
-`DISPLAY=novnc:0 gzclient &`
-
-then press ctrl-Z, type `bg` and press ENTER to put gzclient in the background and get the bash prompt back. Refer to bash job control documentation for more information.)
+`gzclient &`
 
 Demos for Rosie (`untuck` command may be required first to enable motors running):
 - Arm setup (once per session): `./untuck` (and optionally `./tuck`)
@@ -78,7 +76,7 @@ Refer to documentation for Gazebo, Baxter, Mobility Base, MIR100, Navigation, et
 
 Connect to console of main container (see elsewhere) and run:
 
-`DISPLAY=display2:0 rviz &`
+`rviz &`
 
 Refer to documentation for Rviz. The Displays pane on the left hand side has an "Add" button which is just out of view off the bottom of the screen. You can drag to detach the Displays pane and move it somewhere more convenient.
 
@@ -90,13 +88,11 @@ Move Rosie to where the head camera is pointed at the large block with the marke
 
 ## MIR100 ("Blue")
 
-Connect to master container:
-
-`docker exec -it vxlab-rosie bash`
-
-then
+Whilst in the Rosie master container, run:
 
 `./blue-minimal` (for model)
+
+then open a new terminal and run:
 
 `docker exec -it vxlab-blue bash`
 
@@ -104,13 +100,9 @@ then
 
 `cd ~/mir100/blue`
 
-`./rosie-and-blue`
+`./blue_start`
 
-`./localization`
-
-`./navigation`
-
-A separate rviz is required for blue, launched from the vxlab-blue container.
+A separate rviz is required for blue, launched from the vxlab-blue container. To do this, run:
 
 
 ## Notes:

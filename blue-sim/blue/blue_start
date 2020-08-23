@@ -1,0 +1,24 @@
+#!/bin/bash
+source /ws/devel/setup.bash
+source ~/mir100/blue/rosenv.bash
+
+~/mir100/blue/relay
+
+roslaunch ~/mir100/blue/mir100_vxlab.launch debug:=false &
+
+roslaunch ~/mir100/blue/amcl.launch _odom_frame_id:=odom_comb initial_pose_x:=2.0 initial_pose_y:=2.0 debug:=false &
+
+while true
+do
+
+source /ws/devel/setup.bash
+
+roslaunch ~/mir100/blue/start_planner.launch \
+    map_file:=$(rospack find mir_gazebo)/maps/maze.yaml \
+    virtual_walls_map_file:=$(rospack find mir_gazebo)/maps/maze_virtual_walls.yaml
+
+echo Navigation restarting...
+
+sleep 2
+
+done

@@ -1,14 +1,12 @@
 #!/bin/bash
 rosservice call /gazebo/delete_model mir
-rosservice call /gazebo/delete_model blue_payload_marker
-rosservice call /gazebo/delete_model blue_payload_marker0
-rosservice call /gazebo/delete_model blue_payload_marker1
-rosservice call /gazebo/delete_model blue_payload_marker2
+#rosservice call /gazebo/delete_model blue_payload_marker
 
 source ~/mir_ws/devel/setup.bash
 source ~/rosie/rosenv.bash
 
 roslaunch ~/rosie/mir100_minimal_vxlab.launch robot_x:=2.0 robot_y:=2.0 robot_yaw:=0.0 &
+
 sleep 5
 
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model blue_payload_marker -x 2.0 -y 3.5 -z 0.3
+#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/markerblock_obj/model.sdf -model blue_payload_marker -x 2.0 -y 3.5 -z 0.3
