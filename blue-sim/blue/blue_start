@@ -4,9 +4,9 @@ source ~/mir100/blue/rosenv.bash
 
 ~/mir100/blue/relay
 
-roslaunch ~/mir100/blue/mir100_vxlab.launch debug:=false &
+roslaunch ~/mir100/blue/mir100_vxlab.launch debug:=true &
 
-roslaunch ~/mir100/blue/amcl.launch _odom_frame_id:=odom_comb initial_pose_x:=2.0 initial_pose_y:=2.0 debug:=false &
+roslaunch ~/mir100/blue/amcl.launch _odom_frame_id:=odom_comb initial_pose_x:=2.0 initial_pose_y:=2.0 debug:=true &
 
 while true
 do

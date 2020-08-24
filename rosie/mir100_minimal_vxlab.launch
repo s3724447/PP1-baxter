@@ -5,7 +5,6 @@
   <arg name="robot_x"   default="1.0" />
   <arg name="robot_y"   default="1.0" />
   <arg name="robot_yaw" default="0.0" />
-
   <group>
     <!-- <remap from="joint_states"                   to="blue/joint_states" /> -->
     <remap from="mobile_base_controller/cmd_vel" to="cmd_vel" />

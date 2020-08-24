@@ -16,7 +16,7 @@ FINISHED=false
 while [ "$FINISHED" == false ]
 do
   #Position
-  x="$(echo $(rostopic echo -n1 /blue/move_base/feedback/feedback/base_position/pose/position/x)|tr -d '\n')"
+  x="$(echo $(rostopic echo -n1 /blue/move_base/feedback/feedback/base_position/pose/position/x || 0)|tr -d '\n')"
   y="$(echo $(rostopic echo -n1 /blue/move_base/feedback/feedback/base_position/pose/position/y)|tr -d '\n')"
 
   #Orientation
@@ -32,6 +32,6 @@ do
     FINISHED=true
   fi
 
-  sleep 20
+  sleep 5
 done
 
