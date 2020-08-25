@@ -13,7 +13,7 @@ RUN apt update && \
         iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc
 
 RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
-    build-essential python-catkin-tools python-catkin-lint python-rosdep
+    build-essential python-catkin-tools python-catkin-lint python-rosdep ros-melodic-gazebo-plugins
 
 # Create ROS workspace
 COPY . /ws/src/mir_robot
@@ -24,10 +24,6 @@ RUN rosdep update
 
 # Use rosdep to install all dependencies (including ROS itself)
 RUN rosdep install --from-paths src -i -y --rosdistro melodic
-
-# Why is this not installed already?!
-RUN apt update && apt install -y \
-    ros-melodic-gazebo-plugins
 
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && \
     catkin init && \
