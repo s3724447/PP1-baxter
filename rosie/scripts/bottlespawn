@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Delete models if already spawned
+rosservice call /gazebo/delete_model bottle
+
+# spawn
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/glue_bottle/bottle.sdf -model bottle -x -2.0 -y 2.0 -z 1.0

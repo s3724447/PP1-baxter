@@ -53,7 +53,7 @@ echo "Tucking arms..."
 ~/rosie/tuck_presim
 
 echo "Spawning objects..."
-~/rosie/humanspawn
+#~/rosie/scripts/humanspawn
 
 echo "Unpausing..."
 rosservice call gazebo/unpause_physics
