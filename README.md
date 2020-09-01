@@ -104,6 +104,9 @@ then
 
 A separate rviz is required for blue, launched from the vxlab-blue container. To do this, run:
 
+`cd ~/mir100/blue`
+
+`./blue_rviz`
 
 ## Notes:
 
