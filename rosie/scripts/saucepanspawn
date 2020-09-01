@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Delete models if already spawned
+rosservice call /gazebo/delete_model saucepan1
+
+# spawn
+rosrun gazebo_ros spawn_model -database saucepan -sdf -model saucepan1 -x 2.0 -y 2.0 -z 0.4
