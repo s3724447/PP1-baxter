@@ -10,25 +10,33 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
 RUN apt update && \
     # Install some basic dependencies
     apt install -y \
-        iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc
+        iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc python-wstool
 
 RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
     build-essential python-catkin-tools python-catkin-lint python-rosdep ros-melodic-gazebo-plugins
 
 # Create ROS workspace
+ENV CATKIN_WS=/ws
 COPY . /ws/src/mir_robot
 WORKDIR /ws
+
+#COPY human_detector src
+
+RUN wstool init src && \
+    wstool merge -t src ./src/mir_robot/human_detector/human_detector.rosinstall && \
+    wstool update -t src
 
 RUN rosdep init
 RUN rosdep update
 
 # Use rosdep to install all dependencies (including ROS itself)
-RUN rosdep install --from-paths src -i -y --rosdistro melodic
+RUN rosdep install --from-paths src -i -r -y --rosdistro melodic --ignore-src
 
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && \
     catkin init && \
     catkin config --install -j 1 -p 1 && \
-    catkin_make"
+    catkin_make && \
+    source /ws/devel/setup.bash"
 
 #RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && \
 #    catkin init && \

@@ -12,7 +12,7 @@ while true; do
     sleep 5
 
     # Govlab
-    ./go_to.py blue 7.0 -2.0 -0.7 0.7
+    ./go_to.py blue 7.0 -2.0 0.7 0.7
     sleep 5
 
     # Door
