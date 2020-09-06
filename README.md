@@ -115,3 +115,29 @@ A separate rviz is required for blue, launched from the vxlab-blue container. To
 Some improvements are suggested at: http://wiki.ros.org/docker/Tutorials/GUI
 
 - Several containers mount a docker volume under "~/rosie". Thus, changes to this directory are persistent and cause changes to the directory with the same name on the container host. Be careful! Take backups!
+
+## Human Detector
+
+Currently only functional with fake human detection from a .csv First, start blue with navigation etc. with the above commands, also run RVIZ. Then:
+
+`docker exec -it vxlab-blue bash`
+
+`source /ws/devel/setup.bash`
+
+`roslaunch target_object_detector target_object_detector.launch`
+
+Then in another terminal window:
+
+`docker exec -it vxlab-blue bash`
+
+`source /ws/devel/setup.bash`
+
+`~/mir100/blue/overwrite_targetlist`
+
+`rosrun fake_target_detector fake_target_detector_node`
+
+You will be able to see the fake human detection in RVIZ.
+
+Detected humans (even fake ones) are published to Rostopic "/recognized_result".
+
+

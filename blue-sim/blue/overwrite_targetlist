@@ -1,0 +1,2 @@
+#!/bin/bash
+cat ~/mir100/human_detector/fake_target_detector/targetfiles/targetlist.csv > /ws/src/mir_robot/human_detector/fake_target_detector/targetfiles/targetlist.csv
