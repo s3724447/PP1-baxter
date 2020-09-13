@@ -4,7 +4,7 @@
     <link name="link">
       <inertial>
         <pose>0 0 0.06 0 0 0</pose>
-        <mass>0.500</mass>
+        <mass>0.390</mass>
         <inertia>
           <ixx>0.00055575</ixx>
           <ixy>0</ixy>
@@ -18,22 +18,22 @@
         <pose>0.003937 0.0047244 -0.18 0 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://hand_sanitizer/meshes/hand_sanitizer.dae</uri>
+            <uri>file://hand_sanitizer/meshes/model.dae</uri>
           </mesh>
         </geometry>
         <surface>
           <friction>
             <ode>
-              <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu>100.0</mu>
+              <mu2>100.0</mu2>
             </ode>
           </friction>
           <contact>
             <ode>
               <kp>10000000.0</kp>
-              <kd>1.0</kd>
-              <min_depth>0.001</min_depth>
-              <max_vel>0.1</max_vel>
+              <kd>10000000.0</kd>
+              <min_depth>0.00</min_depth>
+              <max_vel>0.0</max_vel>
             </ode>
           </contact>
         </surface>
@@ -42,7 +42,8 @@
         <pose>0.003937 0.0047244 -0.18 0 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://hand-sanitizer/meshes/hand_sanitizer.dae</uri>
+            <uri>file://hand_sanitizer/meshes/model.dae</uri>
+            <scale>2.0 2.0 2.0</scale>
           </mesh>
         </geometry>
       </visual>

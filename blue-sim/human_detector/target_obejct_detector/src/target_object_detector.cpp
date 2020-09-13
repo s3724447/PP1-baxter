@@ -12,7 +12,7 @@ EuclideanCluster::EuclideanCluster(ros::NodeHandle nh, ros::NodeHandle n)
     rate_(n.param("loop_rate", 10)),
     frame_id_(n.param<std::string>("clustering_frame_id", "base_link"))
 {
-  source_pc_sub_ = nh_.subscribe(n.param<std::string>("source_pc_topic_name", "/hokuyo3d/hokuyo_cloud2"), 1, &EuclideanCluster::EuclideanCallback, this);
+  source_pc_sub_ = nh_.subscribe(n.param<std::string>("source_pc_topic_name", "/particlecloud"), 1, &EuclideanCluster::EuclideanCallback, this);
   fileterd_cloud_pub_ = nh_.advertise<sensor_msgs::PointCloud2>(n.param<std::string>("filtered_pc_topic_name", "/filtered_pointcloud"), 1);
   euclidean_cluster_pub_ = nh_.advertise<jsk_recognition_msgs::BoundingBoxArray>(n.param<std::string>("box_name", "/clustering_result"), 1);
 
