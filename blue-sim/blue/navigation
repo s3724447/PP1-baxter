@@ -14,6 +14,3 @@ echo Navigation restarting...
 sleep 2
 
 done
-
-#rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
-#rviz &
