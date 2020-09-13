@@ -1,6 +1,6 @@
 #!/bin/bash
 rosservice call /gazebo/delete_model mir
-rosservice call /gazebo/delete_model bottle
+#rosservice call /gazebo/delete_model bottle
 
 source ~/mir_ws/devel/setup.bash
 source ~/rosie/rosenv.bash
