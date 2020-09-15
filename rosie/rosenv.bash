@@ -4,6 +4,7 @@ HOSTNAME=`hostname`
 export ROS_IP=`host ${HOSTNAME} | sed 's/.* //g'`
 export MASTER_IP=`host vxlab-rosie | sed 's/.* //g'`
 export ROS_MASTER_URI=http://$MASTER_IP:11311
+export GAZEBO_MODEL_PATH=~/rosie
 
 export MB_LASER_BIRDCAGE_R2000=1
 export MB_LASER_BIRDCAGE_R2000_FREQ=50

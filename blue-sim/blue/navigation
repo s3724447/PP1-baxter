@@ -9,6 +9,8 @@ roslaunch ~/mir100/blue/start_planner.launch \
     map_file:=$(rospack find mir_gazebo)/maps/maze.yaml \
     virtual_walls_map_file:=$(rospack find mir_gazebo)/maps/maze_virtual_walls.yaml
 
+echo "y" | rosnode cleanup
+
 echo Navigation restarting...
 
 sleep 2
