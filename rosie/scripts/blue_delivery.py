@@ -25,9 +25,9 @@ class Goal:
         self.w = w
 
 
-my_objects = [Goal("Little Room", -5.5, -4.0, 0.0, 1.0), Goal("Window", -5.0, 3.0, 0.7, 0.7),
-              Goal("Govlab", 4.5, -2.0, -0.7, 0.7),
-              Goal("Door", 0.5, 5.0, 1.0, 0.0)]
+goals = [Goal("Little Room", -5.5, -4.0, 0.0, 1.0), Goal("Window", -5.0, 3.0, 0.7, 0.7),
+         Goal("Govlab", 4.5, -2.0, -0.7, 0.7),
+         Goal("Door", 0.5, 5.0, 1.0, 0.0)]
 
 
 class GoalProcess(multiprocessing.Process):
@@ -40,7 +40,7 @@ class GoalProcess(multiprocessing.Process):
 
     def run(self):
         try:
-            rospy.init_node('movebase_client_py', anonymous=True)
+            rospy.init_node('movebase_client_py')
             result = movebase_client(self.goal)
             if result:
                 rospy.loginfo("Goal execution done")
@@ -50,7 +50,7 @@ class GoalProcess(multiprocessing.Process):
             rospy.loginfo("Navigation test finished.")
 
     def random_goal(self):
-        return my_objects[randrange(len(my_objects))]
+        return goals[randrange(len(goals))]
 
 
 def movebase_client(goal):
