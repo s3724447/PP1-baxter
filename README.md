@@ -101,15 +101,6 @@ then
 cd ~/mir100/blue
 ./blue_start
 ```
-then open a new terminal and run:
-
-`docker exec -it vxlab-blue bash`
-
-then
-```
-cd ~/mir100/blue
-./navigation
-```
 
 A separate rviz is required for blue, launched from the vxlab-blue container. To do this, run:
 
