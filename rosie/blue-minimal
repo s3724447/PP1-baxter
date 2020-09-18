@@ -1,6 +1,5 @@
 #!/bin/bash
 rosservice call /gazebo/delete_model mir
-#rosservice call /gazebo/delete_model bottle
 
 source ~/mir_ws/devel/setup.bash
 source ~/rosie/rosenv.bash
@@ -8,5 +7,3 @@ source ~/rosie/rosenv.bash
 roslaunch ~/rosie/mir100_minimal_vxlab.launch robot_x:=2.0 robot_y:=2.0 robot_yaw:=0.0 &
 
 sleep 5
-
-#rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/bottle/bottle.sdf -model bottle -x 2.0 -y 3.5 -z 0.3

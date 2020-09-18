@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="hand_sanitizer">
+    <link name="link">
+      <inertial>
+        <pose>0.05 0.05 0.15 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00055575</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00055575</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001755</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0.05 0.05 0.15 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://models/hand_sanitizer/meshes/model.dae</uri>
+          </mesh>
+        </geometry>
+        <!-- <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+            </ode>
+          </contact>
+        </surface> -->
+      </collision>
+      <collision name="collision1">
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://models/hand_sanitizer/meshes/model.dae</uri>
+          </mesh>
+        </geometry>
+        <!-- <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+            </ode>
+          </contact>
+        </surface> -->
+      </collision>
+      <visual name="visual">
+        <pose>0.05 0.05 0.15 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://models/hand_sanitizer/meshes/model.dae</uri>
+            <scale>2.0 2.0 2.0</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

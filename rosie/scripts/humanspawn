@@ -8,10 +8,10 @@ rosservice call /gazebo/delete_model human4
 
 # Spawn new models
 # Window
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human1 -x -6.0 -y 3.0 -z 1.0
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human1 -x -6.0 -y 3.0
 # Little Room
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human2 -x -5.5 -y -5.0 -z 1.0 -Y 1.5
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human2 -x -5.5 -y -5.0 -Y 1.5
 # Govlab
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human3 -x 5.5 -y -2.0 -z 1.0 -Y 3.1
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human3 -x 5.5 -y -2.0 -Y 3.1
 # Door
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human4 -x 0.5 -y 6.0 -z 1.0 -Y -1.5
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human4 -x 0.5 -y 6.0 -Y -1.5
