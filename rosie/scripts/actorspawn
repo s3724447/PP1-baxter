@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# deletes if already exists
+rosservice call /gazebo/delete_model my_actor
+
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/actors/humanactor.sdf -model my_actor
