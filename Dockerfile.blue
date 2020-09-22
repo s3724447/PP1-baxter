@@ -141,7 +141,8 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
 
 # Create ROS workspace
 WORKDIR /root/mir_ws/src
-RUN git clone https://github.com/dfki-ric/mir_robot
+#RUN git clone https://github.com/dfki-ric/mir_robot
+COPY /blue-sim /root/mir_ws/src/mir_robot
 WORKDIR /root/mir_ws
 
 # Use rosdep to install all dependencies (including ROS itself)

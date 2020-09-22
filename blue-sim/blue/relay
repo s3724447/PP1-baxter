@@ -14,7 +14,9 @@ done
 
 echo 'Master URI (rosie):' $ROSIE_MASTER_URI
 
-SUB_TOPICS="/clock /map /map_updates `ROS_MASTER_URI=$ROSIE_MASTER_URI rostopic list -p | egrep '^/blue'`"
+R200='/r200/camera/color/camera_info /r200/camera/color/image_raw /r200/camera/depth/camera_info /r200/camera/depth/image_raw /r200/camera/ir/camera_info /r200/camera/ir/image_raw /r200/camera/ir2/camera_info /r200/camera/ir2/image_raw'
+
+SUB_TOPICS="/clock /map /map_updates $R200 `ROS_MASTER_URI=$ROSIE_MASTER_URI rostopic list -p | egrep '^/blue'`"
 PUB_TOPICS=`ROS_MASTER_URI=$ROSIE_MASTER_URI rostopic list -s | egrep '^/blue'`
 
 set -xv

@@ -219,6 +219,12 @@
 
     <link name="${prefix}us_2_frame" />
 
+    <!-- Realsense Sensor -->
+    <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/realsense-RS200.macro.xacro"/>
+    <xacro:realsense-rs200 prefix="${prefix}" parent="base_link">
+      <origin xyz="0 0 0.4" rpy="0 0 0" />   
+    </xacro:realsense-rs200>
+
     <!-- wheels -->
     <xacro:actuated_wheel prefix="${prefix}" locationprefix="left" locationright="-1"/>
     <xacro:actuated_wheel prefix="${prefix}" locationprefix="right" locationright="1"/>

@@ -1,0 +1,8 @@
+/r200/camera/color/camera_info
+/r200/camera/color/image_raw
+/r200/camera/depth/camera_info
+/r200/camera/depth/image_raw
+/r200/camera/ir/camera_info
+/r200/camera/ir/image_raw
+/r200/camera/ir2/camera_info
+/r200/camera/ir2/image_raw
