@@ -5,7 +5,7 @@
         <filename>walk.dae</filename>
     </skin>
     <animation name="walking">
-        <filename>walk.dae</filename>
+        <filename>moonwalk.dae</filename>
         <scale>1</scale>
         <interpolate_x>true</interpolate_x>
     </animation>

@@ -13,7 +13,7 @@
     <param name="crop_z_min" value="0.05" />
     <param name="crop_z_max" value="15.5" />
 
-    <param name="source_pc_topic_name" value="/hokuyo3d/hokuyo_cloud2" />
+    <param name="source_pc_topic_name" value="/r200/camera/depth_registered/points" />
     <param name="box_name" value="/clustering_result" />
     <param name="clustering_frame_id" value="base_link" />
   </node>

@@ -55,8 +55,8 @@
     <remap from="scan_filtered" to="f_scan_rep117" />
   </node>
 
-    <!-- Realsense camera args and topics -->
   <!-- See name assigned in realsense-RS200.macro.xacro -->
+  <!-- Realsense topic mapping -->
   <arg name="camera_name" default="r200" />
 
   <arg name="rgb_camera_info" value="/$(arg camera_name)/camera/color/camera_info"/>
@@ -80,4 +80,5 @@
     <remap from="depth_registered/image_rect" to="$(arg depReg_imgrect)"/>
     <remap from="depth_registered/points" to="$(arg out_cloud)"/>
   </node>
+
 </launch>

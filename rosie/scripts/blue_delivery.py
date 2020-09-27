@@ -7,8 +7,9 @@ import time
 import os
 
 from random import randrange
-from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from subprocess import check_output
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from jsk_recognition_msgs.msg import BoundingBoxArray
 
 ROS_MASTER_IP = str(check_output("host vxlab-blue | sed 's/.* //g'", shell=True)).rstrip("\n")
 ROS_MASTER_URI = "http://%s:11311" % ROS_MASTER_IP
@@ -77,12 +78,29 @@ def movebase_client(goal):
         return client.get_result()
 
 
+humans = []
+
+
+def callback(data):
+    humans.append(data)
+
+
 if __name__ == '__main__':
     while True:
+        # Create goal process and initialise listener node
         goalProcess = GoalProcess()
+        rospy.init_node('listener')
+        rospy.Subscriber("recognized_result", BoundingBoxArray, callback)  # (topic_name, topic_type, callback)
+
+        # Start goal process
         goalProcess.start()
+
         # While no humans detected - temporarily set to goal thread until human detector is working
         while goalProcess.is_alive():
+            print humans.count()
+            for human in humans:
+                print human
             print "Separate process that can interrupt blue and redirect to human"
+
             time.sleep(5)
         goalProcess.terminate()

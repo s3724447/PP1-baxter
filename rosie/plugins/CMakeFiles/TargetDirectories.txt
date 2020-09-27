@@ -1,0 +1,3 @@
+/root/rosie/plugins/CMakeFiles/rebuild_cache.dir
+/root/rosie/plugins/CMakeFiles/ActorPlugin.dir
+/root/rosie/plugins/CMakeFiles/edit_cache.dir
