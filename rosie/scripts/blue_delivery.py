@@ -30,9 +30,15 @@ goals = [Goal("Little Room", -5.5, -4.0, 0.0, 1.0), Goal("Window", -5.0, 3.0, 0.
          Goal("Govlab", 4.5, -2.0, -0.7, 0.7),
          Goal("Door", 0.5, 5.0, 1.0, 0.0)]
 
+humans = []
+
+
+def callback(data):
+    humans.append(data)
+
 
 class GoalProcess(multiprocessing.Process):
-    def __init__(self, goal=None):
+    def __init__(self, goal):
         multiprocessing.Process.__init__(self)
         if goal:
             self.goal = goal
@@ -41,7 +47,9 @@ class GoalProcess(multiprocessing.Process):
 
     def run(self):
         try:
-            rospy.init_node('movebase_client_py')
+            rospy.init_node('delivery_client_py')
+            # Subscribe to the human detector topic
+            rospy.Subscriber("recognized_result", BoundingBoxArray, callback)
             result = movebase_client(self.goal)
             if result:
                 rospy.loginfo("Goal execution done")
@@ -78,29 +86,26 @@ def movebase_client(goal):
         return client.get_result()
 
 
-humans = []
-
-
-def callback(data):
-    humans.append(data)
-
-
 if __name__ == '__main__':
+    new_goal = None
     while True:
-        # Create goal process and initialise listener node
-        goalProcess = GoalProcess()
-        rospy.init_node('listener')
-        rospy.Subscriber("recognized_result", BoundingBoxArray, callback)  # (topic_name, topic_type, callback)
+        # Create goal process
+        goalProcess = GoalProcess(new_goal)
 
         # Start goal process
         goalProcess.start()
 
         # While no humans detected - temporarily set to goal thread until human detector is working
         while goalProcess.is_alive():
-            print humans.count()
+            print len(humans)
             for human in humans:
                 print human
             print "Separate process that can interrupt blue and redirect to human"
 
             time.sleep(5)
         goalProcess.terminate()
+
+        if humans:
+            new_goal = None
+        else:
+            new_goal = None

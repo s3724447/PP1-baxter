@@ -33,5 +33,21 @@
           </waypoint>
         </trajectory>
       </script>
+      <!-- Plugin only works in world file, works to an extent (actor avoids some obstacles but not all) -->
+      <!-- <plugin name="actor_plugin" filename="libActorPlugin.so">
+        <target>0 -8 1.2138</target>
+        <target_weight>0.90</target_weight>
+        <obstacle_weight>1.2</obstacle_weight>
+        <animation_factor>5.1</animation_factor>
+        <ignore_obstacles>
+          <model>vxlab</model>
+          <model>ground_plane</model>
+          <model>mobility_base</model>
+          <model>human1</model>
+          <model>human2</model>
+          <model>human3</model>
+          <model>human4</model>
+        </ignore_obstacles>
+      </plugin> -->
   </actor>
 </sdf>
