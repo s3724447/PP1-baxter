@@ -6,7 +6,7 @@ using namespace pcl;
 
 EuclideanCluster::EuclideanCluster(ros::NodeHandle nh, ros::NodeHandle n)
     : nh_(nh),
-      rate_(n.param("loop_rate", 10)),
+      rate_(n.param("loop_rate", 1)),
       accumulation_counter_(0),
       frame_id_(n.param<std::string>("clustering_frame_id", "base_link"))
 {

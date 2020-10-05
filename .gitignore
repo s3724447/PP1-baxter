@@ -2,7 +2,7 @@
 *.swp
 02proxy.vxlab
 *.log
-*.out
+a.out
 navigation_ws/.catkin_workspace
 navigation_ws/navigation_msgs.disable/
 navigation_ws/.catkin_tools/

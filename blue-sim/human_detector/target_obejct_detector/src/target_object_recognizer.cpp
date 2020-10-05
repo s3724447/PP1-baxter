@@ -92,7 +92,7 @@ void TargetObjectRecognizer::detectedCallback(const jsk_recognition_msgs::Boundi
       for (size_t j = 0; j < target_object_candidates_.size(); ++j) {
         double dist = this->calcDistance(target_object_candidates_[j].getPose(),
                                          out_pose.pose);
-        if (dist < 1.0) {
+        if (dist < 3.0) {
           target_object_candidates_[j].addCounter();
           target_object_candidates_[j].addTargetObject(out_pose,
                                                        detected_objects->boxes[i]);
@@ -106,7 +106,7 @@ void TargetObjectRecognizer::detectedCallback(const jsk_recognition_msgs::Boundi
     }
     jsk_recognition_msgs::BoundingBoxArray box_array;
     for (size_t i = 0; i < target_object_candidates_.size(); ++i) {
-      if(target_object_candidates_[i].getCounter() > 5){
+      if(target_object_candidates_[i].getCounter() > 0){
         box_array.boxes.push_back(target_object_candidates_[i].getBox());
       }
     }
@@ -126,7 +126,7 @@ void TargetObjectRecognizer::robotPoseCallback(const geometry_msgs::PoseWithCova
     // 最新のロボットの位置と比較してn[m]離れててかつcounterがしきい値以下ならその候補は消す
     for (std::vector<TargetObject>::iterator it = target_object_candidates_.begin(); it != target_object_candidates_.end(); ) {
       double dist_from_robot = this->calcDistance(it->getPose(), latest_robot_pose_.pose.pose);
-      if(dist_from_robot >= 5.0 && it->getCounter() < 3)
+      if(dist_from_robot >= 50 && it->getCounter() < 3)
       {
         it = target_object_candidates_.erase(it);
         continue;

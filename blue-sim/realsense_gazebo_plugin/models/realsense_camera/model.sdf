@@ -103,7 +103,7 @@
         </camera>
         <always_on>1</always_on>
         <update_rate>60</update_rate>
-        <visualize>1</visualize>
+        <visualize>0</visualize>
       </sensor>
       <sensor name="ired1" type="camera">
         <pose frame="">0 -0.06 0.004 0 0 0</pose>

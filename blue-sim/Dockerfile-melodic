@@ -10,7 +10,7 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
 RUN apt update && \
     # Install some basic dependencies
     apt install -y \
-        iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc python-wstool
+        iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc python-wstool gnuplot
 
 RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
     build-essential python-catkin-tools python-catkin-lint python-rosdep ros-melodic-gazebo-plugins
