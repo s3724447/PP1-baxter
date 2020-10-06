@@ -22,7 +22,7 @@ rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model h
 # Next to Little Room
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human5 -x -3.0 -y -2.0 -Y 1.5
 # Next to Little Room2
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human6 -x 2.0 -y -5.0 -Y 1.5
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human6 -x 1.0 -y -3.0 -Y 1.5
 # Govlab East?
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human7 -x 4.0 -y -4.0 -Y 1.5
 # Govlab WEST?

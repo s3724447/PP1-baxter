@@ -10,20 +10,20 @@ rosservice call /gazebo/delete_model human6
 rosservice call /gazebo/delete_model human7
 rosservice call /gazebo/delete_model human8
 
-# Spawn new models
-# Window
+# Spawn new models, clockwise
+# Doorway of little room
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human1 -x -5.0 -y -2.0
-# Little Room
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human2 -x -5.0 -y 1.0
-# Govlab
+# Window
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human2 -x -6.0 -y 1.0
+# Corner near windows
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human3 -x -5.0 -y 4.0
-# Door
+# Between windows and entrance
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human4 -x -2.0 -y 4.0
-#
+# Entrance doorway
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human5 -x 1.0 -y 4.0
-#
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human6 -x 1.0 -y 1.0
-#
+# Outside govlab
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human6 -x 2.0 -y 1.0
+# Open space
 rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human7 -x 1.0 -y -2.0
-#
-rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human8 -x -2.0 -y -2.0
+# Wall of little room
+rosrun gazebo_ros spawn_model -sdf -file ~/rosie/models/human/model.sdf -model human8 -x -2.0 -y -3.0
