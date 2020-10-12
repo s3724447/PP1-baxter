@@ -9,7 +9,7 @@ import os
 from random import randrange
 from subprocess import check_output
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from jsk_recognition_msgs.msg import BoundingBoxArray
+from jsk_recognition_msgs.msg import BoundingBoxArray, BoundingBox
 
 ROS_MASTER_IP = str(check_output("host vxlab-blue | sed 's/.* //g'", shell=True)).rstrip("\n")
 ROS_MASTER_URI = "http://%s:11311" % ROS_MASTER_IP
@@ -26,40 +26,48 @@ class Goal:
         self.w = w
 
 
-goals = [Goal("Little Room", -5.5, -4.0, 0.0, 1.0), Goal("Window", -5.0, 3.0, 0.7, 0.7),
-         Goal("Govlab", 4.5, -2.0, -0.7, 0.7),
-         Goal("Door", 0.5, 5.0, 1.0, 0.0)]
-
-humans = []
+static_goals = [Goal("Little Room", -5.5, -4.0, 0.0, 1.0), Goal("Window", -5.0, 3.0, 0.7, 0.7),
+                Goal("Govlab", 4.5, -2.0, -0.7, 0.7),
+                Goal("Door", 0.5, 5.0, 1.0, 0.0)]
 
 
-def callback(data):
-    humans.append(data)
+def random_goal():
+    return static_goals[randrange(len(static_goals))]
 
 
-class GoalProcess(multiprocessing.Process):
-    def __init__(self, goal):
-        multiprocessing.Process.__init__(self)
-        if goal:
-            self.goal = goal
-        else:
-            self.goal = self.random_goal()
+dynamic_goals = []
+visited_goals = []
 
-    def run(self):
-        try:
-            rospy.init_node('delivery_client_py')
-            # Subscribe to the human detector topic
-            rospy.Subscriber("recognized_result", BoundingBoxArray, callback)
-            result = movebase_client(self.goal)
-            if result:
-                rospy.loginfo("Goal execution done")
+
+def callback(msg):
+    for box in msg.boxes:
+        new_goal = Goal("Human", box.pose.position.x, box.pose.position.y, box.pose.position.z,
+                            box.pose.orientation.w)
+        exists = False
+        for d_g in dynamic_goals:
+            print d_g.x
+            print new_goal.x
+            if abs(d_g.x - new_goal.x) < 1 and abs(d_g.y - new_goal.y) < 1:
+                exists = True
+                break
+        if not exists:
+            visited = False
+            print len(visited_goals)
+            for v_g in visited_goals:
+                print v_g.x
+                print new_goal.x
+                print v_g.y
+                print new_goal.y
+                if abs(v_g.x - new_goal.x) < 1 and abs(v_g.y - new_goal.y) < 1:
+                    visited = True
+                    break
+            if not visited:
+                dynamic_goals.append(new_goal)
+                rospy.loginfo("Goal added to dynamic collection.")
             else:
-                rospy.loginfo("Goal execution unsuccessful!")
-        except rospy.ROSInterruptException:
-            rospy.loginfo("Navigation test finished.")
-
-    def random_goal(self):
-        return goals[randrange(len(goals))]
+                rospy.loginfo("Goal has already been visited.")
+        else:
+            rospy.loginfo("Goal exists in dynamic collection.")
 
 
 def movebase_client(goal):
@@ -79,6 +87,7 @@ def movebase_client(goal):
     client.send_goal(move_goal)
     rospy.loginfo("Waiting for response...")
     result = client.wait_for_result()
+
     if not result:
         rospy.logerr("Action server not available!")
         rospy.signal_shutdown("Action server not available!")
@@ -87,25 +96,24 @@ def movebase_client(goal):
 
 
 if __name__ == '__main__':
-    new_goal = None
+    goal = random_goal()
+    rospy.init_node('delivery_client_py')
+    # Subscribe to the human detector topic
+    rospy.Subscriber("recognized_result", BoundingBoxArray, callback)
+
     while True:
         # Create goal process
-        goalProcess = GoalProcess(new_goal)
+        try:
+            goal_result = movebase_client(goal)
+            if goal_result:
+                rospy.loginfo("Goal execution done")
+            else:
+                rospy.loginfo("Goal execution unsuccessful!")
+        except rospy.ROSInterruptException:
+            rospy.loginfo("Navigation test finished.")
 
-        # Start goal process
-        goalProcess.start()
-
-        # While no humans detected - temporarily set to goal thread until human detector is working
-        while goalProcess.is_alive():
-            print len(humans)
-            for human in humans:
-                print human
-            print "Separate process that can interrupt blue and redirect to human"
-
-            time.sleep(5)
-        goalProcess.terminate()
-
-        if humans:
-            new_goal = None
+        if dynamic_goals:
+            goal = dynamic_goals.pop()
+            visited_goals.append(goal)
         else:
-            new_goal = None
+            goal = random_goal()

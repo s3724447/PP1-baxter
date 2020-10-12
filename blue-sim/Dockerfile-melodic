@@ -13,7 +13,7 @@ RUN apt update && \
         iproute2 host wget less sudo vim-tiny iputils-ping telnet lsof psmisc python-wstool gnuplot
 
 RUN apt-get update && apt -y dist-upgrade && apt-get install -y \
-    build-essential python-catkin-tools python-catkin-lint python-rosdep ros-melodic-gazebo-plugins
+    build-essential python-catkin-tools python-catkin-lint python-rosdep ros-melodic-gazebo-plugins ros-melodic-pcl-ros
 
 # Create ROS workspace
 ENV CATKIN_WS=/ws
