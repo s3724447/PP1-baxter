@@ -7,13 +7,13 @@ services:
           vxlab:
         ports:
           - "8080:8080"
-    display2:
-        container_name: display2
-        image: theasp/novnc
-        networks:
-          vxlab:
-        ports:
-          - "8081:8080"
+#    display2:
+#        container_name: display2
+#        image: theasp/novnc
+#        networks:
+#          vxlab:
+#        ports:
+#          - "8081:8080"
     vxlab-rosie:
         container_name: vxlab-rosie
         build:
@@ -46,32 +46,32 @@ services:
           target: /root/rosie
         environment:
           DISPLAY: display2:0
-    alvar-head:
-        container_name: alvar-head
-        build:
-          context: alvar_marker_recognition
-          dockerfile: Dockerfile
-        networks:
-          vxlab:
-        volumes:
-        - type: bind
-          source: ./rosie
-          target: /root/rosie
-        environment:
-          LIMB: head
-    alvar-right:
-        container_name: alvar-right
-        build:
-          context: alvar_marker_recognition
-          dockerfile: Dockerfile
-        networks:
-          vxlab:
-        volumes:
-        - type: bind
-          source: ./rosie
-          target: /root/rosie
-        environment:
-          LIMB: right_hand
+#    alvar-head:
+#        container_name: alvar-head
+#        build:
+#          context: alvar_marker_recognition
+#          dockerfile: Dockerfile
+#        networks:
+#          vxlab:
+#        volumes:
+#        - type: bind
+#          source: ./rosie
+#          target: /root/rosie
+#        environment:
+#          LIMB: head
+#    alvar-right:
+#        container_name: alvar-right
+#        build:
+#          context: alvar_marker_recognition
+#          dockerfile: Dockerfile
+#        networks:
+#          vxlab:
+#        volumes:
+#        - type: bind
+#          source: ./rosie
+#          target: /root/rosie
+#        environment:
+#          LIMB: right_hand
     vxlab-blue:
         container_name: vxlab-blue
         build:
